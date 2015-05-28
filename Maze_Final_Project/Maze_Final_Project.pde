@@ -3,9 +3,12 @@ import java.io.*;
 
 Random r;
 GameTile[][] map;
+int w,h;
 
 void setup() {
-  size(1000, 700);
+  w=1000;
+  h=700;
+  size(w, h);
   r = new Random();
   int filenumber = r.nextInt(3);
   //use random to determine which game file to use
@@ -22,6 +25,14 @@ void setup() {
     }
   }
   catch(FileNotFoundException e) {
+  }
+  SpotTheDifference f = new SpotTheDifference(1,w,h);
+  f.print();
+}
+
+void mouseClicked(){
+  if(mousePressed==true){
+    println("" + mouseX + "" + mouseY);
   }
 }
 
