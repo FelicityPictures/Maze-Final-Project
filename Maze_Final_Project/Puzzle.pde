@@ -9,7 +9,6 @@ public class Puzzle{
       return solved;
   }
   
-  public void playedAndWon(){
-    solved = true;
+  public void play(){
   }
 }

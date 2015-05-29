@@ -1,7 +1,7 @@
 public class DoorKeys extends Item{
   
   public DoorKeys(String c){
-      super(c + " key");
+      super(c + " Key");
   }
   
   public String getDescription(){

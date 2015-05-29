@@ -1,4 +1,3 @@
-
 public abstract class Item{
   private String Name;
   private String description;

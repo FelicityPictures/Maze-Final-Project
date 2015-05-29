@@ -27,7 +27,7 @@ void setup() {
   catch(FileNotFoundException e) {
   }
   SpotTheDifference f = new SpotTheDifference(1,w,h);
-  f.print();
+  f.show();
 }
 
 void mouseClicked(){
