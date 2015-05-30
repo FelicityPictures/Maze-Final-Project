@@ -7,19 +7,24 @@ ArrayList<Integer> pixY = new ArrayList<Integer>();
 ArrayList<Integer> emptySpaceX = new ArrayList<Integer>();
 ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
 int piece = 0;
+int whereAcross = piece;
+int whereDown = piece;
 
 void setup() {
   size(1000, 700);
   img = loadImage("tilegame.jpg");
-  splitUp(4);
+  splitUp(4, 2, 4);
 }
 
-void splitUp(int pieces) {
+
+void splitUp(int pieces, int down, int across) {
   piece = pieces;
+  whereAcross = across;
+  whereDown = down;
   int tileWidth = img.width/pieces;
   int tileHeight = img.height/pieces;
-  int goWidth = width/4;
-  int goHeight = height/4;
+  int goWidth = width/pieces;
+  int goHeight = height/pieces;
   rect(goWidth, goHeight, img.width, img.height);
   int place = 1;
   int place2 = 1;
@@ -31,7 +36,7 @@ void splitUp(int pieces) {
   int w, h, counterW, counterH;
   while (place <= pieces) {
     while (place2 <= pieces) {
-      if (place == pieces && place2 == pieces) {
+      if (place2 == across && place == down) {
         w = placeW;
         h = placeH;
         counterW = 0;
@@ -45,7 +50,9 @@ void splitUp(int pieces) {
           counterH = 0;
           counterW++;
         }
-        place++;
+        startW += tileWidth;
+        placeW += tileWidth;
+        //place++;
         place2++;
       } else {
         copy(startW, startH, tileWidth, tileHeight, placeW, placeH, tileWidth, tileHeight);
@@ -99,7 +106,7 @@ void mouseClicked() {
   if (onImage(pixX, pixY, mouseX, mouseY)) {
     if (onImage(emptySpaceX, emptySpaceY, mouseX + tileWidth, mouseY)) {
       println(1);
-      //move to the right
+      splitUp(piece, whereDown, whereAcross-1);
     } else {
       if (onImage(emptySpaceX, emptySpaceY, mouseX - tileWidth, mouseY)) {
         println(2);
@@ -117,15 +124,14 @@ void mouseClicked() {
       }
     }
   }
+  pixX.clear();
+  pixY.clear();
+  emptySpaceX.clear();
+  emptySpaceY.clear();
 }
 
-
-
-
-void draw() {
+void draw(){
 }
-
-
 
 
 //void draw() {
