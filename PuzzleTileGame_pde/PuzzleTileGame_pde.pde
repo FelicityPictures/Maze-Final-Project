@@ -114,10 +114,10 @@ void placeParts(int across, int down) {
     goHeight += tileHeight;
     place++;
   }
-  pixX.clear();
-  pixY.clear();
-  emptySpace.clear();
-  emptySpace.clear();
+//  pixX.clear();
+//  pixY.clear();
+//  emptySpaceX.clear();
+//  emptySpaceY.clear();
 }
 
 
