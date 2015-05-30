@@ -2,7 +2,11 @@
 
 
 PImage img;
-ArrayList<Integer> pix = new ArrayList<Integer>();
+ArrayList<Integer> pixX = new ArrayList<Integer>();
+ArrayList<Integer> pixY = new ArrayList<Integer>();
+ArrayList<Integer> emptySpaceX = new ArrayList<Integer>();
+ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
+int piece = 0;
 
 void setup() {
   size(1000, 700);
@@ -11,6 +15,7 @@ void setup() {
 }
 
 void splitUp(int pieces) {
+  piece = pieces;
   int tileWidth = img.width/pieces;
   int tileHeight = img.height/pieces;
   int goWidth = width/4;
@@ -27,6 +32,19 @@ void splitUp(int pieces) {
   while (place <= pieces) {
     while (place2 <= pieces) {
       if (place == pieces && place2 == pieces) {
+        w = placeW;
+        h = placeH;
+        counterW = 0;
+        counterH = 0;
+        while (counterW <= tileWidth) {
+          while (counterH <= tileHeight) {
+            emptySpaceX.add(w + counterW);
+            emptySpaceY.add(h + counterH);
+            counterH++;
+          }
+          counterH = 0;
+          counterW++;
+        }
         place++;
         place2++;
       } else {
@@ -37,8 +55,8 @@ void splitUp(int pieces) {
         counterH = 0;
         while (counterW <= tileWidth) {
           while (counterH <= tileHeight) {
-            pix.add(w + counterW);
-            pix.add(h + counterH);
+            pixX.add(w + counterW);
+            pixY.add(h + counterH);
             counterH++;
           }
           counterH = 0;
@@ -56,7 +74,55 @@ void splitUp(int pieces) {
     placeH += tileHeight;
     place++;
   }
-  println(pix);
+  //  println(pix);
+}
+
+static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
+  int place = 0;
+  while (place < xc.size ()) {
+    if (xc.get(place) == x && yc.get(place) == y) {
+      return true;
+    }
+    place++;
+  }
+  return false;
+}
+
+void mouseClicked() {  
+  int tileWidth = img.width/piece;
+  int tileHeight = img.height/piece;
+  int goWidth = width/4;
+  int goHeight = height/4;
+  println (mouseX +"," + mouseY);
+
+  //did the user click on a valid tile?
+  if (onImage(pixX, pixY, mouseX, mouseY)) {
+    if (onImage(emptySpaceX, emptySpaceY, mouseX + tileWidth, mouseY)) {
+      println(1);
+      //move to the right
+    } else {
+      if (onImage(emptySpaceX, emptySpaceY, mouseX - tileWidth, mouseY)) {
+        println(2);
+        //move to the right
+      } else {
+        if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY + tileHeight)) {
+          println(3);
+          //move down
+        } else {
+          if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY - tileHeight)) {
+            println(4);
+            //move up
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+void draw() {
 }
 
 
