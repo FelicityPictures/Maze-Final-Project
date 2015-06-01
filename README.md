@@ -12,3 +12,11 @@ Helen Li and Felicity Ng's final project APCS2, Mr. K, period 6
 5/30/15: continued working on the tiles game; one tile is moving around. Still needs more work. Aim to finish this by Tuesday.
 5/31/15: Continued working on graphics (drawing)
          Fixed the scanner thing in Processing by using loadStrings()
+         
+         
+         
+Things to do:
+-Finish making the map appear and allow user to navigate (finish by Tuesday 6/2)
+-Finish all games except Bejeweled (finish for Demo versions -- Bejeweled for final version if possible)
+-Fighting the boss game (hopefully by this weekend -- maybe not)
+-more to come :)
