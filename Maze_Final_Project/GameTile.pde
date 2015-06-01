@@ -32,7 +32,6 @@ PImage South = loadImage("South.png");
 PImage SW = loadImage("SW.png");
 PImage West = loadImage("West.png");
 
-
 public class GameTile {
   char direction;
   boolean door;

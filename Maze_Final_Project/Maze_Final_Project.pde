@@ -30,8 +30,10 @@ void setup() {
 }
 
 void displayMap() {
-  fill (150, 150, 150, 80);
-  rect(100, 100, width-200, height-200);
+  PImage border = loadImage("Border.png");
+  image(border,0,0);
+ // fill (150, 150, 150, 80);
+ // rect(100, 100, width-200, height-200);
 }
 
 void draw() {
