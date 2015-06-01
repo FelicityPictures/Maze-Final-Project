@@ -1,6 +1,9 @@
 # Maze-Final-Project
 Helen Li and Felicity Ng's final project APCS2, Mr. K, period 6
 
+Brief Description
+A puzzle oriented game. The player traverses through a maze, solving puzzles in order to reach the center room, which contains the objective that would win the game. The puzzles could be spot-the-difference, bejeweled, repeat after me, sliding puzzle, memory game, etc.
+
 5/25/15: Started working on maze and how to implement GameTile
 5/26/15: Solidified how direction works in maze; North, East, South, West dependant + began/tried using keyPressed to navigate
          Fixed the bug of reading the file in with scanner
