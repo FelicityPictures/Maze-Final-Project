@@ -8,3 +8,7 @@ Helen Li and Felicity Ng's final project APCS2, Mr. K, period 6
 5/28/15: Fixed scan for maze; started PuzzleTile game; can print image for Spot the Difference; Drew pictures for User Interface
 5/29/15: Worked on the Tile Puzzle Game
          Working on importing images drawn yesterday
+5/29/15 (continued): broke git terminal
+5/30/15: continued working on the tiles game; one tile is moving around. Still needs more work. Aim to finish this by Tuesday.
+5/31/15: Continued working on graphics (drawing)
+         Fixed the scanner thing in Processing by using loadStrings()
