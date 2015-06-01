@@ -5,6 +5,7 @@ import java.io.File;
 Random r;
 GameTile[][] map;
 int mode = 0;
+GameTile current;
 
 
 void setup() {
@@ -26,8 +27,8 @@ void setup() {
     }
   }
 
-//DEBUG: print the maze with the following code
-    String ans = "";
+  //DEBUG: print the maze with the following code
+  String ans = "";
   int place = 0;
   int place2 = 0;
   while (place < map.length) {
@@ -41,15 +42,37 @@ void setup() {
   }
 }
 
-//void displayMap() {
-//  PImage border = loadImage("Border.png");
-//  image(border, 0, 0);
-//  // fill (150, 150, 150, 80);
-//  // rect(100, 100, width-200, height-200);
-//}
+void displayMap() {
+  PImage border = loadImage("Images/Border.png");
+  image(border, 0, 0);
+  // fill (150, 150, 150, 80);
+  // rect(100, 100, width-200, height-200);
+}
+
+void keyPressed() {
+  println(keyCode);
+  if (keyCode==119 && ValidClick('N')) {
+    //go north
+  } else {
+    if (keyCode==97 && ValidClick('W')) {
+      //go west
+    } else {
+      if (keyCode==100 && ValidClick('E')) {
+        //go east
+      } else {
+        if (keyCode==115 && ValidClick('S')) {
+          //go south
+        }
+      }
+    }
+  }
+}
+
+
+
 
 void draw() {
-  //  displayMap();
+  displayMap();
   //image(West,200,200);
   //  PuzzleTileGame t = new PuzzleTileGame();
 }
