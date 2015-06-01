@@ -5,8 +5,6 @@ Random r;
 GameTile[][] map;
 int mode = 0;
 
-
-
 void setup() {
   size(1000, 700);
   background(0);
@@ -30,7 +28,7 @@ void setup() {
 }
 
 void displayMap() {
-  PImage border = loadImage("Border.png");
+  PImage border = loadImage("Images/Border.png");
   image(border,0,0);
  // fill (150, 150, 150, 80);
  // rect(100, 100, width-200, height-200);
@@ -38,6 +36,7 @@ void displayMap() {
 
 void draw() {
   displayMap();
+//  map[1][1].out();
   //image(West,200,200);
   //  PuzzleTileGame t = new PuzzleTileGame();
 }
