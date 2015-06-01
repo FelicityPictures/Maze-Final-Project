@@ -13,7 +13,8 @@ Helen Li and Felicity Ng's final project APCS2, Mr. K, period 6
 5/31/15: Continued working on graphics (drawing)
          Fixed the scanner thing in Processing by using loadStrings()
          
-         
+What do we have as of 6/1?
+Not much :/ much but we have loaded a nice map, and we are beginning the games. More progress will come this week.
          
 Things to do:
 -Finish making the map appear and allow user to navigate (finish by Tuesday 6/2)
