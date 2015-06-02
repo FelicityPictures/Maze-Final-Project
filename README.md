@@ -17,6 +17,7 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
          Fixed the scanner thing in Processing by using loadStrings()
          
 What do we have as of 6/1?
+INSTRUCTIONS: Look at Maze_Final_Project.pde (for bordered map) and PuzzleTileGame.pde (for Puzzle Tile game). Not much progress, but should be able to compile.
 Not much :/ much but we have loaded a nice map, and we are beginning the games. More progress will come this week.
          
 Things to do:
