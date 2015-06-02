@@ -1,4 +1,4 @@
-public class SpotTheDifference{
+public class SpotTheDifference extends Puzzle{
   PImage picture;
 //  ClickCoordinates[]solutions;
   
