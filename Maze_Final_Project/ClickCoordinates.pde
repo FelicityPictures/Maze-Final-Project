@@ -17,4 +17,7 @@ public class ClickCoordinates {
   }
 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3dd803e69d75db15016655857b24d5dd7c497d6f

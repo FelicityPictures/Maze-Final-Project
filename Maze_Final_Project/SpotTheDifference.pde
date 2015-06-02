@@ -1,5 +1,6 @@
 public class SpotTheDifference extends Puzzle{
   PImage picture;
+<<<<<<< HEAD
   int ScreenW, ScreenH;
   ClickCoordinates[]solutions;
 
@@ -7,6 +8,12 @@ public class SpotTheDifference extends Puzzle{
   public SpotTheDifference(int i, int w, int h) {
     super();
     //if statement for loading images
+=======
+//  ClickCoordinates[]solutions;
+  
+  
+  public SpotTheDifference(int i){
+>>>>>>> 3dd803e69d75db15016655857b24d5dd7c497d6f
     picture = loadImage("testImage.jpg");
     ScreenW = w;
     ScreenH = h;
