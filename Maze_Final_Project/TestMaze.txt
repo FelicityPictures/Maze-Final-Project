@@ -5,7 +5,7 @@
 ##########
 #S#DFFFFL#
 #T#T####T#
-#T#T#ED#T#
+#T#T#HD#T#
 #T#T##TFK#
 #T#BFFC#T#
 #T######T#

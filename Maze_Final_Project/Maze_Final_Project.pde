@@ -4,16 +4,16 @@ import java.io.File;
 
 Random r;
 GameTile[][] map;
-int w,h;
+int w, h;
 
 void setup() {
   w=1000;
   h=700;
   size(w, h);
-int mode = 0;
-GameTile current;
+  int mode = 0;
+  GameTile current;
 
-int currentRow, currentCol;
+  int currentRow, currentCol;
   background(0);
   r = new Random();
   int filenumber = r.nextInt(3);
@@ -79,7 +79,7 @@ void displayMap() {
   // rect(100, 100, width-200, height-200);
 }
 
-void loadArrows(GameTile g){
+void loadArrows(GameTile g) {
 }
 
 void keyPressed() {
@@ -107,12 +107,12 @@ void keyPressed() {
       }
     }
   }
-  SpotTheDifference f = new SpotTheDifference(1,w,h);
+  SpotTheDifference f = new SpotTheDifference(1, w, h);
   f.show();
 }
 
-void mouseClicked(){
-  if(mousePressed==true){
+void mouseClicked() {
+  if (mousePressed==true) {
     println("" + mouseX + "" + mouseY);
   }
 }

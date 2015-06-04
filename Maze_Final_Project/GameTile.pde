@@ -1,5 +1,5 @@
 /*
- E: Boss
+ H: Boss
  T: NS
  F: EW
  B: NE
@@ -17,8 +17,57 @@
 public class GameTile {
   char direction;
   boolean door;
+  PImage big,small;
 
   public GameTile(char d, boolean dr) {
+    if (d=='#') {
+      small = loadImage("Images/blank.png");
+    }
+    if (d=='N') {
+      small = loadImage("Images/N.png");
+    }
+    if (d=='E') {
+      small = loadImage("Images/E.png");
+    }
+    if (d=='S') {
+      small = loadImage("Images/S.png");
+    }
+    if (d=='W') {
+      small = loadImage("Images/W.png");
+    }
+    if (d=='T') {
+      small = loadImage("Images/NS.png");
+    }
+    if (d=='F') {
+      small = loadImage("Images/EW.png");
+    }
+    if (d=='B') {
+      small = loadImage("Images/NE.png");
+    }
+    if (d=='C') {
+      small = loadImage("Images/NW.png");
+    }
+    if (d=='D') {
+      small = loadImage("Images/SE.png");
+    }
+    if (d=='L') {
+      small = loadImage("Images/SW.png");
+    }
+    if (d=='K') {
+      small = loadImage("Images/NSW.png");
+    }
+    if (d=='Y') {
+      small = loadImage("Images/NSE.png");
+    }
+    if (d=='P') {
+      small = loadImage("Images/ESW.png");
+    }
+    if (d=='U') {
+      small = loadImage("Images/NEW.png");
+    }
+    if (d=='A') {
+      small = loadImage("Images/NESW.png");
+    }
     direction = d;
     door = dr;
   }
