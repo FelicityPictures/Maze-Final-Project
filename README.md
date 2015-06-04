@@ -15,6 +15,7 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
 5/30/15: continued working on the tiles game; one tile is moving around. Still needs more work. Aim to finish this by Tuesday.
 5/31/15: Continued working on graphics (drawing)
          Fixed the scanner thing in Processing by using loadStrings()
+6/1/15:  Fixed git terminal and problems with merging
          
 What do we have as of 6/1?
 INSTRUCTIONS: Look at Maze_Final_Project.pde (for bordered map) and PuzzleTileGame.pde (for Puzzle Tile game). Not much progress, but should be able to compile.
