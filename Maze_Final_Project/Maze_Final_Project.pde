@@ -4,23 +4,17 @@ import java.io.File;
 
 Random r;
 GameTile[][] map;
-<<<<<<< HEAD
 int w,h;
 
 void setup() {
   w=1000;
   h=700;
   size(w, h);
-=======
 int mode = 0;
 GameTile current;
+
 int currentRow, currentCol;
-
-
-void setup() {
-  size(1000, 700);
   background(0);
->>>>>>> 3dd803e69d75db15016655857b24d5dd7c497d6f
   r = new Random();
   int filenumber = r.nextInt(3);
   //use random to determine which game file to use
@@ -122,9 +116,6 @@ void mouseClicked(){
     println("" + mouseX + "" + mouseY);
   }
 }
-
-
-
 
 void draw() {
   displayMap();

@@ -16,9 +16,3 @@ public abstract class Item{
   }
   
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 3dd803e69d75db15016655857b24d5dd7c497d6f
-//public abstract class Item{
-//}
