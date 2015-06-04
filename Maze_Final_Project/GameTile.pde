@@ -25,48 +25,63 @@ public class GameTile {
     }
     if (d=='N') {
       small = loadImage("Images/N.png");
+      big = loadImage("Images/N Inside.png");
     }
     if (d=='E') {
       small = loadImage("Images/E.png");
+      big = loadImage("Images/E Inside.png");
     }
     if (d=='S') {
       small = loadImage("Images/S.png");
+      big = loadImage("Images/S Inside.png");
     }
     if (d=='W') {
       small = loadImage("Images/W.png");
+      big = loadImage("Images/W Inside.png");
     }
     if (d=='T') {
       small = loadImage("Images/NS.png");
+      big = loadImage("Images/NS Inside.png");
     }
     if (d=='F') {
       small = loadImage("Images/EW.png");
+      big = loadImage("Images/EW Inside.png");
     }
     if (d=='B') {
       small = loadImage("Images/NE.png");
+      big = loadImage("Images/NE Inside.png");
     }
     if (d=='C') {
       small = loadImage("Images/NW.png");
+      big = loadImage("Images/NW Inside.png");
     }
     if (d=='D') {
       small = loadImage("Images/SE.png");
+      big = loadImage("Images/SE Inside.png");
     }
     if (d=='L') {
       small = loadImage("Images/SW.png");
+      big = loadImage("Images/SW Inside.png");
     }
     if (d=='K') {
       small = loadImage("Images/NSW.png");
+      big = loadImage("Images/NSW Inside.png");
     }
     if (d=='Y') {
       small = loadImage("Images/NSE.png");
+      big = loadImage("Images/NSE Inside.png");
     }
     if (d=='P') {
       small = loadImage("Images/ESW.png");
+      big = loadImage("Images/ESW Inside.png");
     }
     if (d=='U') {
       small = loadImage("Images/NEW.png");
+      big = loadImage("Images/NEW Inside.png");
     }
     if (d=='A') {
       small = loadImage("Images/NESW.png");
+      big = loadImage("Images/NESW Inside.png");
     }
     direction = d;
     door = dr;

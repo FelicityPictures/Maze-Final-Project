@@ -1,2 +1,5 @@
 public class BossTile extends GameTile{
-  public BossTile(
+  PImage Door = loadImage("Image/BossDoor.png");
+  
+  public BossTile(char d, boolean dr) {
+    super(d,dr);

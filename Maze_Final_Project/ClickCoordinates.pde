@@ -1,5 +1,5 @@
 public class ClickCoordinates {
-  int minX,maxX, minY, maxY;
+  int minX, maxX, minY, maxY;
 
   public ClickCoordinates(int x, int xx, int y, int yy) {
     minX=x;
