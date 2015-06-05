@@ -24,7 +24,7 @@ public class GameTile {
 
   public GameTile(char d, boolean dr) {
     if (d=='#') {
-      small = loadImage("Images/blank.png");
+      small = loadImage("Images/Blank.png");
     }
     if (d=='N') {
       small = loadImage("Images/N.png");

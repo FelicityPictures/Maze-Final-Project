@@ -5,15 +5,19 @@ import java.io.File;
 Random r;
 GameTile[][] map;
 int w, h;
+GameTile current;
+int currentRow, currentCol;
+int mode = 0;
+ArrayList<Integer> mapImage = new ArrayList<Integer>();
+
+
 
 void setup() {
   w=1000;
   h=700;
   size(w, h);
   int mode = 0;
-  GameTile current;
 
-  int currentRow, currentCol;
   background(0);
   r = new Random();
   int filenumber = r.nextInt(3);
@@ -34,23 +38,36 @@ void setup() {
   }
 
   current = map[startx][starty];
+  displayDefault();
 
-  //  //DEBUG: print the maze with the following code
-  //  String ans = "";
-  //  int place = 0;
-  //  int place2 = 0;
-  //  while (place < map.length) {
-  //    while (place2 < map[0].length) {
-  //      ans += map[place][place2];
-  //      place2++;
-  //    }
-  //    place2 = 0;
-  //    println(ans);
-  //    place++;
-  //  }
+  int mapx = 924;
+  int mapy = 624;
+  int i = -80;
+  int ii = -80;
+  while (i <= 80) {
+    while (ii <= 80) {
+      mapImage.add(mapx+i);
+      mapImage.add(mapy+ii);
+      ii++;
+    }
+    i++;
+    ii = -80;
+  }
 }
 
-void displayMap() {
+static boolean inArray(ArrayList<Integer> xc, int x, int y) {
+  int place = 0;
+  while (place < xc.size ()) {
+    if (xc.get(place) == x && xc.get(place+1) == y) {
+      return true;
+    }
+    place++;
+  }
+  return false;
+}
+
+void displayDefault() {
+  background(0);
   PImage border = loadImage("Images/Border.png");
   image(border, 0, 0);
   // fill (150, 150, 150, 80);
@@ -90,13 +107,30 @@ void keyPressed() {
 }
 
 void mouseClicked() {
-  if (mousePressed==true) {
-    println("" + mouseX + "" + mouseY);
+  println ("" + mouseX + "," + mouseY);
+  if (inArray(mapImage, mouseX, mouseY)) {
+    if (mode == 0) {
+      mode = 1;
+    } else {
+      if (mode == 1) {
+        mode = 0;
+      }
+    }
   }
 }
 
+
 void draw() {
-  displayMap();
+  if (mode == 0) {
+    displayDefault();
+  } else {
+    if (mode == 1) {
+      fill(218, 218, 231, 20);
+      rect(100, 100, width-200, height-200);
+    }
+  }
+  //  displayMap();
   //image(West,200,200);
   //  PuzzleTileGame t = new PuzzleTileGame();
 }
+
