@@ -3,3 +3,5 @@ public class BossTile extends GameTile{
   
   public BossTile(char d, boolean dr) {
     super(d,dr);
+  }
+}

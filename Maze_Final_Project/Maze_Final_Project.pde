@@ -48,28 +48,6 @@ void setup() {
   //    println(ans);
   //    place++;
   //  }
-
-
-  PImage blank = loadImage("Images/Blank.png");
-  PImage East = loadImage("Images/E.png");
-  PImage ESW = loadImage("Images/ESW.png");
-  PImage EW = loadImage("Images/EW.png");
-  PImage InsideMazeNESW = loadImage("Images/Inside Maze NESW.png");
-  PImage NE = loadImage("Images/NE.png");
-  PImage NES = loadImage("Images/NES.png");
-  PImage NESW = loadImage("Images/NESW.png");
-  PImage NEW = loadImage("Images/NEW.png");
-  //  PImage North = loadImage("Images/North.png");
-  PImage North = loadImage("Images/N.png");
-  PImage NS = loadImage("Images/NS.png");
-  PImage NSW = loadImage("Images/NSW.png");
-  PImage NW = loadImage("Images/NW.png");
-  PImage SE = loadImage("Images/SE.png");
-  //  PImage South = loadImage("Images/South.png");
-  PImage South = loadImage("Images/S.png");
-  PImage SW = loadImage("Images/SW.png");
-  //  PImage West = loadImage("Images/West.png");
-  PImage West = loadImage("Images/W.png");
 }
 
 void displayMap() {

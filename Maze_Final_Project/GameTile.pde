@@ -1,5 +1,8 @@
 /*
- H: Boss
+ N: N
+ E: E
+ S: S
+ W: W
  T: NS
  F: EW
  B: NE
@@ -17,7 +20,7 @@
 public class GameTile {
   char direction;
   boolean door;
-  PImage big,small;
+  PImage big, small;
 
   public GameTile(char d, boolean dr) {
     if (d=='#') {
@@ -87,14 +90,8 @@ public class GameTile {
     door = dr;
   }
 
-  void setup() {
-  }
-
-  public void out() {
-    if (direction == 'S') {
-      PImage s = loadImage("Images/S.png");
-      image(s, 100, 100);
-    }
+  public void MapDisplay() {
+    image(small, 100, 100);
   }
 
   //used by Maze to check if the point player clicked is valid
@@ -134,6 +131,10 @@ public class GameTile {
       }
     }
     return false;
+  }
+
+  public void PlayerSees() {
+    image(big, 0, 0);
   }
 
   String toString() {
