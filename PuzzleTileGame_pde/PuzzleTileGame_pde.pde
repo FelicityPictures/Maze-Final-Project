@@ -1,4 +1,4 @@
-//import java.util.*;
+import java.util.*;
 
 
 PImage img, img1;
@@ -50,6 +50,12 @@ void splitUp(int pieces) {
 }
 
 void placeParts(int across, int down) {
+
+  pixX.clear();
+  pixY.clear();
+  emptySpaceX.clear();
+  emptySpaceY.clear();
+
   PImage load;
   whereAcross = across;
   whereDown = down;
@@ -114,10 +120,10 @@ void placeParts(int across, int down) {
     goHeight += tileHeight;
     place++;
   }
-//  pixX.clear();
-//  pixY.clear();
-//  emptySpaceX.clear();
-//  emptySpaceY.clear();
+  //  pixX.clear();
+  //  pixY.clear();
+  //  emptySpaceX.clear();
+  //  emptySpaceY.clear();
 }
 
 
@@ -170,10 +176,10 @@ void mouseClicked() {
       }
     }
   }
-  pixX.clear();
-  pixY.clear();
-  emptySpaceX.clear();
-  emptySpaceY.clear();
+  //  pixX.clear();
+  //  pixY.clear();
+  //  emptySpaceX.clear();
+  //  emptySpaceY.clear();
 }
 
 void draw() {
