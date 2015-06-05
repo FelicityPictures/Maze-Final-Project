@@ -4,4 +4,9 @@ public class BossTile extends GameTile{
   public BossTile(char d, boolean dr) {
     super(d,dr);
   }
+  
+  public void PlayerSees(){
+    image(Door,0,0);
+  }
+  
 }
