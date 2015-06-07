@@ -70,8 +70,6 @@ void placeParts(int oldAcross, int oldDown, int across, int down) {
   emptySpaceX.clear();
   emptySpaceY.clear();
   PImage load;
-  whereAcross = across;
-  whereDown = down;
   int tileWidth = img.width/piece;
   int tileHeight = img.height/piece;
   int goWidth = width/piece;
@@ -81,7 +79,8 @@ void placeParts(int oldAcross, int oldDown, int across, int down) {
   int place = 1;
   int place2 = 1;
   int counterW, counterH;
-  int cW, cH;
+  int cW = 1;
+  int cH = 1;
   rect(goWidth, goHeight, img.width, img.height);
 
   if (!start) {
@@ -106,141 +105,115 @@ void placeParts(int oldAcross, int oldDown, int across, int down) {
       }
       goWidth+= tileWidth;
       place2++;
+      cW++;
     } else {
       load = loadImage(cropped.get(counterImage));
       image(load, goWidth, goHeight);
       goWidth += tileWidth;
+      cW++;
     }
     counterImage++;
-    goWidth = width/piece;
-    goHeight += tileHeight;
-  }
-
-  /*
-
-   while (place <= piece) {
-   while (place2 <= piece) {
-   if (place2 == whereAcross && place == whereDown) {     
-   w = goWidth;
-   h = goHeight;
-   counterW = 0;
-   counterH = 0;
-   while (counterW <= tileWidth) {
-   //empty? add to emptySpace
-   while (counterH <= tileHeight) {
-   emptySpaceX.add(w + counterW);
-   emptySpaceY.add(h + counterH);
-   counterH++;
-   }
-   counterH = 0;
-   counterW++;
-   }
-   goWidth+= tileWidth;
-   place2++;
-   counterImage++;
-   } else {
-   
-   //load each cropped image
-   load = loadImage(cropped.get(counterImage));
-   image(load, goWidth, goHeight);
-   
-   goWidth += tileWidth;
-   place2++;
-   counterImage++;
-   }
-   }
-   place2=1;
-   goWidth = width/piece;
-   goHeight += tileHeight;
-   place++;
-   }
-   println(cropped);
-   }
-   */
-
-  private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
-    int counter = 0;
-    String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
-    counter = cropped.indexOf("NOTHING");
-    cropped.remove("NOTHING");
-    cropped.add(cropped.indexOf(sub), "NOTHING");
-    cropped.remove(sub);
-    println(sub);
-    println("C" + cropped);
-    cropped.add(counter, sub);
-    println(cropped);
-  } 
-
-
-
-
-  static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
-    int place = 0;
-    while (place < xc.size ()) {
-      if (xc.get(place) == x && yc.get(place) == y) {
-        return true;
-      }
-      place++;
+    if (cW > piece) {
+      cW = 1;
+      goWidth = width/piece;
+      goHeight += tileHeight;
+      cH++;
     }
-    return false;
   }
+}
 
-  void mouseClicked() {  
-    println("CROPPED" + cropped);
-    int tileWidth = img.width/piece;
-    int tileHeight = img.height/piece;
-    int goWidth = width/piece;
-    int goHeight = height/piece;
-    println (mouseX +"," + mouseY);
 
-    //did the user click on a valid tile?
-    if (onImage(pixX, pixY, mouseX, mouseY) && !onImage(emptySpaceX, emptySpaceY, mouseX, mouseY)) {
-      println(0);
-      if (onImage(emptySpaceX, emptySpaceY, mouseX + tileWidth, mouseY)) {
+private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
+  println("R2C2" + r2 + "," + c2);
+  int counter = 0;
+  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
+  println("SUB" + sub);
+  println(cropped);
+  counter = cropped.indexOf("NOTHING");
+  cropped.remove("NOTHING");
+  println(cropped);
+
+  cropped.add(cropped.indexOf(sub), "NOTHING");
+  println(cropped);
+
+  cropped.remove(sub);
+  println(cropped);
+
+  println(sub);
+  cropped.add(counter, sub);
+  println("CR" + cropped);
+} 
+
+
+
+
+static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
+  int place = 0;
+  while (place < xc.size ()) {
+    if (xc.get(place) == x && yc.get(place) == y) {
+      return true;
+    }
+    place++;
+  }
+  return false;
+}
+
+void mouseClicked() {  
+  println("CROPPED" + cropped);
+  int tileWidth = img.width/piece;
+  int tileHeight = img.height/piece;
+  int goWidth = width/piece;
+  int goHeight = height/piece;
+  println (mouseX +"," + mouseY);
+
+  //did the user click on a valid tile?
+  if (onImage(pixX, pixY, mouseX, mouseY) && !onImage(emptySpaceX, emptySpaceY, mouseX, mouseY)) {
+    println(0);
+    if (onImage(emptySpaceX, emptySpaceY, mouseX + tileWidth, mouseY)) {
+      start = false;
+      println(1);
+      placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
+      whereAcross--;
+    } else {
+      if (onImage(emptySpaceX, emptySpaceY, mouseX - tileWidth, mouseY)) {
         start = false;
-        println(1);
-        placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
-        whereAcross--;
+        println(2);
+        placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
+        whereAcross++;
+        //move to the right
       } else {
-        if (onImage(emptySpaceX, emptySpaceY, mouseX - tileWidth, mouseY)) {
+        if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY + tileHeight)) {
           start = false;
-          println(2);
-          placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
-          whereAcross++;
-          //move to the right
+          println(3);
+          placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
+          whereDown--;
+          //move down
         } else {
-          if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY + tileHeight)) {
+          if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY - tileHeight)) {
             start = false;
-            println(3);
-            placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
-            whereDown--;
-            //move down
-          } else {
-            if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY - tileHeight)) {
-              start = false;
-              println(4);
-              placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
-              whereDown++;
-              //move up
-            }
+            println(4);
+            placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
+            whereDown++;
+            //move up
           }
         }
       }
     }
   }
+}
 
-  void draw() {
-  }
+void draw() {
+}
 
 
-  //void draw() {
-  //  int tileWidth = img.width/4;
-  //  int tileHeight = img.height/4;
-  //  int goWidth = width/4;
-  //  int goHeight = height/4;
-  //  rect(width/4, height/4, img.width, img.height);
-  //  image(img, 0, 0);
-  //  copy(0, 0, tileWidth, tileWidth, goWidth, goHeight, tileWidth, tileHeight);
-  //  copy(tileWidth, tileHeight, tileWidth, tileHeight, goWidth+tileWidth, goHeight+tileHeight, tileWidth, tileHeight);
-  //}
+//void draw() {
+//  int tileWidth = img.width/4;
+//  int tileHeight = img.height/4;
+//  int goWidth = width/4;
+//  int goHeight = height/4;
+//  rect(width/4, height/4, img.width, img.height);
+//  image(img, 0, 0);
+//  copy(0, 0, tileWidth, tileWidth, goWidth, goHeight, tileWidth, tileHeight);
+//  copy(tileWidth, tileHeight, tileWidth, tileHeight, goWidth+tileWidth, goHeight+tileHeight, tileWidth, tileHeight);
+//}
 
