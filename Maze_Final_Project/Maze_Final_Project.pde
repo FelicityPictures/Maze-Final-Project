@@ -7,11 +7,10 @@ GameTile[][] map;
 int w, h;
 GameTile current;
 int currentRow, currentCol;
-int mode = 0;
+int mode = 2;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
-
-
+PuzzleTileGame puzzleGame = new PuzzleTileGame();
 
 void setup() {
   w=1000;
@@ -78,6 +77,17 @@ void displayDefault() {
 void loadArrows(GameTile g) {
 }
 
+static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
+  int place = 0;
+  while (place < xc.size ()) {
+    if (xc.get(place) == x && yc.get(place) == y) {
+      return true;
+    }
+    place++;
+  }
+  return false;
+}
+
 void keyPressed() {
   println(keyCode);
   if ((mode == 0) && (keyCode == 87 || keyCode == 65 || keyCode == 68 | keyCode == 83)) {
@@ -117,6 +127,9 @@ void mouseClicked() {
     //idk what this does :(
     seeMap = !seeMap;
   }
+  if (mode == 2) {
+    puzzleGame.click();
+  }
 }
 
 
@@ -130,8 +143,8 @@ void draw() {
     }
   }
   if (seeMap) {
-//    fill(218, 218, 231, 20);
-//    rect(100, 100, width-200, height-200);
+    //    fill(218, 218, 231, 20);
+    //    rect(100, 100, width-200, height-200);
     int xx = (w/2)-(map.length*54/2);
     int yy = (h/2)-(map[0].length*54/2);
     for (int i=0; i<map[0].length; i++) {
@@ -140,6 +153,11 @@ void draw() {
       }
     }
   }
+
+  if (mode == 2) {
+    puzzleGame.set();
+  }
+
 
   //  displayMap();
   //image(West,200,200);
