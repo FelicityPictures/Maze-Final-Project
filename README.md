@@ -19,6 +19,9 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
 6/4/15: A bit late, but worked on loading the direction images on the maze
          Helped set different modes for different screens
          Drew more images for Spot the Difference
+6/5/15: Displaying the arrow keys when the user moves around
+         Displaying the Map Screen
+         Will continue working on Puzzle Tile Game
          
 What do we have as of 6/1?
 INSTRUCTIONS: Look at Maze_Final_Project.pde (for bordered map) and PuzzleTileGame.pde (for Puzzle Tile game). Not much progress, but should be able to compile.
