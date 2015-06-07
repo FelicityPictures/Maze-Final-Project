@@ -1,21 +1,24 @@
 import java.util.*;
 
-
 PImage img, img1;
 ArrayList<Integer> pixX = new ArrayList<Integer>();
 ArrayList<Integer> pixY = new ArrayList<Integer>();
 ArrayList<Integer> emptySpaceX = new ArrayList<Integer>();
 ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
 ArrayList<String> cropped = new ArrayList<String>();
-int piece = 0;
+int piece = 4;
 int whereAcross = piece;
 int whereDown = piece;
+int goW = width/piece;
+int goH = height/piece;
+boolean start;
 
 void setup() {
+  start = true;
   size(1000, 700);
   img = loadImage("tilegame.jpg");
   splitUp(4);
-  placeParts(4, 4);
+  placeParts(4, 4, 4, 4);
 }
 
 
@@ -29,6 +32,19 @@ void splitUp(int pieces) {
   int startW = 0;
   int startH = 0;
   int w, h, counterW, counterH;
+
+  int i = 0;
+  int ii = 0;
+  while (i <= img.width) {
+    while (ii <= img.height) {
+      pixX.add(width/piece + i);
+      pixY.add(height/piece + ii);
+      ii++;
+    }
+    ii=0;
+    i++;
+  }
+
   while (place <= pieces) {
     while (place2 <= pieces) {
       if (place == pieces && place2 == pieces) {
@@ -49,13 +65,9 @@ void splitUp(int pieces) {
   }
 }
 
-void placeParts(int across, int down) {
-
-  pixX.clear();
-  pixY.clear();
+void placeParts(int oldAcross, int oldDown, int across, int down) {
   emptySpaceX.clear();
   emptySpaceY.clear();
-
   PImage load;
   whereAcross = across;
   whereDown = down;
@@ -70,6 +82,10 @@ void placeParts(int across, int down) {
   int counterW, counterH;
   rect(goWidth, goHeight, img.width, img.height);
 
+  if (!start) {
+    switchh(whereAcross, whereDown, oldAcross, oldDown);
+  }
+
   while (place <= piece) {
     while (place2 <= piece) {
       if (place2 == whereAcross && place == whereDown) {     
@@ -78,7 +94,6 @@ void placeParts(int across, int down) {
         counterW = 0;
         counterH = 0;
         while (counterW <= tileWidth) {
-
           //empty? add to emptySpace
           while (counterH <= tileHeight) {
             emptySpaceX.add(w + counterW);
@@ -93,23 +108,10 @@ void placeParts(int across, int down) {
       } else {
 
         //load each cropped image
+        println("counter" + counterImage);
         load = loadImage(cropped.get(counterImage));
         image(load, goWidth, goHeight);
 
-        //add each cropped part to an arraylist of pix
-        w = goWidth;
-        h = goHeight;
-        counterW = 0;
-        counterH = 0;
-        while (counterW <= tileWidth) {
-          while (counterH <= tileHeight) {
-            pixX.add(w + counterW);
-            pixY.add(h + counterH);
-            counterH++;
-          }
-          counterH = 0;
-          counterW++;
-        }
         goWidth += tileWidth;
         place2++;
         counterImage++;
@@ -120,11 +122,37 @@ void placeParts(int across, int down) {
     goHeight += tileHeight;
     place++;
   }
-  //  pixX.clear();
-  //  pixY.clear();
-  //  emptySpaceX.clear();
-  //  emptySpaceY.clear();
+  println(cropped);
 }
+
+
+private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
+  int place = 1;
+  int place2 = 1;
+  int counter = 0;
+  int counter2 = 0;
+  String sub = "";
+
+  while (place <= piece) {
+    while (place2 <= piece) {
+      if (place == wantBlankR && place2 == wantBlankC) {
+        sub = cropped.remove(counter);
+      } else {
+        if (place == r2 && place2 == c2) {
+          counter2 = counter;
+        }
+        counter++;
+      }
+      place2++;
+    }
+    place2 = 1;
+    place++;
+  }
+  cropped.add(counter2, sub);
+  println(cropped);
+} 
+
+
 
 
 static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
@@ -139,47 +167,47 @@ static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int 
 }
 
 void mouseClicked() {  
+  println("CROPPED" + cropped);
   int tileWidth = img.width/piece;
   int tileHeight = img.height/piece;
-  int goWidth = width/4;
-  int goHeight = height/4;
+  int goWidth = width/piece;
+  int goHeight = height/piece;
   println (mouseX +"," + mouseY);
 
   //did the user click on a valid tile?
-  if (onImage(pixX, pixY, mouseX, mouseY)) {
+  if (onImage(pixX, pixY, mouseX, mouseY) && !onImage(emptySpaceX, emptySpaceY, mouseX, mouseY)) {
+    println(0);
     if (onImage(emptySpaceX, emptySpaceY, mouseX + tileWidth, mouseY)) {
+      start = false;
       println(1);
+      placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
       whereAcross--;
-      placeParts(whereAcross, whereDown);
     } else {
       if (onImage(emptySpaceX, emptySpaceY, mouseX - tileWidth, mouseY)) {
+        start = false;
         println(2);
+        placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
         whereAcross++;
-        placeParts(whereAcross, whereDown);
         //move to the right
       } else {
         if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY + tileHeight)) {
+          start = false;
           println(3);
+          placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
           whereDown--;
-          placeParts(whereAcross, whereDown);
-
           //move down
         } else {
           if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY - tileHeight)) {
+            start = false;
             println(4);
+            placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
             whereDown++;
-            placeParts(whereAcross, whereDown);
-
             //move up
           }
         }
       }
     }
   }
-  //  pixX.clear();
-  //  pixY.clear();
-  //  emptySpaceX.clear();
-  //  emptySpaceY.clear();
 }
 
 void draw() {
