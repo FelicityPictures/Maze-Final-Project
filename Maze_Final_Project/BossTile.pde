@@ -1,12 +1,12 @@
-public class BossTile extends GameTile{
+public class BossTile extends GameTile {
   PImage Door = loadImage("Image/BossDoor.png");
-  
-  public BossTile(char d, boolean dr) {
-    super(d,dr);
+
+  public BossTile(GameTile other) {
+    super(other.getDirection(), other.getPuzzle());
   }
-  
-  public void PlayerSees(){
-    image(Door,0,0);
+
+  public void PlayerSees() {
+    image(Door, 0, 0);
   }
-  
 }
+

@@ -71,8 +71,8 @@ public class GameTile {
       big = loadImage("Images/NSW Inside.png");
     }
     if (d=='Y') {
-      small = loadImage("Images/NSE.png");
-      big = loadImage("Images/NSE Inside.png");
+      small = loadImage("Images/NES.png");
+      big = loadImage("Images/NES Inside.png");
     }
     if (d=='P') {
       small = loadImage("Images/ESW.png");
@@ -90,8 +90,20 @@ public class GameTile {
     door = dr;
   }
 
-  public void MapDisplay() {
-    image(big, 100, 100);
+  public boolean puzzle() {
+    return door;
+  }
+
+  public void makePuzzle() {
+    door = true;
+  }
+
+  public char getDirection() {
+    return direction;
+  }
+
+  public void MapDisplay(int x, int y) {
+    image(small, x, y);
   }
 
   //used by Maze to check if the point player clicked is valid

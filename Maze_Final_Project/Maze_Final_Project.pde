@@ -37,7 +37,7 @@ void setup() {
       map[i][ii]= new GameTile(sub.charAt(ii), false);
     }
   }
-
+//need to make tile a game
   current = map[startx][starty];
   displayDefault();
 
@@ -106,7 +106,7 @@ void keyPressed() {
       }
     }
   }
-  current.MapDisplay();
+ //current.MapDisplay();
   //  SpotTheDifference f = new SpotTheDifference(1, w, h);
   //  f.show();
 }
@@ -124,8 +124,15 @@ void draw() {
     displayDefault();
   } else {
     if (mode == 1) {
-      current.MapDisplay();
+     // current.MapDisplay();
       println(currentRow + "," + currentCol);
+      int xx = (w/2)-(map.length*54/2);
+      int yy = (h/2)-(map[0].length*54/2);
+      for (int i=0; i<map[0].length; i++) {
+        for (int m=0; m<map.length; m++) {
+          map[m][i].MapDisplay(xx+i*54, yy+m*54);
+        }
+      }
     }
   }
   if (seeMap) {
