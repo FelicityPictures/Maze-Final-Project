@@ -7,6 +7,8 @@ ArrayList<Integer> emptySpaceX = new ArrayList<Integer>();
 ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
 ArrayList<String> cropped = new ArrayList<String>();
 int piece = 4;
+String[][]cropped2 = new String[piece][piece];
+
 int whereAcross = piece;
 int whereDown = piece;
 int goW = width/piece;
@@ -64,6 +66,23 @@ void splitUp(int pieces) {
     startH += tileHeight;
     place++;
   }
+
+  updateCropped();
+}
+
+void updateCropped() {
+  int ind1 = 0;
+  int ind2 = 0;
+  int ind3 = 0;
+  while (ind1 < cropped2.length) {
+    while (ind2 < cropped2[0].length) {
+      cropped2[ind1][ind2] = cropped.get(ind3);
+      ind3++;
+      ind2++;
+    }
+    ind1++;
+    ind2 = 0;
+  }
 }
 
 void placeParts(int oldAcross, int oldDown, int across, int down) {
@@ -120,13 +139,15 @@ void placeParts(int oldAcross, int oldDown, int across, int down) {
       cH++;
     }
   }
+  updateCropped();
 }
 
 
 private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
-  println("R2C2" + r2 + "," + c2);
+  println("R2C2 " + r2 + "," + c2);
   int counter = 0;
-  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
+  String sub = cropped2[wantBlankR-1][wantBlankC-1];
+//  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
   println("SUB" + sub);
   println(cropped);
   counter = cropped.indexOf("NOTHING");
