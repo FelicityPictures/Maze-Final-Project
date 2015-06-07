@@ -8,7 +8,7 @@ int w, h;
 GameTile current;
 int currentRow, currentCol;
 int mode = 0;
-boolean seeMap? = false;
+boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 
 
@@ -114,7 +114,7 @@ void keyPressed() {
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
   if (inArray(mapImage, mouseX, mouseY)) {
-seeMap? = !seeMap?;
+    seeMap = !seeMap;
   }
 }
 
@@ -124,10 +124,15 @@ void draw() {
     displayDefault();
   } else {
     if (mode == 1) {
-      fill(218, 218, 231, 20);
-      rect(100, 100, width-200, height-200);
+      current.MapDisplay();
+      println(currentRow + "," + currentCol);
     }
   }
+  if (seeMap) {
+    fill(218, 218, 231, 20);
+    rect(100, 100, width-200, height-200);
+  }
+
   //  displayMap();
   //image(West,200,200);
   //  PuzzleTileGame t = new PuzzleTileGame();

@@ -99,7 +99,7 @@ public class GameTile {
   //checks if valid
   public boolean ValidClick(char d) {
     if (d == 'N') {
-      if (direction == 'T' || direction == 'B' ||
+      if (direction == 'N' || direction == 'T' || direction == 'B' ||
         direction == 'C' || direction == 'K' ||
         direction == 'Y' || direction == 'U' ||
         direction == 'A') {
@@ -107,7 +107,7 @@ public class GameTile {
       }
     }
     if (d == 'S') {
-      if (direction == 'T' || direction == 'D' ||
+      if (direction == 'S' || direction == 'T' || direction == 'D' ||
         direction == 'L' || direction == 'K' ||
         direction == 'Y' || direction == 'P' ||
         direction == 'A') {
@@ -115,7 +115,7 @@ public class GameTile {
       }
     }
     if (d == 'E') {
-      if (direction == 'F' || direction == 'B' ||
+      if (direction == 'E' || direction == 'F' || direction == 'B' ||
         direction == 'D' || direction == 'Y' ||
         direction == 'P' || direction == 'U' ||
         direction == 'A') {
@@ -123,7 +123,7 @@ public class GameTile {
       }
     }
     if (d == 'W') {
-      if (direction == 'F' || direction == 'C' ||
+      if (direction == 'W' || direction == 'F' || direction == 'C' ||
         direction == 'L' || direction == 'K' ||
         direction == 'P' || direction == 'U' ||
         direction == 'A') {
