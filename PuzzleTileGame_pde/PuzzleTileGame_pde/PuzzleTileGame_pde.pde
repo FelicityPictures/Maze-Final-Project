@@ -8,24 +8,29 @@ ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
 ArrayList<String> cropped = new ArrayList<String>();
 int piece = 4;
 String[][]cropped2 = new String[piece][piece];
+ArrayList<String>answerKey = new ArrayList<String>();
 
 int whereAcross = piece;
 int whereDown = piece;
 int goW = width/piece;
 int goH = height/piece;
-boolean start;
+boolean start, solved;
 
 void setup() {
+  solved = false;
+  answerKey = cropped;
+  img = loadImage("tilegame.jpg");
   start = true;
   size(1000, 700);
-  img = loadImage("tilegame.jpg");
+
   splitUp(4);
   placeParts(4, 4, 4, 4);
 }
 
+void randomize() {
+}
 
 void splitUp(int pieces) {
-  image(img, 0, 0);
   piece = pieces;
   int tileWidth = img.width/pieces;
   int tileHeight = img.height/pieces;
@@ -66,7 +71,7 @@ void splitUp(int pieces) {
     startH += tileHeight;
     place++;
   }
-
+  randomize();
   updateCropped();
 }
 
@@ -86,6 +91,7 @@ void updateCropped() {
 }
 
 void placeParts(int oldAcross, int oldDown, int across, int down) {
+  image(img, 0, 0);
   emptySpaceX.clear();
   emptySpaceY.clear();
   PImage load;
@@ -140,32 +146,38 @@ void placeParts(int oldAcross, int oldDown, int across, int down) {
     }
   }
   updateCropped();
+  if (cropped.equals(answerKey)) {
+    fill(255);
+    rect(50, 50, width-100, height-100);
+    fill(0, 102, 153);
+    textSize(50);
+    text("SOLVED!", 400, 400);
+    solved = true;
+  }
 }
 
 
 private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
-  println("R2C2 " + r2 + "," + c2);
+//  println("R2C2 " + r2 + "," + c2);
   int counter = 0;
   String sub = cropped2[wantBlankR-1][wantBlankC-1];
-//  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
-  println("SUB" + sub);
-  println(cropped);
+  //  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
+//  println("SUB" + sub);
+//  println(cropped);
   counter = cropped.indexOf("NOTHING");
   cropped.remove("NOTHING");
-  println(cropped);
+//  println(cropped);
 
   cropped.add(cropped.indexOf(sub), "NOTHING");
-  println(cropped);
+//  println(cropped);
 
   cropped.remove(sub);
-  println(cropped);
+//  println(cropped);
 
   println(sub);
   cropped.add(counter, sub);
-  println("CR" + cropped);
+//  println("CR" + cropped);
 } 
-
-
 
 
 static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
@@ -180,7 +192,6 @@ static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int 
 }
 
 void mouseClicked() {  
-  println("CROPPED" + cropped);
   int tileWidth = img.width/piece;
   int tileHeight = img.height/piece;
   int goWidth = width/piece;
@@ -225,16 +236,4 @@ void mouseClicked() {
 
 void draw() {
 }
-
-
-//void draw() {
-//  int tileWidth = img.width/4;
-//  int tileHeight = img.height/4;
-//  int goWidth = width/4;
-//  int goHeight = height/4;
-//  rect(width/4, height/4, img.width, img.height);
-//  image(img, 0, 0);
-//  copy(0, 0, tileWidth, tileWidth, goWidth, goHeight, tileWidth, tileHeight);
-//  copy(tileWidth, tileHeight, tileWidth, tileHeight, goWidth+tileWidth, goHeight+tileHeight, tileWidth, tileHeight);
-//}
 
