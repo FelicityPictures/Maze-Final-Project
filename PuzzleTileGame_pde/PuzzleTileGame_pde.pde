@@ -160,14 +160,14 @@ void mouseClicked() {
       } else {
         if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY + tileHeight)) {
           println(3);
-          whereDown++;
+          whereDown--;
           placeParts(whereAcross, whereDown);
 
           //move down
         } else {
           if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY - tileHeight)) {
             println(4);
-            whereDown--;
+            whereDown++;
             placeParts(whereAcross, whereDown);
 
             //move up
