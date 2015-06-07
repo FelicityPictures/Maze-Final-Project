@@ -91,7 +91,7 @@ public class GameTile {
   }
 
   public void MapDisplay() {
-    image(small, 100, 100);
+    image(big, 100, 100);
   }
 
   //used by Maze to check if the point player clicked is valid

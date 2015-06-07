@@ -8,6 +8,7 @@ int w, h;
 GameTile current;
 int currentRow, currentCol;
 int mode = 0;
+boolean seeMap? = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 
 
@@ -79,22 +80,25 @@ void loadArrows(GameTile g) {
 
 void keyPressed() {
   println(keyCode);
-  if (keyCode==119 && current.ValidClick('N')) {
+  if ((mode == 0) && (keyCode == 87 || keyCode == 65 || keyCode == 68 | keyCode == 83)) {
+    mode = 1;
+  }
+  if (keyCode==87 && current.ValidClick('N')) {
     //go north
     currentRow--;
     current = map[currentRow][currentCol];
   } else {
-    if (keyCode==97 && current.ValidClick('W')) {
+    if (keyCode==65 && current.ValidClick('W')) {
       //go west
       currentCol--;
       current = map[currentRow][currentCol];
     } else {
-      if (keyCode==100 && current.ValidClick('E')) {
+      if (keyCode==68 && current.ValidClick('E')) {
         //go east
         currentCol++;
         current = map[currentRow][currentCol];
       } else {
-        if (keyCode==115 && current.ValidClick('S')) {
+        if (keyCode==83 && current.ValidClick('S')) {
           //go south
           currentRow++;
           current = map[currentRow][currentCol];
@@ -102,20 +106,15 @@ void keyPressed() {
       }
     }
   }
-  SpotTheDifference f = new SpotTheDifference(1, w, h);
-  f.show();
+  current.MapDisplay();
+  //  SpotTheDifference f = new SpotTheDifference(1, w, h);
+  //  f.show();
 }
 
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
   if (inArray(mapImage, mouseX, mouseY)) {
-    if (mode == 0) {
-      mode = 1;
-    } else {
-      if (mode == 1) {
-        mode = 0;
-      }
-    }
+seeMap? = !seeMap?;
   }
 }
 
