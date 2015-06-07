@@ -146,7 +146,7 @@ public class GameTile {
   }
 
   public void PlayerSees() {
-    image(big, 0, 0);
+    image(big, 50, 50);
   }
 
   String toString() {
