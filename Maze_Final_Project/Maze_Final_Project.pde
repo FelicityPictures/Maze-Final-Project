@@ -114,6 +114,7 @@ void keyPressed() {
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
   if (inArray(mapImage, mouseX, mouseY)) {
+    //idk what this does :(
     seeMap = !seeMap;
   }
 }
@@ -125,12 +126,12 @@ void draw() {
   } else {
     if (mode == 1) {
      // current.MapDisplay();
-      println(currentRow + "," + currentCol);
+    //  println(currentRow + "," + currentCol);
       int xx = (w/2)-(map.length*54/2);
       int yy = (h/2)-(map[0].length*54/2);
       for (int i=0; i<map[0].length; i++) {
         for (int m=0; m<map.length; m++) {
-          map[m][i].MapDisplay(xx+i*54, yy+m*54);
+          map[m][i].MapDisplay(200,200);//(xx+i*54, yy+m*54);
         }
       }
     }
