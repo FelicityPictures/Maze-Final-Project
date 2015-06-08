@@ -70,7 +70,9 @@ static boolean inArray(ArrayList<Integer> xc, int x, int y) {
 void displayDefault() {
   background(0);
   PImage border = loadImage("Images/Border.png");
-  image(border, 0, 0);
+  image(border, 0, 0);  
+    SpotTheDifference f = new SpotTheDifference(2, w, h);
+    f.show();
   // fill (150, 150, 150, 80);
   // rect(100, 100, width-200, height-200);
 }
@@ -106,8 +108,6 @@ void keyPressed() {
       }
     }
   }
-  //  SpotTheDifference f = new SpotTheDifference(1, w, h);
-  //  f.show();
 }
 
 void mouseClicked() {
@@ -138,7 +138,7 @@ void draw() {
       }
     }
     PImage here = loadImage("Images/CurrentDot.png");
-    image(here,xx+(currentCol*54),yy+(currentRow*54));
+    image(here, xx+(currentCol*54), yy+(currentRow*54));
   }
 
   //  displayMap();
