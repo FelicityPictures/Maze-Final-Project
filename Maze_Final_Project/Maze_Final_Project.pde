@@ -137,6 +137,8 @@ void draw() {
         map[m][i].MapDisplay(xx+i*54, yy+m*54);//(xx+i*54, yy+m*54);
       }
     }
+    PImage here = loadImage("Images/CurrentDot.png");
+    image(here,xx+(currentCol*54),yy+(currentRow*54));
   }
 
   //  displayMap();
