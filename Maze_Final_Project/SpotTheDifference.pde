@@ -6,7 +6,7 @@ public class SpotTheDifference extends Puzzle {
 
   public SpotTheDifference(int i, int w, int h) {
     super();
-    //if statement for loading images
+    picture = loadImage("Images/Spot The Difference " + i + ".png");
     //picture = loadImage("testImage.jpg");
     ScreenW = w;
     ScreenH = h;

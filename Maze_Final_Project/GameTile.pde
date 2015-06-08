@@ -147,10 +147,18 @@ public class GameTile {
 
   public void PlayerSees() {
     image(big, 50, 50);
+    if (door) {
+      Random r = new Random();
+      if (r.nextInt(2)==0) {
+        //need a constructo Puzzle p = new PuzzleTileGame();
+      } else {
+        Puzzle p = new SpotTheDifference(r.nextInt(2)+1,1000,700);
+      }
+    }
   }
 
-  String toString() {
-    return Character.toString(direction);
+    String toString() {
+      return Character.toString(direction);
+    }
   }
-}
 
