@@ -151,6 +151,7 @@ public class GameTile {
       Random r = new Random();
       if (r.nextInt(2)==0) {
         //need a constructo Puzzle p = new PuzzleTileGame();
+        Puzzle tile = new PuzzleTileGame();
       } else {
         Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
       }

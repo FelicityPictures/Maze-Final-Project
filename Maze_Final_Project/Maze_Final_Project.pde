@@ -70,6 +70,17 @@ static boolean inArray(ArrayList<Integer> xc, int x, int y) {
   return false;
 }
 
+static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
+  int place = 0;
+  while (place < xc.size ()) {
+    if (xc.get(place) == x && yc.get(place) == y) {
+      return true;
+    }
+    place++;
+  }
+  return false;
+}
+
 void displayDefault() {
   background(0);
   image(border, 0, 0);
@@ -108,9 +119,9 @@ void keyPressed() {
       }
     }
   }
-  if(current.puzzle()){
+  if (current.puzzle()) {
     mode = 2;
-  }  
+  }
 }
 
 void mouseClicked() {
