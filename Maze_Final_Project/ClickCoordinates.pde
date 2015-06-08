@@ -1,7 +1,7 @@
 public class ClickCoordinates {
   int minX, maxX, minY, maxY;
 
-  public ClickCoordinates(int x, int xx, int y, int yy) {
+  public ClickCoordinates(int x, int y, int xx, int yy) {
     minX=x;
     maxX=xx;
     minY=y;
@@ -14,6 +14,22 @@ public class ClickCoordinates {
     } else {
       return false;
     }
+  }
+
+  public int getX() {
+    return minX;
+  }
+
+  public int getY() {
+    return minY;
+  }
+
+  public int rangeX() {
+    return maxX-minX;
+  }
+
+  public int rangeY() {
+    return maxY-minY;
   }
 }
 

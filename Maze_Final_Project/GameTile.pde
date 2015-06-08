@@ -10,7 +10,7 @@
  D: SE
  L: SW
  K: NSW
- Y: NSE
+ Y: NES
  P: SWE
  U: NWE
  A: NESW
@@ -152,13 +152,14 @@ public class GameTile {
       if (r.nextInt(2)==0) {
         //need a constructo Puzzle p = new PuzzleTileGame();
       } else {
-        Puzzle p = new SpotTheDifference(r.nextInt(2)+1,1000,700);
+        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
       }
+      // p.play();
     }
   }
 
-    String toString() {
-      return Character.toString(direction);
-    }
+  String toString() {
+    return Character.toString(direction);
   }
+}
 

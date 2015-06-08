@@ -1,14 +1,15 @@
-public class Puzzle{
+public class Puzzle {
   boolean solved;
-  
-  public Puzzle(){
+
+  public Puzzle() {
     solved = false;
   }
-  
-  public boolean isSolved(){
-      return solved;
+
+  public boolean isSolved() {
+    return solved;
   }
-  
-  public void play(){
+
+  public void show() {
   }
 }
+
