@@ -1,3 +1,5 @@
+//click 'P' to start playing
+
 import java.util.*;
 import java.io.*;
 import java.io.File;
@@ -7,10 +9,9 @@ GameTile[][] map;
 int w, h;
 GameTile current;
 int currentRow, currentCol;
-int mode = 2;
+int mode = 0;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
-//PuzzleTileGame puzzleGame = new PuzzleTileGame();
 
 void setup() {
   w=1000;
@@ -36,7 +37,7 @@ void setup() {
       map[i][ii]= new GameTile(sub.charAt(ii), false);
     }
   }
-  //need to make tile a game
+
   current = map[startx][starty];
   displayDefault();
 
@@ -77,20 +78,9 @@ void displayDefault() {
 void loadArrows(GameTile g) {
 }
 
-static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
-  int place = 0;
-  while (place < xc.size ()) {
-    if (xc.get(place) == x && yc.get(place) == y) {
-      return true;
-    }
-    place++;
-  }
-  return false;
-}
-
 void keyPressed() {
   println(keyCode);
-  if ((mode == 0) && (keyCode == 87 || keyCode == 65 || keyCode == 68 | keyCode == 83)) {
+  if ((mode == 0) && (keyCode == 'P')) {
     mode = 1;
   }
   if (keyCode==87 && current.ValidClick('N')) {
@@ -116,7 +106,6 @@ void keyPressed() {
       }
     }
   }
-  //current.MapDisplay();
   //  SpotTheDifference f = new SpotTheDifference(1, w, h);
   //  f.show();
 }
@@ -124,11 +113,7 @@ void keyPressed() {
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
   if (inArray(mapImage, mouseX, mouseY)) {
-    //idk what this does :(
     seeMap = !seeMap;
-  }
-  if (mode == 2) {
-//    puzzleGame.click();
   }
 }
 
@@ -153,11 +138,6 @@ void draw() {
       }
     }
   }
-
-//  if (mode == 2) {
-//    puzzleGame.set();
-//  }
-
 
   //  displayMap();
   //image(West,200,200);
