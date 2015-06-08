@@ -12,13 +12,14 @@ int currentRow, currentCol;
 int mode = 0;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
+PImage border;
 
 void setup() {
   w=1000;
   h=700;
   size(w, h);
   int mode = 0;
-
+  border = loadImage("Images/Border.png");  
   background(0);
   r = new Random();
   int filenumber = r.nextInt(3);
@@ -28,16 +29,18 @@ void setup() {
   map = new GameTile[Integer.parseInt(lines[0])][Integer.parseInt(lines[1])];
   int startx = Integer.parseInt(lines[2]);
   int starty = Integer.parseInt(lines[3]);
+  int endx = Integer.parseInt(lines[4]);
+  int endy = Integer.parseInt(lines[5]);
   currentCol =  startx;
   currentRow = starty;
   String sub = "";
   for (int i=0; i<map.length; i++) {
-    sub = lines[4+i];
+    sub = lines[6+i];
     for (int ii=0; ii<map[0].length; ii++) {
       map[i][ii]= new GameTile(sub.charAt(ii), false);
     }
   }
-
+  map[endx][endy]= new BossTile(map[endx][endy]);
   current = map[startx][starty];
   displayDefault();
 
@@ -69,10 +72,7 @@ static boolean inArray(ArrayList<Integer> xc, int x, int y) {
 
 void displayDefault() {
   background(0);
-  PImage border = loadImage("Images/Border.png");
-  image(border, 0, 0);  
-    SpotTheDifference f = new SpotTheDifference(2, w, h);
-    f.show();
+  image(border, 0, 0);
   // fill (150, 150, 150, 80);
   // rect(100, 100, width-200, height-200);
 }
@@ -124,6 +124,7 @@ void draw() {
   } else {
     if (mode == 1) {
       current.PlayerSees();
+      image(border, 0, 0);
       println(currentRow + "," + currentCol);
     }
   }

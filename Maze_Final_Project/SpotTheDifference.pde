@@ -21,7 +21,7 @@ public class SpotTheDifference extends Puzzle {
       solutions.add(new ClickCoordinates(777, 616, 795, 629));
       solutions.add(new ClickCoordinates(501, 449, 568, 528));
       solutions.add(new ClickCoordinates(685, 601, 813, 646));
-      solutions.add(new ClickCoordinates(905, 542, 924, 558));
+      solutions.add(new ClickCoordinates(896, 542, 914, 558));
     }
     //picture = loadImage("testImage.jpg");
     ScreenW = w;
@@ -41,7 +41,8 @@ public class SpotTheDifference extends Puzzle {
     for (int i=0; i<solutions.size (); i++) {
       if (solutions.get(i).clickable(x, y)) {
         ClickCoordinates a = solutions.get(i);
-        correct.resize(a.rangeX(), a.rangeY())
+        correct.resize(a.rangeX(), a.rangeY());
+        image(correct, a.getX()-445, a.getY());
         image(correct, a.getX(), a.getY());
         solutions.remove(i);
         return true;
