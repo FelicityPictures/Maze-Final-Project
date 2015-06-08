@@ -10,7 +10,7 @@ int currentRow, currentCol;
 int mode = 2;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
-PuzzleTileGame puzzleGame = new PuzzleTileGame();
+//PuzzleTileGame puzzleGame = new PuzzleTileGame();
 
 void setup() {
   w=1000;
@@ -128,7 +128,7 @@ void mouseClicked() {
     seeMap = !seeMap;
   }
   if (mode == 2) {
-    puzzleGame.click();
+//    puzzleGame.click();
   }
 }
 
@@ -154,9 +154,9 @@ void draw() {
     }
   }
 
-  if (mode == 2) {
-    puzzleGame.set();
-  }
+//  if (mode == 2) {
+//    puzzleGame.set();
+//  }
 
 
   //  displayMap();
