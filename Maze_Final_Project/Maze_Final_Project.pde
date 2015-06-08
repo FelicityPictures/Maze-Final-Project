@@ -83,22 +83,22 @@ void keyPressed() {
   if ((mode == 0) && (keyCode == 'P')) {
     mode = 1;
   }
-  if (keyCode==87 && current.ValidClick('N')) {
+  if (keyCode==38 && current.ValidClick('N')) {
     //go north
     currentRow--;
     current = map[currentRow][currentCol];
   } else {
-    if (keyCode==65 && current.ValidClick('W')) {
+    if (keyCode==37 && current.ValidClick('W')) {
       //go west
       currentCol--;
       current = map[currentRow][currentCol];
     } else {
-      if (keyCode==68 && current.ValidClick('E')) {
+      if (keyCode==39 && current.ValidClick('E')) {
         //go east
         currentCol++;
         current = map[currentRow][currentCol];
       } else {
-        if (keyCode==83 && current.ValidClick('S')) {
+        if (keyCode==40 && current.ValidClick('S')) {
           //go south
           currentRow++;
           current = map[currentRow][currentCol];
