@@ -8,7 +8,7 @@ public class PuzzleTileGame {
   ArrayList<Integer> emptySpaceX = new ArrayList<Integer>();
   ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
   ArrayList<String> cropped = new ArrayList<String>();
-  int piece = 4;
+  int piece = 3;
   String[][]cropped2 = new String[piece][piece];
   ArrayList<String>answerKey = new ArrayList<String>();
 
@@ -20,13 +20,11 @@ public class PuzzleTileGame {
 
   void set() {
     solved = false;
-    answerKey = cropped;
     img = loadImage("tilegame.jpg");
     start = true;
     size(1000, 700);
-
-    splitUp(4);
-    placeParts(4, 4, 4, 4);
+    splitUp(piece);
+    placeParts(piece, piece, piece, piece);
   }
 
   void randomize() {
@@ -73,6 +71,7 @@ public class PuzzleTileGame {
       startH += tileHeight;
       place++;
     }
+    answerKey = cropped;
     randomize();
     updateCropped();
   }
@@ -148,14 +147,14 @@ public class PuzzleTileGame {
       }
     }
     updateCropped();
-    if (cropped.equals(answerKey)) {
-      fill(255);
-      rect(50, 50, width-100, height-100);
-      fill(0, 102, 153);
-      textSize(50);
-      text("SOLVED!", 400, 400);
-      solved = true;
-    }
+    //    if (cropped.equals(answerKey)) {
+    //      fill(255);
+    //      rect(50, 50, width-100, height-100);
+    //      fill(0, 102, 153);
+    //      textSize(50);
+    //      text("SOLVED!", 400, 400);
+    //      solved = true;
+    //    }
   }
 
 
