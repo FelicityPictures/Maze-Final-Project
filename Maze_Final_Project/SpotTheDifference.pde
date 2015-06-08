@@ -27,10 +27,22 @@ public class SpotTheDifference extends Puzzle {
     //set up solutions
   }
 
-  public void play() {
-    show();
-    //number of solutions
-    //if statements that would print out the puzzle
+  public boolean playable() {
+    if(solution.size()>0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+  public boolean validClick(int x, int y){
+    for(int i=0;i<solutions.size();i++){
+      if(solutions.get(i).clickable(x,y)){
+        solutions.remove(i);
+          return true;
+      }
+    }
+    return false;
   }
 
   public void show() {
