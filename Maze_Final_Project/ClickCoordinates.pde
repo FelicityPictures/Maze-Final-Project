@@ -15,5 +15,21 @@ public class ClickCoordinates {
       return false;
     }
   }
+  
+  public int getX(){
+      return minX;
+  }
+  
+  public int getY(){
+      return minY;
+  }
+  
+  public int rangeX(){
+  return maxX-minX;
+  }
+  
+  public int rangeY(){
+  return maxY-minY;
+  }
 }
 
