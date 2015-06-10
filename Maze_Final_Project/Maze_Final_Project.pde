@@ -13,12 +13,14 @@ int mode = 0;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
+int numberDoors;
 
 void setup() {
   w=1000;
   h=700;
   size(w, h);
   int mode = 0;
+  numberDoors = 3;
   border = loadImage("Images/Border.png");  
   background(0);
   r = new Random();
@@ -37,7 +39,15 @@ void setup() {
   for (int i=0; i<map.length; i++) {
     sub = lines[6+i];
     for (int ii=0; ii<map[0].length; ii++) {
-      map[i][ii]= new GameTile(sub.charAt(ii), false);
+      println(numberDoors);
+      if (r.nextInt(2) == 0 && numberDoors >= 1 && sub.charAt(ii) != 'S' && sub.charAt(ii) != 'E') {
+        map[i][ii]= new GameTile(sub.charAt(ii), true);
+        numberDoors --;
+        println("HELLOOOOOOOOOOOOO");
+      } else {      
+        map[i][ii]= new GameTile(sub.charAt(ii), false);
+        println("ELOO");
+      }
     }
   }
   map[endx][endy]= new BossTile(map[endx][endy]);
@@ -119,9 +129,9 @@ void keyPressed() {
       }
     }
   }
-  if (current.puzzle()) {
-    mode = 2;
-  }
+//  if (current.puzzle()) {
+//    mode = 2;
+//  }
 }
 
 void mouseClicked() {
@@ -133,6 +143,7 @@ void mouseClicked() {
 
 
 void draw() {
+  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {

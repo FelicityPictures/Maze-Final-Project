@@ -150,10 +150,26 @@ public class GameTile {
     if (door) {
       Random r = new Random();
       if (r.nextInt(2)==0) {
-        //need a constructo Puzzle p = new PuzzleTileGame();
+        //need a constructor Puzzle p = new PuzzleTileGame();
         Puzzle tile = new PuzzleTileGame();
+        fill(50, 55, 100);
+        rect(100, 100, width-200, height-200);
+
+        //put the game stuff here
+
+        if (tile.isSolved()) {
+          door = false;
+        }
       } else {
         Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        fill(50, 55, 100);
+        rect(100, 100, width-200, height-200);
+
+        //put the game stuff here
+
+        if (p.isSolved()) {
+          door = false;
+        }
       }
       // p.play();
     }
