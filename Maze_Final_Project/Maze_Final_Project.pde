@@ -20,7 +20,7 @@ void setup() {
   h=700;
   size(w, h);
   int mode = 0;
-  numberDoors = 4;
+  numberDoors = 3;
   border = loadImage("Images/Border.png");  
   background(0);
   r = new Random();
@@ -136,6 +136,7 @@ void keyPressed() {
 //  if (current.puzzle()) {
 //    mode = 2;
 //  }
+
 }
 
 void mouseClicked() {
@@ -147,7 +148,7 @@ void mouseClicked() {
 
 
 void draw() {
-//  println("mode" + mode);
+  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {
