@@ -109,7 +109,7 @@ void keyPressed() {
     }
   }
   if(current.puzzle()){
-    mode = 2;
+    mode = 2; //get mouseclicks for mode 2
   }  
 }
 
