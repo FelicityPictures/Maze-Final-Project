@@ -13,10 +13,12 @@ int mode = 0;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
+int numberOfDoors;
 
 void setup() {
   w=1000;
   h=700;
+  numberOfDoors = 4;
   size(w, h);
   int mode = 0;
   border = loadImage("Images/Border.png");  
@@ -38,6 +40,16 @@ void setup() {
     sub = lines[6+i];
     for (int ii=0; ii<map[0].length; ii++) {    
       map[i][ii]= new GameTile(sub.charAt(ii), false);
+    }
+  }
+
+  int puzzleX, puzzleY;
+  for (int i=0; i<numberOfDoors; i++) {
+    puzzleX = r.nextInt(map.length);
+    puzzleY = r.nextInt(map[0].length);
+    if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startX || puzzleY!=startY) &&
+      (puzzleX!=endX || puzzleY !=endY) && !map[puzzleX][puzzleY].puzzle()) {
+      map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
     }
   }
 

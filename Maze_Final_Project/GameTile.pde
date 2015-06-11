@@ -90,6 +90,10 @@ public class GameTile {
     door = dr;
   }
 
+  public GameTile(GameTile other) {
+    Gametile(other.getDirection(), true);
+  }
+
   public boolean puzzle() {
     return door;
   }
