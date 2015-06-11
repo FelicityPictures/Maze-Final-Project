@@ -130,15 +130,13 @@ void keyPressed() {
       }
     }
   }
-<<<<<<< HEAD
   if (current.puzzle()) {
     mode = 2; //get mouseclicks for mode 2
   }
-=======
 //  if (current.puzzle()) {
 //    mode = 2;
 //  }
->>>>>>> 73c55f389a989d69243a99963d9a2a366497e6a5
+
 }
 
 void mouseClicked() {

@@ -149,7 +149,7 @@ public class GameTile {
     image(big, 50, 50);
     if (door) {
       Random r = new Random();
-      if (r.nepxtInt(2)==0) {
+      if (r.nextInt(2)==0) {
         //need a constructor Puzzle p = new PuzzleTileGame();
       } else {
         Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
