@@ -157,10 +157,10 @@ public class GameTile {
       //      fill(50, 55, 100);
       //      rect(100, 100, width-200, height-200);
       tile.play(xc,yc);
-        tile.play(xc, yc);
         println("XCXCXCXC" + xc);
         println("YCYCYCYC" + yc);
-      
+      tile.setX(xc);
+      tile.setY(yc);
 
       //put the game stuff here
 

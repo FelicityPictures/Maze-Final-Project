@@ -18,6 +18,7 @@ public class PuzzleTileGame extends Puzzle {
   int goH = height/piece;
   boolean start, solved;
   boolean setUp = true;
+  int x, y;
 
   void sett() {
     solved = false;
@@ -29,13 +30,21 @@ public class PuzzleTileGame extends Puzzle {
     setUp = false;
   }
 
-  void play(int x, int y) {
+  void setX(int xc) {
+    x = xc;
+  }
+
+  void setY(int yc) {
+    y = yc;
+  }
+
+  void play(int xc, int yc) {
+    setX(xc);
+    setY(yc);
     if (setUp) {
       sett();
     }
-    while (!solved) {
-      mouse(x, y);
-    }
+    mouse();
   }
 
   void randomize() {
@@ -192,7 +201,7 @@ public class PuzzleTileGame extends Puzzle {
   }
 
 
-  void mouse(int x, int y) {
+  void mouse() {
     println("HELEN" + x);
     println("HELENY" + y);
     int tileWidth = img.width/piece;

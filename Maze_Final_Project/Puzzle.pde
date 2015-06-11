@@ -11,11 +11,17 @@ public class Puzzle {
 
   public void show() {
   }
-  
-  public void play(){
+
+  public void play() {
   }
-  
-  public void play(int x, int y){
+
+  public void play(int x, int y) {
+  }
+
+  public void setX(int xc) {
+  }
+
+  public void setY(int yc) {
   }
 }
 
