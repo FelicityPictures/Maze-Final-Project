@@ -40,6 +40,7 @@ void setup() {
       map[i][ii]= new GameTile(sub.charAt(ii), false);
     }
   }
+
   map[endx][endy]= new BossTile(map[endx][endy]);
   current = map[startx][starty];
   displayDefault();
@@ -108,9 +109,9 @@ void keyPressed() {
       }
     }
   }
-  if(current.puzzle()){
+  if (current.puzzle()) {
     mode = 2; //get mouseclicks for mode 2
-  }  
+  }
 }
 
 void mouseClicked() {
@@ -128,7 +129,7 @@ void draw() {
     if (mode == 1) {
       current.PlayerSees();
       image(border, 0, 0);
-      println(currentRow + "," + currentCol);
+      //   println(currentRow + "," + currentCol);
     }
   }
   if (seeMap) {
