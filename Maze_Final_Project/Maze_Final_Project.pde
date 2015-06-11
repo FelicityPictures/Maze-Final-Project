@@ -50,6 +50,7 @@ void setup() {
       }
     }
   }
+
   map[endx][endy]= new BossTile(map[endx][endy]);
   current = map[startx][starty];
   displayDefault();
@@ -129,9 +130,15 @@ void keyPressed() {
       }
     }
   }
+<<<<<<< HEAD
+  if (current.puzzle()) {
+    mode = 2; //get mouseclicks for mode 2
+  }
+=======
 //  if (current.puzzle()) {
 //    mode = 2;
 //  }
+>>>>>>> 73c55f389a989d69243a99963d9a2a366497e6a5
 }
 
 void mouseClicked() {
@@ -150,7 +157,7 @@ void draw() {
     if (mode == 1) {
       current.PlayerSees();
       image(border, 0, 0);
-      println(currentRow + "," + currentCol);
+      //   println(currentRow + "," + currentCol);
     }
   }
   if (seeMap) {
