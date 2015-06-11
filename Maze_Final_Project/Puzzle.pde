@@ -14,5 +14,8 @@ public class Puzzle {
   
   public void play(){
   }
+  
+  public void play(int x, int y){
+  }
 }
 

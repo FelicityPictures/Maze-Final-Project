@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PuzzleTileGame extends Puzzle{
+public class PuzzleTileGame extends Puzzle {
 
   PImage img, img1;
   ArrayList<Integer> pixX = new ArrayList<Integer>();
@@ -19,7 +19,7 @@ public class PuzzleTileGame extends Puzzle{
   boolean start, solved;
   boolean setUp = true;
 
-  void set() {
+  void sett() {
     solved = false;
     img = loadImage("tilegame.jpg");
     start = true;
@@ -28,10 +28,13 @@ public class PuzzleTileGame extends Puzzle{
     placeParts(piece, piece, piece, piece);
     setUp = false;
   }
-  
-  void play(){
-    if (setUp){
-      set();
+
+  void play(int x, int y) {
+    if (setUp) {
+      sett();
+    }
+    while (!solved) {
+      mouse(x, y);
     }
   }
 
@@ -179,51 +182,49 @@ public class PuzzleTileGame extends Puzzle{
     //  println(cropped);
     counter = cropped.indexOf("NOTHING");
     cropped.remove("NOTHING");
-    //  println(cropped);
 
     cropped.add(cropped.indexOf(sub), "NOTHING");
-    //  println(cropped);
-
     cropped.remove(sub);
-    //  println(cropped);
 
     println(sub);
     cropped.add(counter, sub);
     //  println("CR" + cropped);
   }
- 
 
-  void mouse(boolean clicked) {
+
+  void mouse(int x, int y) {
+    println("HELEN" + x);
+    println("HELENY" + y);
     int tileWidth = img.width/piece;
     int tileHeight = img.height/piece;
     int goWidth = width/piece;
     int goHeight = height/piece;
-    println (mouseX +"," + mouseY);
+    println (x +"," + y);
 
     //did the user click on a valid tile?
-    if (onImage(pixX, pixY, mouseX, mouseY) && !onImage(emptySpaceX, emptySpaceY, mouseX, mouseY)) {
+    if (onImage(pixX, pixY, x, y) && !onImage(emptySpaceX, emptySpaceY, x, y)) {
       println(0);
-      if (onImage(emptySpaceX, emptySpaceY, mouseX + tileWidth, mouseY)) {
+      if (onImage(emptySpaceX, emptySpaceY, x + tileWidth, y)) {
         start = false;
         println(1);
         placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
         whereAcross--;
       } else {
-        if (onImage(emptySpaceX, emptySpaceY, mouseX - tileWidth, mouseY)) {
+        if (onImage(emptySpaceX, emptySpaceY, x - tileWidth, y)) {
           start = false;
           println(2);
           placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
           whereAcross++;
           //move to the right
         } else {
-          if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY + tileHeight)) {
+          if (onImage(emptySpaceX, emptySpaceY, x, y + tileHeight)) {
             start = false;
             println(3);
             placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
             whereDown--;
             //move down
           } else {
-            if (onImage(emptySpaceX, emptySpaceY, mouseX, mouseY - tileHeight)) {
+            if (onImage(emptySpaceX, emptySpaceY, x, y - tileHeight)) {
               start = false;
               println(4);
               placeParts(whereAcross, whereDown, whereAcross, whereDown+1);

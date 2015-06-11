@@ -22,6 +22,7 @@ public class GameTile {
   boolean door;
   PImage big, small;
   boolean isPuzzleTile = false;
+  int x, y;
 
   public GameTile(char d, boolean dr) {
     if (d=='#') {
@@ -146,7 +147,7 @@ public class GameTile {
     return false;
   }
 
-  public void PlayerSees() {
+  public void PlayerSees(int xc, int yc) {
     if (door) {
       //      Random r = new Random();
       //      if (r.nextInt(2)==0) {
@@ -155,16 +156,17 @@ public class GameTile {
       isPuzzleTile = true;
       //      fill(50, 55, 100);
       //      rect(100, 100, width-200, height-200);
-      tile.play();
+      tile.play(xc,yc);
+        tile.play(xc, yc);
+        println("XCXCXCXC" + xc);
+        println("YCYCYCYC" + yc);
       
-      tile.mouseClicked();
-      
+
       //put the game stuff here
 
       if (tile.isSolved()) {
         door = false;
         image(big, 50, 50);
-        
       }
       //      } else {
       //        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
@@ -184,13 +186,30 @@ public class GameTile {
       image(big, 50, 50);
     }
   }
-  
-  boolean getIsPuzzleTile(){
+
+  boolean getIsPuzzleTile() {
     return isPuzzleTile;
   }
 
+
   String toString() {
     return Character.toString(direction);
+  }
+
+  void setX(int xc) {
+    x = xc;
+  }
+
+  void setY(int yc) {
+    y = yc;
+  }
+
+  int getX() {
+    return x;
+  }
+
+  int getY() {
+    return y;
   }
 }
 

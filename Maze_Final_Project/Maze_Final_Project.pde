@@ -14,6 +14,7 @@ boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
 int numberDoors;
+int mx, my;
 
 void setup() {
   w=1000;
@@ -139,6 +140,13 @@ void mouseClicked() {
   if (inArray(mapImage, mouseX, mouseY)) {
     seeMap = !seeMap;
   }
+
+  if (mode == 1 && current.getIsPuzzleTile()) {
+    current.setX(mouseX);
+    current.setY(mouseY);
+    mx = mouseX;
+    my = mouseY;
+  }
 }
 
 void draw() {
@@ -147,7 +155,7 @@ void draw() {
     displayDefault();
   } else {
     if (mode == 1) {
-      current.PlayerSees();
+      current.PlayerSees(mx, my);
       image(border, 0, 0);
       println(currentRow + "," + currentCol);
     }
