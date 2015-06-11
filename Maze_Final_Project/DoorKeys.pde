@@ -5,7 +5,7 @@ public class DoorKeys extends Item {
   }
 
   public String getDescription() {
-    return "This seems like it could open something";
+    return "This seems like it could open something...";
   }
 }
 

@@ -20,7 +20,7 @@ void setup() {
   h=700;
   size(w, h);
   int mode = 0;
-  numberDoors = 3;
+  numberDoors = 4;
   border = loadImage("Images/Border.png");  
   background(0);
   r = new Random();
@@ -130,15 +130,12 @@ void keyPressed() {
       }
     }
   }
-<<<<<<< HEAD
   if (current.puzzle()) {
     mode = 2; //get mouseclicks for mode 2
   }
-=======
 //  if (current.puzzle()) {
 //    mode = 2;
 //  }
->>>>>>> 73c55f389a989d69243a99963d9a2a366497e6a5
 }
 
 void mouseClicked() {
@@ -150,7 +147,7 @@ void mouseClicked() {
 
 
 void draw() {
-  println("mode" + mode);
+//  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {
