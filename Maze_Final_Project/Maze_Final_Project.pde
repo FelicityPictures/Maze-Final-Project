@@ -13,12 +13,14 @@ int mode = 0;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
+int numberDoors;
 
 void setup() {
   w=1000;
   h=700;
   size(w, h);
   int mode = 0;
+  numberDoors = 3;
   border = loadImage("Images/Border.png");  
   background(0);
   r = new Random();
@@ -37,7 +39,15 @@ void setup() {
   for (int i=0; i<map.length; i++) {
     sub = lines[6+i];
     for (int ii=0; ii<map[0].length; ii++) {
-      map[i][ii]= new GameTile(sub.charAt(ii), false);
+      println(numberDoors);
+      if (r.nextInt(2) == 0 && numberDoors >= 1 && sub.charAt(ii) != 'S' && sub.charAt(ii) != 'E') {
+        map[i][ii]= new GameTile(sub.charAt(ii), true);
+        numberDoors --;
+        println("HELLOOOOOOOOOOOOO");
+      } else {      
+        map[i][ii]= new GameTile(sub.charAt(ii), false);
+        println("ELOO");
+      }
     }
   }
 
@@ -64,6 +74,17 @@ static boolean inArray(ArrayList<Integer> xc, int x, int y) {
   int place = 0;
   while (place < xc.size ()) {
     if (xc.get(place) == x && xc.get(place+1) == y) {
+      return true;
+    }
+    place++;
+  }
+  return false;
+}
+
+static boolean onImage(ArrayList<Integer> xc, ArrayList<Integer> yc, int x, int y) {
+  int place = 0;
+  while (place < xc.size ()) {
+    if (xc.get(place) == x && yc.get(place) == y) {
       return true;
     }
     place++;
@@ -109,9 +130,15 @@ void keyPressed() {
       }
     }
   }
+<<<<<<< HEAD
   if (current.puzzle()) {
     mode = 2; //get mouseclicks for mode 2
   }
+=======
+//  if (current.puzzle()) {
+//    mode = 2;
+//  }
+>>>>>>> 73c55f389a989d69243a99963d9a2a366497e6a5
 }
 
 void mouseClicked() {
@@ -123,6 +150,7 @@ void mouseClicked() {
 
 
 void draw() {
+  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {
