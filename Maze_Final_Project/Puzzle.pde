@@ -11,5 +11,8 @@ public class Puzzle {
 
   public void show() {
   }
+  
+  public void play(){
+  }
 }
 

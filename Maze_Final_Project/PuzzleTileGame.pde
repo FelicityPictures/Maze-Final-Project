@@ -17,6 +17,7 @@ public class PuzzleTileGame extends Puzzle{
   int goW = width/piece;
   int goH = height/piece;
   boolean start, solved;
+  boolean setUp = true;
 
   void set() {
     solved = false;
@@ -25,6 +26,13 @@ public class PuzzleTileGame extends Puzzle{
     size(1000, 700);
     splitUp(piece);
     placeParts(piece, piece, piece, piece);
+    setUp = false;
+  }
+  
+  void play(){
+    if (setUp){
+      set();
+    }
   }
 
   void randomize() {
@@ -89,6 +97,10 @@ public class PuzzleTileGame extends Puzzle{
       ind1++;
       ind2 = 0;
     }
+  }
+
+  public boolean isSolved() {
+    return solved;
   }
 
   void placeParts(int oldAcross, int oldDown, int across, int down) {
@@ -179,8 +191,9 @@ public class PuzzleTileGame extends Puzzle{
     cropped.add(counter, sub);
     //  println("CR" + cropped);
   }
+ 
 
-  void click() {
+  void mouse(boolean clicked) {
     int tileWidth = img.width/piece;
     int tileHeight = img.height/piece;
     int goWidth = width/piece;

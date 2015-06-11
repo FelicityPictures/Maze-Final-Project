@@ -129,9 +129,9 @@ void keyPressed() {
       }
     }
   }
-//  if (current.puzzle()) {
-//    mode = 2;
-//  }
+  //  if (current.puzzle()) {
+  //    mode = 2;
+  //  }
 }
 
 void mouseClicked() {
@@ -140,7 +140,6 @@ void mouseClicked() {
     seeMap = !seeMap;
   }
 }
-
 
 void draw() {
   println("mode" + mode);
