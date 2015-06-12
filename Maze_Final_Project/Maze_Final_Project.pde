@@ -150,14 +150,14 @@ void mouseClicked() {
 }
 
 void draw() {
-  println("mode" + mode);
+//  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {
     if (mode == 1) {
       current.PlayerSees(mx, my);
       image(border, 0, 0);
-      println(currentRow + "," + currentCol);
+//      println(currentRow + "," + currentCol);
     }
   }
   if (seeMap) {

@@ -23,6 +23,7 @@ public class GameTile {
   PImage big, small;
   boolean isPuzzleTile = false;
   int x, y;
+  PuzzleTileGame tile = new PuzzleTileGame();
 
   public GameTile(char d, boolean dr) {
     if (d=='#') {
@@ -152,13 +153,12 @@ public class GameTile {
       //      Random r = new Random();
       //      if (r.nextInt(2)==0) {
       //need a constructor Puzzle p = new PuzzleTileGame();
-      Puzzle tile = new PuzzleTileGame();
+//      Puzzle tile = new PuzzleTileGame();
       isPuzzleTile = true;
       //      fill(50, 55, 100);
       //      rect(100, 100, width-200, height-200);
+      
       tile.play(xc,yc);
-        println("XCXCXCXC" + xc);
-        println("YCYCYCYC" + yc);
       tile.setX(xc);
       tile.setY(yc);
 

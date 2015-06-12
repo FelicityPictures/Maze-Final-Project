@@ -208,11 +208,9 @@ public class PuzzleTileGame extends Puzzle {
     int tileHeight = img.height/piece;
     int goWidth = width/piece;
     int goHeight = height/piece;
-    println (x +"," + y);
 
     //did the user click on a valid tile?
     if (onImage(pixX, pixY, x, y) && !onImage(emptySpaceX, emptySpaceY, x, y)) {
-      println(0);
       if (onImage(emptySpaceX, emptySpaceY, x + tileWidth, y)) {
         start = false;
         println(1);
@@ -244,6 +242,8 @@ public class PuzzleTileGame extends Puzzle {
         }
       }
     }
+    println(cropped);
+    println("EMPTY:       " + emptySpaceX.get(100) + " , " + emptySpaceY.get(100));
   }
 }
 
