@@ -36,6 +36,8 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
 6/10/15: Started working on boss class
          Putting puzzles into map does not work
 6/11/15: Redoing adding puzzles into map due to bugs
+         Made the PuzzleTileGame playable while going through map (!)
+         Need to fix some bugs in PuzzleTileGame
          
 
 What do we have as of 6/1?
