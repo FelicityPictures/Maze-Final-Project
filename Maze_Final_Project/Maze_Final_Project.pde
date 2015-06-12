@@ -40,7 +40,7 @@ void setup() {
   for (int i=0; i<map.length; i++) {
     sub = lines[6+i];
     for (int ii=0; ii<map[0].length; ii++) {    
-      map[i][ii]= new GameTile(sub.charAt(ii), true);
+      map[i][ii]= new GameTile(sub.charAt(ii), false);
     }
   }
 
@@ -51,7 +51,6 @@ void setup() {
     if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
       (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
       map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
-      //      map[puzzleX][puzzleY].setDoor(true);
     }
   }
 

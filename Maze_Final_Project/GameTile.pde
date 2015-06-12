@@ -23,8 +23,8 @@ public class GameTile {
   PImage big, small;
   boolean isPuzzleTile = false;
   int x, y;
-  PuzzleTileGame tile = new PuzzleTileGame();
-  Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+//  PuzzleTileGame tile = new PuzzleTileGame();
+  Puzzle puzzle;
 
 
   public GameTile(char d, boolean dr) {
@@ -93,12 +93,18 @@ public class GameTile {
     }
     direction = d;
     door = dr;
+    if(door){
+       Random r = new Random();
+       int randomP = r.nextInt(2);
+       if(r==0){
+         puzzle = new PuzzleTileGame();
+       }else{
+        puzzle = new SpotTheDifference(r.nextInt(2)+1,1000,700);
+       } 
   }
 
   public GameTile(GameTile other) {
-    //    GameTile(other.getDirection(), true);
-    direction = other.getDirection();
-    door = true;
+    this(other.getDirection(),true);
   }
 
   public boolean puzzle() {
@@ -111,14 +117,6 @@ public class GameTile {
 
   public char getDirection() {
     return direction;
-  }
-
-  public void setDirection(char dir) {
-    direction = dir;
-  }
-
-  public void setDoor(boolean dr) {
-    door = dr;
   }
 
   public void MapDisplay(int x, int y) {
