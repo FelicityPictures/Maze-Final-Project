@@ -14,6 +14,7 @@ boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
 int numberOfDoors;
+int mx, my;
 
 void setup() {
   w=1000;
@@ -39,7 +40,7 @@ void setup() {
   for (int i=0; i<map.length; i++) {
     sub = lines[6+i];
     for (int ii=0; ii<map[0].length; ii++) {    
-      map[i][ii]= new GameTile(sub.charAt(ii), false);
+      map[i][ii]= new GameTile(sub.charAt(ii), true);
     }
   }
 
@@ -47,9 +48,10 @@ void setup() {
   for (int i=0; i<numberOfDoors; i++) {
     puzzleX = r.nextInt(map.length);
     puzzleY = r.nextInt(map[0].length);
-    if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startX || puzzleY!=startY) &&
-      (puzzleX!=endX || puzzleY !=endY) && !map[puzzleX][puzzleY].puzzle()) {
+    if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
+      (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
       map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
+      //      map[puzzleX][puzzleY].setDoor(true);
     }
   }
 
@@ -132,9 +134,7 @@ void keyPressed() {
       }
     }
   }
-  if (current.puzzle()) {
-    mode = 2; //get mouseclicks for mode 2
-  }
+
   //  if (current.puzzle()) {
   //    mode = 2;
   //  }
@@ -145,6 +145,13 @@ void mouseClicked() {
   if (inArray(mapImage, mouseX, mouseY)) {
     seeMap = !seeMap;
   }
+
+  if (mode == 1 && current.getIsPuzzleTile()) {
+    current.setX(mouseX);
+    current.setY(mouseY);
+    mx = mouseX;
+    my = mouseY;
+  }
 }
 
 
@@ -154,7 +161,7 @@ void draw() {
     displayDefault();
   } else {
     if (mode == 1) {
-      current.PlayerSees();
+      current.PlayerSees(mx, my);
       image(border, 0, 0);
       //   println(currentRow + "," + currentCol);
     }

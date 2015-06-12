@@ -21,6 +21,11 @@ public class GameTile {
   char direction;
   boolean door;
   PImage big, small;
+  boolean isPuzzleTile = false;
+  int x, y;
+  PuzzleTileGame tile = new PuzzleTileGame();
+  Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+
 
   public GameTile(char d, boolean dr) {
     if (d=='#') {
@@ -91,7 +96,9 @@ public class GameTile {
   }
 
   public GameTile(GameTile other) {
-    Gametile(other.getDirection(), true);
+    //    GameTile(other.getDirection(), true);
+    direction = other.getDirection();
+    door = true;
   }
 
   public boolean puzzle() {
@@ -106,9 +113,18 @@ public class GameTile {
     return direction;
   }
 
+  public void setDirection(char dir) {
+    direction = dir;
+  }
+
+  public void setDoor(boolean dr) {
+    door = dr;
+  }
+
   public void MapDisplay(int x, int y) {
     image(small, x, y);
   }
+
 
   //used by Maze to check if the point player clicked is valid
   //when clicked in main, inputs NESW into char and this method
@@ -149,21 +165,56 @@ public class GameTile {
     return false;
   }
 
-  public void PlayerSees() {
-    image(big, 50, 50);
+  public void PlayerSees(int xc, int yc) {
+    //    image(big, 50, 50);
     if (door) {
       Random r = new Random();
-      if (r.nextInt(2)==0) {
-        //need a constructor Puzzle p = new PuzzleTileGame();
-      } else {
-        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+      //      if (r.nextInt(2)==0) {
+
+      //need a constructor Puzzle p = new PuzzleTileGame();
+      println("hello");
+      isPuzzleTile = true;
+      tile.play(xc, yc);
+      tile.setX(xc);
+      tile.setY(yc);
+
+      //put the game stuff here
+
+      if (tile.isSolved()) {
+        door = false;
+        image(big, 50, 50);
       }
+      //      } else {
+      //        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+      //play the Spot the Difference Game
+      //        image(big, 50, 50);
+      //      }
       // p.play();
     }
   }
 
   String toString() {
     return Character.toString(direction);
+  }
+
+  boolean getIsPuzzleTile() {
+    return isPuzzleTile;
+  }
+
+  void setX(int xc) {
+    x = xc;
+  }
+
+  void setY(int yc) {
+    y = yc;
+  }
+
+  int getX() {
+    return x;
+  }
+
+  int getY() {
+    return y;
   }
 }
 
