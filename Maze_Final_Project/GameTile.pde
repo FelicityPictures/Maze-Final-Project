@@ -23,7 +23,7 @@ public class GameTile {
   PImage big, small;
   boolean isPuzzleTile = false;
   int x, y;
-//  PuzzleTileGame tile = new PuzzleTileGame();
+  //  PuzzleTileGame tile = new PuzzleTileGame();
   Puzzle puzzle;
 
 
@@ -93,18 +93,21 @@ public class GameTile {
     }
     direction = d;
     door = dr;
-    if(door){
-       Random r = new Random();
-       int randomP = r.nextInt(2);
-       if(r==0){
-         puzzle = new PuzzleTileGame();
-       }else{
-        puzzle = new SpotTheDifference(r.nextInt(2)+1,1000,700);
-       } 
+    if (door) {
+      Random r = new Random();
+      int randomP = r.nextInt(2);
+      if (randomP==0) {
+        puzzle = new PuzzleTileGame();
+        isPuzzleTile = true;
+      } else {
+        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        isPuzzleTile = false;
+      }
+    }
   }
 
   public GameTile(GameTile other) {
-    this(other.getDirection(),true);
+    this(other.getDirection(), true);
   }
 
   public boolean puzzle() {
@@ -167,30 +170,29 @@ public class GameTile {
     //    image(big, 50, 50);
     if (door) {
       Random r = new Random();
-      //      if (r.nextInt(2)==0) {
+      if (isPuzzleTile) {
 
-      //need a constructor Puzzle p = new PuzzleTileGame();
-      println("hello");
-      isPuzzleTile = true;
-      tile.play(xc, yc);
-      tile.setX(xc);
-      tile.setY(yc);
+        //need a constructor Puzzle p = new PuzzleTileGame();
+        println("hello");
+        isPuzzleTile = true;
+        tile.play(xc, yc);
+        tile.setX(xc);
+        tile.setY(yc);
 
-      //put the game stuff here
+        //put the game stuff here
 
-      if (tile.isSolved()) {
-        door = false;
-        image(big, 50, 50);
+        if (tile.isSolved()) {
+          door = false;
+          image(big, 50, 50);
+        }
+      } else {
+        //play the Spot the Difference Game
+        //        image(big, 50, 50);
+        //      }
+        // p.play();
       }
-      //      } else {
-      //        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-      //play the Spot the Difference Game
-      //        image(big, 50, 50);
-      //      }
-      // p.play();
     }
   }
-
   String toString() {
     return Character.toString(direction);
   }
