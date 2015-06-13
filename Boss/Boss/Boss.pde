@@ -7,6 +7,5 @@ void setup() {
   int h=700;
   size(w, h);
   frameRate(30);
- // File folder = new File(dataPath(
 }
 

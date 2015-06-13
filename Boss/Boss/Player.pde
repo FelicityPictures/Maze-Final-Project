@@ -137,5 +137,11 @@ public class Player {
     }
     return false;
   }
+  
+  public boolean alive(){
+    if(HP>0){
+      return true;
+    }
+  }
 }
 
