@@ -44,6 +44,8 @@ void setup() {
     }
   }
 
+  //  map[1][0] = new GameTile(map[1][0]);
+
   int puzzleX, puzzleY;
   for (int i=0; i<numberOfDoors; i++) {
     puzzleX = r.nextInt(map.length);
@@ -53,7 +55,7 @@ void setup() {
       map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
       println(puzzleX + " , " + puzzleY);
       println(map[puzzleX][puzzleY]);
-    }else{
+    } else {
       i--;
     }
   }
@@ -137,10 +139,6 @@ void keyPressed() {
       }
     }
   }
-
-  //  if (current.puzzle()) {
-  //    mode = 2;
-  //  }
 }
 
 void mouseClicked() {
@@ -167,8 +165,14 @@ void draw() {
       current.PlayerSees(mx, my);
       image(border, 0, 0);
       //   println(currentRow + "," + currentCol);
+      if (current.puzzle() && current.getIsPuzzleTile()) {
+        textSize(32);
+        fill(255);
+        text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);
+        text("Slide the puzzle tiles to create the image you see on the left. The missing tile should be the lower right hand tile. \n Good Luck!", 500, 30);
+      }
     }
-  }
+  } 
   if (seeMap) {
     //    fill(218, 218, 231, 20);
     //    rect(100, 100, width-200, height-200);

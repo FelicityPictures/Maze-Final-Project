@@ -28,16 +28,24 @@ public class PuzzleTileGame extends Puzzle {
     start = true;
     size(1000, 700);
     splitUp(piece);
-    randomize();
     int place = 0;
     int place2 = 0;
     int sub1 = 0;
     int sub2 = 0;
+    int index = 0;
+    println(cropped);
+    while (index < cropped2.length) {
+      println(Arrays.toString(cropped2[index]));
+      index++;
+    }
     while (place < cropped2.length) {
       while (place2 < cropped2[0].length) {
         if (cropped2[place][place2].equals("NOTHING")) {
           sub1 = place;
           sub2 = place2;
+          place = cropped2.length;
+          place2 = cropped2[0].length;
+          println(sub1 + " , " + sub2);
         }
         place2++;
       }
@@ -45,7 +53,7 @@ public class PuzzleTileGame extends Puzzle {
       place++;
     }
     //    int sub = cropped.indexOf("NOTHING");
-    placeParts(sub1, sub2, sub1, sub2);
+    placeParts(sub2+1, sub1+1, sub2+1, sub1+1);
     whereDown = sub1+1;
     whereAcross = sub2+1;    
     setUp = false;
@@ -138,9 +146,10 @@ public class PuzzleTileGame extends Puzzle {
   }
 
   void placeParts(int oldAcross, int oldDown, int across, int down) {
-    textSize(32);
-    fill(255);
-    text(("NUMBER OF STEPS TAKEN SO FAR:  " + numSteps), 10, 30);
+
+    if (start) {
+      println("oldDown:   " + oldDown + "   oldAcross:  " + oldAcross);
+    }
 
     image(img, 0, 0);
     emptySpaceX.clear();
@@ -212,6 +221,7 @@ public class PuzzleTileGame extends Puzzle {
     //  println("R2C2 " + r2 + "," + c2);
     int counter = 0;
     String sub = cropped2[wantBlankR-1][wantBlankC-1];
+    println("wantBlankR: " + wantBlankR + "   wantBlankC:  " + wantBlankC);
     //  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
     //  println("SUB" + sub);
     //  println(cropped);

@@ -100,8 +100,10 @@ public class GameTile {
         puzzle = new PuzzleTileGame();
         isPuzzleTile = true;
       } else {
-        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-        isPuzzleTile = false;
+        //        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        //        isPuzzleTile = false;
+        puzzle = new PuzzleTileGame();
+        isPuzzleTile = true;
       }
     }
   }
