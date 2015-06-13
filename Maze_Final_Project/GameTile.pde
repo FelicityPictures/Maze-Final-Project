@@ -148,12 +148,14 @@ public class GameTile {
   public void PlayerSees() {
     image(big, 50, 50);
     if (door) {
-      Random r = new Random();
-      if (r.nextInt(2)==0) {
-        //need a constructor Puzzle p = new PuzzleTileGame();
-      } else {
-        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-      }
+      fill(204, 102, 0);
+      rect(300, 300, 55, 55);
+//      Random r = new Random();
+//      if (r.nextInt(2)==0) {
+//        //need a constructor Puzzle p = new PuzzleTileGame();
+//      } else {
+//        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+//      }
       // p.play();
     }
   }
