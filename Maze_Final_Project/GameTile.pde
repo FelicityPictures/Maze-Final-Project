@@ -21,6 +21,7 @@ public class GameTile {
   char direction;
   boolean door;
   PImage big, small;
+  PImage border = loadImage("Images/Blank.png");
   boolean isPuzzleTile = false;
   int x, y;
   //  PuzzleTileGame tile = new PuzzleTileGame();
@@ -97,13 +98,13 @@ public class GameTile {
       Random r = new Random();
       int randomP = r.nextInt(2);
       if (randomP==0) {
-        puzzle = new PuzzleTileGame();
+        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
         isPuzzleTile = true;
       } else {
-        //        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-        //        isPuzzleTile = false;
-        puzzle = new PuzzleTileGame();
-        isPuzzleTile = true;
+        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        isPuzzleTile = false;
+        //        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+        //        isPuzzleTile = true;
       }
     }
   }
@@ -173,18 +174,21 @@ public class GameTile {
     if (door) {
       Random r = new Random();
       if (isPuzzleTile) {
-
+        //        fill(255, 200, 200);
+        //        rect(55, 55, width - 110, height - 110);
         //need a constructor Puzzle p = new PuzzleTileGame();
         isPuzzleTile = true;
         puzzle.play(xc, yc);
         puzzle.setX(xc);
         puzzle.setY(yc);
+        image(border, 0, 0);
 
         //put the game stuff here
 
         if (puzzle.isSolved()) {
           door = false;
-          image(big, 50, 50);
+          isPuzzleTile = false;
+          image(big, 55, 55);
         }
       } else {
         //play the Spot the Difference Game
@@ -193,7 +197,7 @@ public class GameTile {
         // p.play();
       }
     } else {
-      image(big, 50, 50);
+      image(big, 55, 55);
     }
   }
   String toString() {

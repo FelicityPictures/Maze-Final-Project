@@ -163,9 +163,13 @@ void draw() {
   } else {
     if (mode == 1) {
       current.PlayerSees(mx, my);
-      image(border, 0, 0);
+      if (!current.puzzle()) {
+        image(border, 0, 0);
+      }
       //   println(currentRow + "," + currentCol);
       if (current.puzzle() && current.getIsPuzzleTile()) {
+        current.PlayerSees(mx, my);
+        image(border, 0, 0);
         textSize(32);
         fill(255);
         text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);

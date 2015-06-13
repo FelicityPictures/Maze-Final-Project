@@ -22,9 +22,13 @@ public class PuzzleTileGame extends Puzzle {
   Random rand = new Random();
   int numSteps = 0;
 
-  void sett() {
+  public PuzzleTileGame(String iName, int pieces) {
+    img = loadImage(iName);
+    piece = pieces;
+  }
+  
+  void sett(){
     solved = false;
-    img = loadImage("tilegame.jpg");
     start = true;
     size(1000, 700);
     splitUp(piece);
@@ -151,7 +155,7 @@ public class PuzzleTileGame extends Puzzle {
       println("oldDown:   " + oldDown + "   oldAcross:  " + oldAcross);
     }
 
-    image(img, 0, 0);
+    image(img, 60, 60);
     emptySpaceX.clear();
     emptySpaceY.clear();
     PImage load;
