@@ -38,6 +38,9 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
 6/11/15: Redoing adding puzzles into map due to bugs
          Made the PuzzleTileGame playable while going through map (!)
          Need to fix some bugs in PuzzleTileGame
+6/13/15: Working on the display to display games
+         Fixed bugs in puzzle tile sliding
+         Need to come up with different solvable puzzles for Puzzle Tile Game
          
 
 What do we have as of 6/1?
