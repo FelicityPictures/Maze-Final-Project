@@ -30,9 +30,18 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
          Continued working on BossTile so it could check on inventory
          Spent a really long time on PuzzleTileGame -- the sliding thing thing works now
          Continue implementing PuzzleTileGame so it is compatible with the rest of the Puzzles
-6/9/15: Displays a screen when the puzzle is true
+6/9/15:  Displays a screen when the puzzle is true
          Determined which doors contains a puzzle
          Will work on Boss Game this weekend
+6/10/15: Started working on boss class
+         Putting puzzles into map does not work
+6/11/15: Redoing adding puzzles into map due to bugs
+         Made the PuzzleTileGame playable while going through map (!)
+         Need to fix some bugs in PuzzleTileGame
+6/13/15: Working on the display to display games
+         Fixed bugs in puzzle tile sliding
+         Need to come up with different solvable puzzles for Puzzle Tile Game
+         
 
 What do we have as of 6/1?
 INSTRUCTIONS: Look at Maze_Final_Project.pde (for bordered map) and PuzzleTileGame.pde (for Puzzle Tile game). Not much progress, but should be able to compile.

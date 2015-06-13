@@ -21,6 +21,12 @@ public class GameTile {
   char direction;
   boolean door;
   PImage big, small;
+  PImage border = loadImage("Images/Blank.png");
+  boolean isPuzzleTile = false;
+  int x, y;
+  //  PuzzleTileGame tile = new PuzzleTileGame();
+  Puzzle puzzle;
+
 
   public GameTile(char d, boolean dr) {
     if (d=='#') {
@@ -88,6 +94,23 @@ public class GameTile {
     }
     direction = d;
     door = dr;
+    if (door) {
+      Random r = new Random();
+      int randomP = r.nextInt(2);
+      if (randomP==0) {
+        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+        isPuzzleTile = true;
+      } else {
+        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        isPuzzleTile = false;
+        //        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+        //        isPuzzleTile = true;
+      }
+    }
+  }
+
+  public GameTile(GameTile other) {
+    this(other.getDirection(), true);
   }
 
   public boolean puzzle() {
@@ -105,6 +128,7 @@ public class GameTile {
   public void MapDisplay(int x, int y) {
     image(small, x, y);
   }
+
 
   //used by Maze to check if the point player clicked is valid
   //when clicked in main, inputs NESW into char and this method
@@ -145,9 +169,10 @@ public class GameTile {
     return false;
   }
 
-  public void PlayerSees() {
-    image(big, 50, 50);
+  public void PlayerSees(int xc, int yc) {
+    //    image(big, 50, 50);
     if (door) {
+<<<<<<< HEAD
       fill(204, 102, 0);
       rect(300, 300, 55, 55);
 //      Random r = new Random();
@@ -157,11 +182,58 @@ public class GameTile {
 //        Puzzle p = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
 //      }
       // p.play();
+=======
+      Random r = new Random();
+      if (isPuzzleTile) {
+        //        fill(255, 200, 200);
+        //        rect(55, 55, width - 110, height - 110);
+        //need a constructor Puzzle p = new PuzzleTileGame();
+        isPuzzleTile = true;
+        puzzle.play(xc, yc);
+        puzzle.setX(xc);
+        puzzle.setY(yc);
+        image(border, 0, 0);
+
+        //put the game stuff here
+
+        if (puzzle.isSolved()) {
+          door = false;
+          isPuzzleTile = false;
+          image(big, 55, 55);
+        }
+      } else {
+        //play the Spot the Difference Game
+        //        image(big, 50, 50);
+        //      }
+        // p.play();
+      }
+    } else {
+      image(big, 55, 55);
+>>>>>>> origin/master
     }
   }
-
   String toString() {
     return Character.toString(direction);
+  }
+
+  boolean getIsPuzzleTile() {
+    return isPuzzleTile;
+  }
+
+  void setX(int xc) {
+    x = xc;
+  }
+
+  void setY(int yc) {
+    y = yc;
+  }
+
+  int getX() {
+    return x;
+  }
+
+  int getY() {
+    return y;
   }
 }
 

@@ -13,14 +13,15 @@ int mode = 0;
 boolean seeMap = false;
 ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
-int numberDoors;
+int numberOfDoors;
+int mx, my;
 
 void setup() {
   w=1000;
   h=700;
+  numberOfDoors = 4;
   size(w, h);
   int mode = 0;
-  numberDoors = 3;
   border = loadImage("Images/Border.png");  
   background(0);
   r = new Random();
@@ -38,16 +39,24 @@ void setup() {
   String sub = "";
   for (int i=0; i<map.length; i++) {
     sub = lines[6+i];
-    for (int ii=0; ii<map[0].length; ii++) {
-      println(numberDoors);
-      if (r.nextInt(2) == 0 && numberDoors >= 1 && sub.charAt(ii) != 'S' && sub.charAt(ii) != 'E') {
-        map[i][ii]= new GameTile(sub.charAt(ii), true);
-        numberDoors --;
-        println("HELLOOOOOOOOOOOOO");
-      } else {      
-        map[i][ii]= new GameTile(sub.charAt(ii), false);
-        println("ELOO");
-      }
+    for (int ii=0; ii<map[0].length; ii++) {    
+      map[i][ii]= new GameTile(sub.charAt(ii), false);
+    }
+  }
+
+  //  map[1][0] = new GameTile(map[1][0]);
+
+  int puzzleX, puzzleY;
+  for (int i=0; i<numberOfDoors; i++) {
+    puzzleX = r.nextInt(map.length);
+    puzzleY = r.nextInt(map[0].length);
+    if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
+      (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
+      map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
+      println(puzzleX + " , " + puzzleY);
+      println(map[puzzleX][puzzleY]);
+    } else {
+      i--;
     }
   }
 
@@ -130,13 +139,6 @@ void keyPressed() {
       }
     }
   }
-  if (current.puzzle()) {
-    mode = 2; //get mouseclicks for mode 2
-  }
-//  if (current.puzzle()) {
-//    mode = 2;
-//  }
-
 }
 
 void mouseClicked() {
@@ -144,20 +146,37 @@ void mouseClicked() {
   if (inArray(mapImage, mouseX, mouseY)) {
     seeMap = !seeMap;
   }
+
+  if (mode == 1 && current.getIsPuzzleTile()) {
+    current.setX(mouseX);
+    current.setY(mouseY);
+    mx = mouseX;
+    my = mouseY;
+  }
 }
 
 
 void draw() {
-  println("mode" + mode);
+  //  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {
     if (mode == 1) {
-      current.PlayerSees();
-      image(border, 0, 0);
+      current.PlayerSees(mx, my);
+      if (!current.puzzle()) {
+        image(border, 0, 0);
+      }
       //   println(currentRow + "," + currentCol);
+      if (current.puzzle() && current.getIsPuzzleTile()) {
+        current.PlayerSees(mx, my);
+        image(border, 0, 0);
+        textSize(32);
+        fill(255);
+        text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);
+        text("Slide the puzzle tiles to create the image you see on the left. The missing tile should be the lower right hand tile. \n Good Luck!", 500, 30);
+      }
     }
-  }
+  } 
   if (seeMap) {
     //    fill(218, 218, 231, 20);
     //    rect(100, 100, width-200, height-200);
