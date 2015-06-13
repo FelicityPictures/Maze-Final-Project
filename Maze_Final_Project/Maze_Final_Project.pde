@@ -51,6 +51,10 @@ void setup() {
     if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
       (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
       map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
+      println(puzzleX + " , " + puzzleY);
+      println(map[puzzleX][puzzleY]);
+    }else{
+      i--;
     }
   }
 
@@ -155,7 +159,7 @@ void mouseClicked() {
 
 
 void draw() {
-  println("mode" + mode);
+  //  println("mode" + mode);
   if (mode == 0) {
     displayDefault();
   } else {

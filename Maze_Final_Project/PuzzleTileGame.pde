@@ -29,8 +29,25 @@ public class PuzzleTileGame extends Puzzle {
     size(1000, 700);
     splitUp(piece);
     randomize();
-    int sub = cropped.indexOf("NOTHING");
-    placeParts(sub, sub, sub, sub);
+    int place = 0;
+    int place2 = 0;
+    int sub1 = 0;
+    int sub2 = 0;
+    while (place < cropped2.length) {
+      while (place2 < cropped2[0].length) {
+        if (cropped2[place][place2].equals("NOTHING")) {
+          sub1 = place;
+          sub2 = place2;
+        }
+        place2++;
+      }
+      place2 = 0;
+      place++;
+    }
+    //    int sub = cropped.indexOf("NOTHING");
+    placeParts(sub1, sub2, sub1, sub2);
+    whereDown = sub1+1;
+    whereAcross = sub2+1;    
     setUp = false;
   }
 
@@ -124,7 +141,7 @@ public class PuzzleTileGame extends Puzzle {
     textSize(32);
     fill(255);
     text(("NUMBER OF STEPS TAKEN SO FAR:  " + numSteps), 10, 30);
-    
+
     image(img, 0, 0);
     emptySpaceX.clear();
     emptySpaceY.clear();
@@ -211,8 +228,8 @@ public class PuzzleTileGame extends Puzzle {
 
 
   void mouse() {
-    println("HELEN" + x);
-    println("HELENY" + y);
+    //    println("HELEN" + x);
+    //    println("HELENY" + y);
     int tileWidth = img.width/piece;
     int tileHeight = img.height/piece;
     int goWidth = width/piece;
@@ -223,6 +240,7 @@ public class PuzzleTileGame extends Puzzle {
       if (onImage(emptySpaceX, emptySpaceY, x + tileWidth, y)) {
         start = false;
         println(1);
+        println(whereDown + " , " + whereAcross);
         placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
         whereAcross--;
         numSteps++;
@@ -230,6 +248,7 @@ public class PuzzleTileGame extends Puzzle {
         if (onImage(emptySpaceX, emptySpaceY, x - tileWidth, y)) {
           start = false;
           println(2);
+          println(whereDown + " , " + whereAcross);
           placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
           whereAcross++;
           numSteps++;
@@ -238,6 +257,7 @@ public class PuzzleTileGame extends Puzzle {
           if (onImage(emptySpaceX, emptySpaceY, x, y + tileHeight)) {
             start = false;
             println(3);
+            println(whereDown + " , " + whereAcross);
             placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
             whereDown--;
             numSteps++;
@@ -246,6 +266,7 @@ public class PuzzleTileGame extends Puzzle {
             if (onImage(emptySpaceX, emptySpaceY, x, y - tileHeight)) {
               start = false;
               println(4);
+              println(whereDown + " , " + whereAcross);
               placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
               whereDown++;
               numSteps++;

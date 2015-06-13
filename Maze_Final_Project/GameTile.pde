@@ -173,15 +173,14 @@ public class GameTile {
       if (isPuzzleTile) {
 
         //need a constructor Puzzle p = new PuzzleTileGame();
-        println("hello");
         isPuzzleTile = true;
-        tile.play(xc, yc);
-        tile.setX(xc);
-        tile.setY(yc);
+        puzzle.play(xc, yc);
+        puzzle.setX(xc);
+        puzzle.setY(yc);
 
         //put the game stuff here
 
-        if (tile.isSolved()) {
+        if (puzzle.isSolved()) {
           door = false;
           image(big, 50, 50);
         }
@@ -191,6 +190,8 @@ public class GameTile {
         //      }
         // p.play();
       }
+    } else {
+      image(big, 50, 50);
     }
   }
   String toString() {
