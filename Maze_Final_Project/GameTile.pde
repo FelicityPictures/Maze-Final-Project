@@ -172,7 +172,6 @@ public class GameTile {
   public void PlayerSees(int xc, int yc) {
     //    image(big, 50, 50);
     if (door) {
-      Random r = new Random();
       if (isPuzzleTile) {
         //        fill(255, 200, 200);
         //        rect(55, 55, width - 110, height - 110);
@@ -192,9 +191,15 @@ public class GameTile {
         }
       } else {
         //play the Spot the Difference Game
-        //        image(big, 50, 50);
-        //      }
-        // p.play();
+        fill(255, 200, 200);
+        rect(55, 55, width - 110, height - 110);
+        SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        while (game.playable ()) {
+          game.show();
+          game.validClick(xc, yc);
+        }
+        door = false;
+        image(big, 55, 55);
       }
     } else {
       image(big, 55, 55);
