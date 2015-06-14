@@ -43,6 +43,7 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
          Need to come up with different solvable puzzles for Puzzle Tile Game
          Virtually finished with behind the scenes workings for Boss fight
          Figuring out sprites and animation for Boss fight
+6/14/15: Finally made PuzzleTile game displayable and solvable and playable (!)
          
 
 What do we have as of 6/1?
@@ -53,7 +54,9 @@ What do we have as of 6/8?
 INSTRUCTIONS: Look at Maze_Final_Project.pde.
 As of now, running it and pressing 'P' will only allow for the user to navigate around the map, but we already of about two of the games implemented.
 
-         
+Used a source for the algorithm for the puzzle tile game:
+https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+
 Things to do:
 -Finish making the map appear and allow user to navigate (DONE)
 -Finish all games except Bejeweled (finish for Demo versions -- Bejeweled for final version if possible)
