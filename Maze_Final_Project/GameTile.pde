@@ -196,6 +196,7 @@ public class GameTile {
       } else {
         image(big, 55, 55);
         //play the Spot the Difference Game
+<<<<<<< HEAD
         fill(255, 200, 200);
         rect(55, 55, width - 110, height - 110);
         //     SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
@@ -204,6 +205,12 @@ public class GameTile {
         if (!puzzle.playable()) {
           door = false;
           image(big, 55, 55);
+=======
+        puzzle.show();
+        while (puzzle.playable()) {
+          puzzle.show();
+          puzzle.validClick(xc, yc);
+>>>>>>> FHome
         }
       }
     } else {

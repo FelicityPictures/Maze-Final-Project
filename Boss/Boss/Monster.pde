@@ -1,28 +1,35 @@
 import java.util.*;
 import java.io.*;
 
-public class Monster extends Player {
+public class Ganondorf extends Player {
   Random r = new Random();
+  PImage[]a1;
+  PImage[]a2;
+  PImage[]a3;
+  PImage[]hurt;
+  PImage[]sa;
+  PImage[]die;
 
-  public Monster(String n, int h, int d, int m, int dam, int dex, 
-  float posx, float posy, int fps) {
-    super(n, h, d, m, dam, dex, posx, posy, fps);
+  public Monster(String n, int h, int d, int m, int dam, int dex) {
+    super("Ganondorf",400,100,50,100,100);
+    
   }
 
   public void attack(Player other) {
     int a = r.nextInt(7);
     if (a == 0 || a == 3) {
-      attack1(other);
+      super.attack1(other);
     }
     if (a == 1 || a==4) {
-      attack2(other);
+      super.attack2(other);
     }
     if (a == 2 || a == 5) {
-      attack3(other);
+      super.attack3(other);
     }
     if (a == 6) {
-      specialAttack(other);
+      super.specialAttack(other);
     }
   }
-
+  
 }
+
