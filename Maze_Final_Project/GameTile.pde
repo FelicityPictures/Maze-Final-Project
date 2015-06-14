@@ -20,7 +20,7 @@
 public class GameTile {
   char direction;
   boolean door;
-  PImage big, small;
+  PImage big, small, end;
   PImage border = loadImage("Images/Blank.png");
   boolean isPuzzleTile = false;
   int x, y;
@@ -92,6 +92,7 @@ public class GameTile {
       small = loadImage("Images/NESW.png");
       big = loadImage("Images/NESW Inside.png");
     }
+    end = loadImage("Images/BossDoor.png");
     direction = d;
     door = dr;
     if (door) {
@@ -103,8 +104,6 @@ public class GameTile {
       } else {
         puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
         isPuzzleTile = false;
-        //        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
-        //        isPuzzleTile = true;
       }
     }
   }
@@ -169,18 +168,23 @@ public class GameTile {
     return false;
   }
 
-  public void PlayerSees(int xc, int yc) {
-    //    image(big, 50, 50);
+  public void PlayerSees(int xc, int yc, boolean changeDir, boolean endd) {
+    if (changeDir) {
+      image(big, 55, 55);
+      image(border, 0, 0);
+    }
     if (door) {
       if (isPuzzleTile) {
+        //        image(big, 55, 55);
+        //        image(border, 0, 0);
         //        fill(255, 200, 200);
         //        rect(55, 55, width - 110, height - 110);
         //need a constructor Puzzle p = new PuzzleTileGame();
         isPuzzleTile = true;
-        puzzle.play(xc, yc);
-        puzzle.setX(xc);
-        puzzle.setY(yc);
-        image(border, 0, 0);
+        puzzle.play(xc, yc, changeDir);
+        //        puzzle.setX(xc);
+        //        puzzle.setY(yc);
+
 
         //put the game stuff here
 
@@ -190,19 +194,24 @@ public class GameTile {
           image(big, 55, 55);
         }
       } else {
+        image(big, 55, 55);
         //play the Spot the Difference Game
         fill(255, 200, 200);
         rect(55, 55, width - 110, height - 110);
-        SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-        while (game.playable ()) {
-          game.show();
-          game.validClick(xc, yc);
+        //     SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        puzzle.show();
+        puzzle.validClick(xc, yc);
+        if (!puzzle.playable()) {
+          door = false;
+          image(big, 55, 55);
         }
-        door = false;
-        image(big, 55, 55);
       }
     } else {
-      image(big, 55, 55);
+      if (endd) {
+        image(end, 55, 55);
+      } else {
+        image(big, 55, 55);
+      }
     }
   }
   String toString() {

@@ -21,46 +21,49 @@ public class PuzzleTileGame extends Puzzle {
   int x, y;
   Random rand = new Random();
   int numSteps = 0;
+  int sub1 = 0;
+  int sub2 = 0;
 
   public PuzzleTileGame(String iName, int pieces) {
     img = loadImage(iName);
+    println("constructor");
     piece = pieces;
   }
-  
-  void sett(){
-    solved = false;
-    start = true;
-    size(1000, 700);
-    splitUp(piece);
-    int place = 0;
-    int place2 = 0;
-    int sub1 = 0;
-    int sub2 = 0;
-    int index = 0;
-    println(cropped);
-    while (index < cropped2.length) {
-      println(Arrays.toString(cropped2[index]));
-      index++;
-    }
-    while (place < cropped2.length) {
-      while (place2 < cropped2[0].length) {
-        if (cropped2[place][place2].equals("NOTHING")) {
-          sub1 = place;
-          sub2 = place2;
-          place = cropped2.length;
-          place2 = cropped2[0].length;
-          println(sub1 + " , " + sub2);
-        }
-        place2++;
+
+
+  void sett() {
+    if (setUp) {
+      solved = false;
+      start = true;
+      size(1000, 700);
+      splitUp(piece);
+      int place = 0;
+      int place2 = 0;
+      int index = 0;
+      println(cropped);
+      while (index < cropped2.length) {
+        println(Arrays.toString(cropped2[index]));
+        index++;
       }
-      place2 = 0;
-      place++;
+      while (place < cropped2.length) {
+        while (place2 < cropped2[0].length) {
+          if (cropped2[place][place2].equals("NOTHING")) {
+            sub1 = place;
+            sub2 = place2;
+            place = cropped2.length;
+            place2 = cropped2[0].length;
+            println(sub1 + " , " + sub2);
+          }
+          place2++;
+        }
+        place2 = 0;
+        place++;
+      }
+      whereDown = sub1+1;
+      whereAcross = sub2+1;    
+      setUp = false;
     }
-    //    int sub = cropped.indexOf("NOTHING");
     placeParts(sub2+1, sub1+1, sub2+1, sub1+1);
-    whereDown = sub1+1;
-    whereAcross = sub2+1;    
-    setUp = false;
   }
 
   void setX(int xc) {
@@ -71,10 +74,10 @@ public class PuzzleTileGame extends Puzzle {
     y = yc;
   }
 
-  void play(int xc, int yc) {
+  void play(int xc, int yc, boolean changeDir) {
     setX(xc);
     setY(yc);
-    if (setUp) {
+    if (changeDir) {
       sett();
     }
     mouse();
@@ -105,7 +108,6 @@ public class PuzzleTileGame extends Puzzle {
       ii=0;
       i++;
     }
-
     while (place <= pieces) {
       while (place2 <= pieces) {
         if (place == pieces && place2 == pieces) {
@@ -150,11 +152,6 @@ public class PuzzleTileGame extends Puzzle {
   }
 
   void placeParts(int oldAcross, int oldDown, int across, int down) {
-
-    if (start) {
-      println("oldDown:   " + oldDown + "   oldAcross:  " + oldAcross);
-    }
-
     image(img, 60, 60);
     emptySpaceX.clear();
     emptySpaceY.clear();

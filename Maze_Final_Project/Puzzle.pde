@@ -15,7 +15,7 @@ public class Puzzle {
   public void play() {
   }
 
-  public void play(int x, int y) {
+  public void play(int x, int y, boolean changeDir) {
   }
 
   public void setX(int xc) {
@@ -23,4 +23,14 @@ public class Puzzle {
 
   public void setY(int yc) {
   }
+
+  public boolean playable() {
+    return false;
+  }
+
+
+  public boolean validClick(int x, int y) {
+    return false;
+  }
 }
+

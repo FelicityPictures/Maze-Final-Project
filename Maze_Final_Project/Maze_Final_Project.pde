@@ -15,6 +15,8 @@ ArrayList<Integer> mapImage = new ArrayList<Integer>();
 PImage border;
 int numberOfDoors;
 int mx, my;
+boolean changeDir = false;
+int startx, starty, endx, endy;
 
 void setup() {
   w=1000;
@@ -30,10 +32,10 @@ void setup() {
 
   String[] lines = loadStrings("TestMaze.txt");
   map = new GameTile[Integer.parseInt(lines[0])][Integer.parseInt(lines[1])];
-  int startx = Integer.parseInt(lines[2]);
-  int starty = Integer.parseInt(lines[3]);
-  int endx = Integer.parseInt(lines[4]);
-  int endy = Integer.parseInt(lines[5]);
+  startx = Integer.parseInt(lines[2]);
+  starty = Integer.parseInt(lines[3]);
+  endx = Integer.parseInt(lines[4]);
+  endy = Integer.parseInt(lines[5]);
   currentCol =  startx;
   currentRow = starty;
   String sub = "";
@@ -120,21 +122,25 @@ void keyPressed() {
     //go north
     currentRow--;
     current = map[currentRow][currentCol];
+    changeDir = true;
   } else {
     if (keyCode==37 && current.ValidClick('W')) {
       //go west
       currentCol--;
       current = map[currentRow][currentCol];
+      changeDir = true;
     } else {
       if (keyCode==39 && current.ValidClick('E')) {
         //go east
         currentCol++;
         current = map[currentRow][currentCol];
+        changeDir = true;
       } else {
         if (keyCode==40 && current.ValidClick('S')) {
           //go south
           currentRow++;
           current = map[currentRow][currentCol];
+          changeDir = true;
         }
       }
     }
@@ -162,14 +168,22 @@ void draw() {
     displayDefault();
   } else {
     if (mode == 1) {
-      current.PlayerSees(mx, my);
+      if (currentCol == endy && currentRow == endx) {
+        current.PlayerSees(mx, my, changeDir, true);
+      } else {
+        current.PlayerSees(mx, my, changeDir, false);
+      }
+      if (changeDir) {
+        changeDir = !changeDir;
+      }
       if (!current.puzzle()) {
         image(border, 0, 0);
       }
+
       //   println(currentRow + "," + currentCol);
       if (current.puzzle() && current.getIsPuzzleTile()) {
-        current.PlayerSees(mx, my);
-        image(border, 0, 0);
+//        current.PlayerSees(mx, my, changeDir, false);
+//        image(border, 0, 0);
         textSize(32);
         fill(255);
         text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);
