@@ -1,36 +1,25 @@
 import java.util.*;
 import java.io.*;
 
-public class Ganondolf extends Player {
+public class Ganondorf extends Player {
   Random r = new Random();
-  PImage[]idle;
-  PImage[]a1;
-  PImage[]a2;
-  PImage[]a3;
-  PImage[]hurt;
-  PImage[]sa;
-  PImage[]die;
-  PImage[]e1;
-  PImage[]e2;
-  PImage[]e3;
-  PImage[]se;
+  PImage image;
+  //  Sprite idle = new Sprite("Images/Ganondorf/Idle (",200,200,70,70,1);
+  //  Sprite dodge = new Sprite("Images/Ganondorf/Dodge",200,200,70,70,1);
+  //  Sprite exhausted = new Sprite("Images/Ganondorf/Exhausted",200,200,70,70,1);
+  //  Sprite a1 = new Sprite("Images/Ganondorf/Attack 1 (",200,200,70,70,7);
+  //  Sprite a2 = new Sprite("Images/Ganondorf/Attack 2 (",200,200,70,70,7);
+  //  Sprite a3 = new Sprite("Images/Ganondorf/Attack 3 (",200,200,70,70,7);
+  //  Sprite hurt = new Sprite("Images/Ganondorf/Damaged (",200,200,70,70,12);
+  //  Sprite sa = new Sprite("Images/Ganondorf/SpecialAttack (",200,200,70,70,9);
+  //  Sprite e1 = new Sprite("Images/Ganondorf/Effects 1 (",200,200,70,70,5);
+  //  Sprite e2 = new Sprite("Images/Ganondorf/Effects 2 (",200,200,70,70,6);
+  //  Sprite se = new Sprite("Images/Ganondorf/Special Effect (",200,200,70,70,6);
 
-  public Ganondolf(String n, int h, int d, int m, int dam, int dex) {
+  public Ganondorf() {
     super("Ganondorf", 400, 100, 50, 100, 100);
-    idle = new PImage[3];
-    idle[0] = loadImage("Images/Ganondorf/Standing.png");
-    idle[1] = loadImage("Images/Ganondorf/Dodged.png");
-    idle[2] = loadImage("Images/Ganondorf/Exhausted.png");
-    a1 = new PImage[7];
-    a2 = new PImage[7];
-    a3 = new PImage[3];
-    hurt = new PImage[12];
-    sa = new PImage[9];
-    die = new PImage[];
-    e1 = new PImage[];
-    e2 = new PImage[];
-    e3 = new PImage[];
-    se = new PImage[];
+    image = loadImage("Images/Ganondorf/Idle.png");
+    image.resize(image.width*4, image.height*4);
   }
 
   public void attack(Player other) {
@@ -47,6 +36,10 @@ public class Ganondolf extends Player {
     if (a == 6) {
       super.specialAttack(other);
     }
+  }
+
+  public void display(int x, int y) {
+    image(image, x, y);
   }
 }
 

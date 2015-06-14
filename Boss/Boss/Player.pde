@@ -8,6 +8,7 @@ public class Player {
   int mana;
   int damage;
   int dexterity;
+  PImage image;
   Random r = new Random();
 
   public Player(String n, int h, int d, int m, int dam, int dex) {
@@ -17,6 +18,8 @@ public class Player {
     mana = m;
     damage = dam;
     dexterity = dex;
+    image = loadImage("Images/Ganondorf/Special Effect (5).png");
+    image.resize(image.width*3,image.height*3);
   }
 
   public String getName() {
@@ -68,6 +71,10 @@ public class Player {
       return true;
     }
     return false;
+  }
+  
+  public void display(int x,int y){
+    image(image,x,y);
   }
 }
 
