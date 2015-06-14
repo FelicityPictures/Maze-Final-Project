@@ -7,6 +7,7 @@ public class PuzzleTileGame extends Puzzle {
   ArrayList<Integer> pixY = new ArrayList<Integer>();
   ArrayList<Integer> emptySpaceX = new ArrayList<Integer>();
   ArrayList<Integer> emptySpaceY = new ArrayList<Integer>();
+  ArrayList<CropPic> cropped3 = new ArrayList<CropPic>();
   ArrayList<String> cropped = new ArrayList<String>();
   int piece = 3;
   String[][]cropped2 = new String[piece][piece];
@@ -29,7 +30,6 @@ public class PuzzleTileGame extends Puzzle {
     println("constructor");
     piece = pieces;
   }
-
 
   void sett() {
     if (setUp) {
@@ -81,6 +81,7 @@ public class PuzzleTileGame extends Puzzle {
       sett();
     }
     mouse();
+    println(inversions());
   }
 
   void randomize() {
@@ -96,7 +97,7 @@ public class PuzzleTileGame extends Puzzle {
     int startW = 0;
     int startH = 0;
     int w, h, counterW, counterH;
-
+    int count = 0;
     int i = 0;
     int ii = 0;
     while (i <= img.width) {
@@ -114,12 +115,16 @@ public class PuzzleTileGame extends Puzzle {
           place2++;
           place++;
           cropped.add("NOTHING");
+          cropped3.add(new CropPic("NOTHING", count));
+          count++;
         } else {       
           img1 = img.get(startW, startH, tileWidth, tileHeight);
           img1.save(Integer.toString(place) + "x" + Integer.toString(place2) + ".jpg");
+          cropped3.add(new CropPic(Integer.toString(place) + "x" + Integer.toString(place2) + ".jpg", count));
           cropped.add(Integer.toString(place) + "x" + Integer.toString(place2) + ".jpg");
           startW += tileWidth;
           place2++;
+          count++;
         }
       }
       place2=1;
@@ -127,9 +132,24 @@ public class PuzzleTileGame extends Puzzle {
       startH += tileHeight;
       place++;
     }
-    answerKey = cropped;
+    println("a:      " + answerKey);
+    int ind = 0;
+    while (ind < cropped.size ()) {
+      answerKey.add(ind, cropped.get(ind));
+      ind++;
+    }
+
+    println("b:      " + answerKey);
+
     randomize();
+    if (piece % 2 == 1 && this.inversions() % 2 != 0) {
+      while (this.inversions () % 2 != 0) {
+        randomize();
+      }
+    }
+    println("c:      " + answerKey);
     updateCropped();
+    println("d:      " + answerKey);
   }
 
   void updateCropped() {
@@ -207,14 +227,15 @@ public class PuzzleTileGame extends Puzzle {
       }
     }
     updateCropped();
-    //    if (cropped.equals(answerKey)) {
-    //      fill(255);
-    //      rect(50, 50, width-100, height-100);
-    //      fill(0, 102, 153);
-    //      textSize(50);
-    //      text("SOLVED!", 400, 400);
-    //      solved = true;
-    //    }
+    println("ANSWERKEY" + answerKey);
+    if (identical()) {
+      fill(255);
+      rect(55, 55, width-110, height-110);
+      fill(0, 102, 153);
+      textSize(50);
+      text("SOLVED!", 400, 400);
+      solved = true;
+    }
   }
 
 
@@ -289,6 +310,55 @@ public class PuzzleTileGame extends Puzzle {
     }
     //    println(cropped);
     //    println("EMPTY:       " + emptySpaceX.get(100) + " , " + emptySpaceY.get(100));
+  }
+
+  private int getPicPlace(int ind) {
+    int place = 0;
+    String sub = cropped.get(ind);
+    while (place < cropped3.size ()) {
+      if (cropped3.get(place).getPhoto().equals(sub)) {
+        return place;
+      }
+      place++;
+    }
+    return place;
+  }
+
+  private int inversions() {
+    int place = 0;
+    int numInversions = 0;
+    int sub = 1;
+    int help1 = getPicPlace(place);
+    int help2 = getPicPlace(place+sub);
+
+    while (place < cropped.size ()) {
+      while (place+sub < cropped.size ()) {    
+        help1 = getPicPlace(place);
+        help2 = getPicPlace(place+sub);
+        if (cropped3.get(help1).getPhoto().equals("NOTHING") || cropped3.get(help2).getPhoto().equals("NOTHING")) {
+        } else {
+          if (cropped3.get(help1).getPosition() >
+            cropped3.get(help2).getPosition()) {
+            numInversions++;
+          }
+        }
+        sub++;
+      }
+      sub = 1;
+      place++;
+    }
+    return numInversions;
+  }
+
+  private boolean identical() {
+    int place = 0;
+    while (place < cropped.size ()) {
+      if (!cropped.get(place).equals(answerKey.get(place))) {
+        return false;
+      }
+      place++;
+    }
+    return true;
   }
 }
 

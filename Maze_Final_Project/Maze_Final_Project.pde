@@ -46,8 +46,6 @@ void setup() {
     }
   }
 
-  //  map[1][0] = new GameTile(map[1][0]);
-
   int puzzleX, puzzleY;
   for (int i=0; i<numberOfDoors; i++) {
     puzzleX = r.nextInt(map.length);
@@ -182,8 +180,8 @@ void draw() {
 
       //   println(currentRow + "," + currentCol);
       if (current.puzzle() && current.getIsPuzzleTile()) {
-//        current.PlayerSees(mx, my, changeDir, false);
-//        image(border, 0, 0);
+        //        current.PlayerSees(mx, my, changeDir, false);
+        //        image(border, 0, 0);
         textSize(32);
         fill(255);
         text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);

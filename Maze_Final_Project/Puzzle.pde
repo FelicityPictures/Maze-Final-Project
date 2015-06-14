@@ -23,20 +23,11 @@ public class Puzzle {
 
   public void setY(int yc) {
   }
-<<<<<<< HEAD
 
-  public boolean playable() {
-    return false;
-  }
-
-
-=======
-  
   public boolean playable(){
     return true;
   }
   
->>>>>>> FHome
   public boolean validClick(int x, int y) {
     return false;
   }
