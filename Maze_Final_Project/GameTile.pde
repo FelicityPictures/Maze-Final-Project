@@ -103,8 +103,6 @@ public class GameTile {
       } else {
         puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
         isPuzzleTile = false;
-        //        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
-        //        isPuzzleTile = true;
       }
     }
   }
@@ -191,12 +189,10 @@ public class GameTile {
         }
       } else {
         //play the Spot the Difference Game
-        fill(255, 200, 200);
-        rect(55, 55, width - 110, height - 110);
-        SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-        while (game.playable ()) {
-          game.show();
-          game.validClick(xc, yc);
+        puzzle.show();
+        while (puzzle.playable()) {
+          puzzle.show();
+          puzzle.validClick(xc, yc);
         }
         door = false;
         image(big, 55, 55);

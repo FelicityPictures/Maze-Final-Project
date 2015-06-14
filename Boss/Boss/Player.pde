@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class abstract Player {
+public class Player {
   String name;
   int HP;
   int defense;
