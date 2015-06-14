@@ -41,6 +41,8 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
 6/13/15: Working on the display to display games
          Fixed bugs in puzzle tile sliding
          Need to come up with different solvable puzzles for Puzzle Tile Game
+         Virtually finished with behind the scenes workings for Boss fight
+         Figuring out sprites and animation for Boss fight
          
 
 What do we have as of 6/1?
