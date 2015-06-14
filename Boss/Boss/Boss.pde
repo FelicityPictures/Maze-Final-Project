@@ -31,13 +31,28 @@ void draw() {
   l = int(textWidth(out));
   text("You must defeat Ganondorf in order to save the princess", (w/2) - (l/2), 160);
   fill(0, 0, 0);
-  rect(60,60,414,54);
-  rect(526,60,414,54);
-  fill(255,0,0);
-  //red health
-  rect(67,67,400,40);
-  rect(533,67,400,40);
-  monster.display(775,350);
-  hero.display(150,363);
+  //for red
+  rect(60, 60, 410, 50);
+  rect(530, 60, 410, 50);
+  //for blue
+  rect(60, 106, 208, 18);
+  rect(732,106,208,18);
+  //Zelda
+  fill(255, 0, 0);
+  rect(65, 65, 400*(hero.getHP()/hero.getMaxHP()), 40);
+  fill(0, 0, 255);
+  rect(64, 110, 200*(hero.getMana()/hero.getMaxMana()), 10);
+  hero.display(150, 368);
+  //Ganondorf
+  fill(255, 0, 0);
+  rect(535, 65, 400*(monster.getHP()/monster.getMaxHP()), 40);
+  fill(0, 0, 255);
+  rect(735 + (200 - (200*(hero.getMana()/hero.getMaxMana()))), 110, 200*(hero.getMana()/hero.getMaxMana()), 10);
+  monster.display(750, 250);
+  //display options
+  //attack 1
+  //attack 2
+  //attack 3
+  //special Attack
 }
 

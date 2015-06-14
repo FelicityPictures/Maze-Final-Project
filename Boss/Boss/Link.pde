@@ -15,8 +15,8 @@ public class Link extends Player {
 
   public Link() {
     super("Link", 300, 50, 100, 100, 150);
-    image = loadImage("Images/Link a.png");
-    image.resize(image.width, image.height);
+    image = loadImage("Images/Link.png");
+    image.resize(int(image.width*1.5), int(image.height*1.5));
   }
 
   public void display(int x, int y) {
