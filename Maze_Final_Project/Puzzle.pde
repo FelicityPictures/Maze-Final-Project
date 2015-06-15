@@ -1,5 +1,7 @@
 public class Puzzle {
   boolean solved;
+  ArrayList<Integer>rectangles = new ArrayList<Integer>();
+
 
   public Puzzle() {
     solved = false;
@@ -24,12 +26,24 @@ public class Puzzle {
   public void setY(int yc) {
   }
 
-  public boolean playable(){
+  public boolean playable() {
     return true;
   }
-  
+
   public boolean validClick(int x, int y) {
     return false;
+  }
+
+  public void drawRect() {
+  }
+
+
+  boolean getGameMode() {
+    return false;
+  }
+
+  void clearRect() {
+    rectangles.clear();
   }
 }
 

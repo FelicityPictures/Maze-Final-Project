@@ -70,6 +70,8 @@ void setup() {
     }
   }
 
+  map[1][0] = new GameTile(map[1][0]);
+
   int puzzleX, puzzleY;
   for (int i=0; i<numberOfDoors; i++) {
     puzzleX = r.nextInt(map.length);
@@ -195,6 +197,7 @@ void keyPressed() {
       mode = 1;
     } else {
       if (keyCode == 'S') {
+        beg.stop();
         mode = 2;
       }
     }
@@ -228,12 +231,17 @@ void keyPressed() {
         }
       }
       if (currentRow == endx && currentCol == endy) {
-      thr.stop();
-      if(seeMap){
-        seeMap = !seeMap;
+        thr.stop();
+        if (seeMap) {
+          seeMap = !seeMap;
+        }
+        mode = 4;
       }
-      mode = 4;
-    }
+      if (current.puzzle()) {
+        if (seeMap) {
+          seeMap = !seeMap;
+        }
+      }
     }
   }
 }
@@ -261,12 +269,10 @@ void mouseClicked() {
         mode = 2;
       }
     } else {
-      if (current.getIsPuzzleTile()) {
-        current.setX(mouseX);
-        current.setY(mouseY);
-        mx = mouseX;
-        my = mouseY;
-      }
+      current.setX(mouseX);
+      current.setY(mouseY);
+      mx = mouseX;
+      my = mouseY;
     }
   }
   if (mode == 4 && hero.alive() && monster.alive()) {
@@ -441,6 +447,7 @@ void draw() {
     //    rect(100, 100, width-200, height-200);
     int xx = (w/2)-(map.length*54/2);
     int yy = (h/2)-(map[0].length*54/2);
+    tint(255, 127);
     for (int i=0; i<map[0].length; i++) {
       for (int m=0; m<map.length; m++) {
         map[m][i].MapDisplay(xx+i*54, yy+m*54);//(xx+i*54, yy+m*54);
@@ -448,6 +455,7 @@ void draw() {
     }
     PImage here = loadImage("Images/CurrentDot.png");
     image(here, xx+(currentCol*54), yy+(currentRow*54));
+    noTint();
   }
   if (mode == 0 && !beginning.isPlaying()) {
     beginning.rewind();

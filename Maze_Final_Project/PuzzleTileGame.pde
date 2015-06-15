@@ -172,7 +172,7 @@ public class PuzzleTileGame extends Puzzle {
   }
 
   void placeParts(int oldAcross, int oldDown, int across, int down) {
-    image(img, 60, 60);
+    image(img, 55, 55);
     emptySpaceX.clear();
     emptySpaceY.clear();
     PImage load;
@@ -187,7 +187,6 @@ public class PuzzleTileGame extends Puzzle {
     int counterW, counterH;
     int cW = 1;
     int cH = 1;
-    fill(255,255,255);
     rect(goWidth, goHeight, img.width, img.height);
 
     if (!start) {

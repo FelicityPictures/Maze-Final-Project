@@ -21,8 +21,9 @@ public class GameTile {
   char direction;
   boolean door;
   PImage big, small, end;
-  PImage border = loadImage("Images/Blank.png");
+  PImage border = loadImage("Images/Border without map.png");
   boolean isPuzzleTile = false;
+  boolean gameMode = false;
   int x, y;
   //  PuzzleTileGame tile = new PuzzleTileGame();
   Puzzle puzzle;
@@ -175,6 +176,9 @@ public class GameTile {
     }
     if (door) {
       if (isPuzzleTile) {
+        if (!puzzle.isSolved()) {
+          gameMode = true;
+        }
         //        image(big, 55, 55);
         //        image(border, 0, 0);
         //        fill(255, 200, 200);
@@ -189,35 +193,42 @@ public class GameTile {
         //put the game stuff here
 
         if (puzzle.isSolved()) {
+          println(true);
+          gameMode = false;
           door = false;
           isPuzzleTile = false;
-          image(big, 55, 55);
         }
       } else {
+        if (!puzzle.isSolved()) {
+          gameMode = true;
+        }
         image(big, 55, 55);
         //play the Spot the Difference Game
 
-        fill(255, 200, 200);
+        //        fill(255, 200, 200);
+        image(border, 0, 0);
+
         rect(55, 55, width - 110, height - 110);
         //     SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
         puzzle.show();
+        gameMode = true;
         puzzle.validClick(xc, yc);
+        puzzle.drawRect();
         if (!puzzle.playable()) {
+          gameMode = false;
           door = false;
           image(big, 55, 55);
-
-          puzzle.show();
-          while (puzzle.playable ()) {
-            puzzle.show();
-            puzzle.validClick(xc, yc);
-          }
+          image(border, 0, 0);
+          puzzle.clearRect();
         }
       }
     } else {
       if (endd) {
         image(end, 55, 55);
+        image(border, 0, 0);
       } else {
         image(big, 55, 55);
+        image(border, 0, 0);
       }
     }
   }
@@ -239,6 +250,10 @@ public class GameTile {
 
   int getX() {
     return x;
+  }
+
+  boolean getGameMode() {
+    return gameMode;
   }
 
   int getY() {
