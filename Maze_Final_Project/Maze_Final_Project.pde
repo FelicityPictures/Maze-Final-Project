@@ -46,36 +46,38 @@ void setup() {
     }
   }
 
-  int puzzleX, puzzleY;
-  for (int i=0; i<numberOfDoors; i++) {
-    puzzleX = r.nextInt(map.length);
-    puzzleY = r.nextInt(map[0].length);
-    if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
-      (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
-      map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
-      println(puzzleX + " , " + puzzleY);
-      println(map[puzzleX][puzzleY]);
-    } else {
-      i--;
-    }
-  }
+  map[1][0] = new GameTile(map[1][0]);
+
+  //  int puzzleX, puzzleY;
+  //  for (int i=0; i<numberOfDoors; i++) {
+  //    puzzleX = r.nextInt(map.length);
+  //    puzzleY = r.nextInt(map[0].length);
+  //    if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
+  //      (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
+  //      map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
+  //      println(puzzleX + " , " + puzzleY);
+  //      println(map[puzzleX][puzzleY]);
+  //    } else {
+  //      i--;
+  //    }
+  //  }
 
   map[endx][endy]= new BossTile(map[endx][endy]);
   current = map[startx][starty];
   displayDefault();
 
-  int mapx = 924;
-  int mapy = 624;
-  int i = -80;
-  int ii = -80;
-  while (i <= 80) {
-    while (ii <= 80) {
+  int mapx = 923;
+  int mapy = 630;
+  int i = -75;
+  int ii = -75;
+  while (i <= 75) {
+    while (ii <= 75) {
       mapImage.add(mapx+i);
       mapImage.add(mapy+ii);
       ii++;
     }
     i++;
-    ii = -80;
+    ii = -75;
   }
 }
 
@@ -151,7 +153,7 @@ void mouseClicked() {
     seeMap = !seeMap;
   }
 
-  if (mode == 1 && current.getIsPuzzleTile()) {
+  if (mode == 1) {
     current.setX(mouseX);
     current.setY(mouseY);
     mx = mouseX;
@@ -174,9 +176,9 @@ void draw() {
       if (changeDir) {
         changeDir = !changeDir;
       }
-      if (!current.puzzle()) {
+//      if (!current.puzzle()) {
         image(border, 0, 0);
-      }
+//      }
 
       //   println(currentRow + "," + currentCol);
       if (current.puzzle() && current.getIsPuzzleTile()) {

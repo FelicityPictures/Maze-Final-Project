@@ -24,12 +24,15 @@ public class Puzzle {
   public void setY(int yc) {
   }
 
-  public boolean playable(){
+  public boolean playable() {
     return true;
   }
-  
+
   public boolean validClick(int x, int y) {
     return false;
+  }
+
+  public void drawRect() {
   }
 }
 

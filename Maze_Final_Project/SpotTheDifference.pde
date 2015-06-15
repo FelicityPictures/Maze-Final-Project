@@ -4,6 +4,8 @@ public class SpotTheDifference extends Puzzle {
   int ScreenW, ScreenH;
   ArrayList<String> places = new ArrayList<String>();
   ArrayList<ClickCoordinates>solutions;
+  int x, y;
+  ArrayList<Integer>rectangles = new ArrayList<Integer>();
 
 
   public SpotTheDifference(int i, int w, int h) {
@@ -37,11 +39,27 @@ public class SpotTheDifference extends Puzzle {
     }
   }
 
-  public boolean validClick(int x, int y) {
+  public boolean validClick(int xc, int yc) {
+    setX(xc);
+    setY(yc);
+    ClickCoordinates a;
     for (int i=0; i<solutions.size (); i++) {
       if (solutions.get(i).clickable(x, y)) {
-        ClickCoordinates a = solutions.get(i);
+        println("TRUE");
+        a = solutions.get(i);
+        println(a);
         correct.resize(a.rangeX(), a.rangeY());
+//        fill(255);
+//        rect(a.getX(), a.getY(), a.rangeX(), a.rangeY());
+//        rect(a.getX()-445, a.getY(), a.rangeX(), a.rangeY());
+        rectangles.add(a.getX());
+        rectangles.add(a.getY());
+        rectangles.add(a.rangeX());
+        rectangles.add(a.rangeY());
+        rectangles.add(a.getX()-445);
+        rectangles.add(a.getY());
+        rectangles.add(a.rangeX());
+        rectangles.add(a.rangeY());
         image(correct, a.getX()-445, a.getY());
         image(correct, a.getX(), a.getY());
         solutions.remove(i);
@@ -51,8 +69,25 @@ public class SpotTheDifference extends Puzzle {
     return false;
   }
 
+  public void setX(int xc) {
+    x = xc;
+  }
+  public void setY(int yc) {
+    y = yc;
+  }
   public void show() {
     image(picture, (ScreenW/2)-(picture.width/2), (ScreenH/2)-(picture.height/2));
+  }
+  
+  public void drawRect(){
+    int place = 0;
+    while (place + 4 <= rectangles.size()){
+      fill(255);
+      noFill();
+      stroke(255);
+      rect(rectangles.get(place),rectangles.get(place+1),rectangles.get(place+2),rectangles.get(place+3));
+      place+=4;
+    }
   }
 }
 

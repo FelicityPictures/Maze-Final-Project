@@ -99,8 +99,10 @@ public class GameTile {
       Random r = new Random();
       int randomP = r.nextInt(2);
       if (randomP==0) {
-        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
-        isPuzzleTile = true;
+        //        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+        //        isPuzzleTile = true;
+        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        isPuzzleTile = false;
       } else {
         puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
         isPuzzleTile = false;
@@ -202,15 +204,16 @@ public class GameTile {
         //     SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
         puzzle.show();
         puzzle.validClick(xc, yc);
+        puzzle.drawRect();
         if (!puzzle.playable()) {
           door = false;
           image(big, 55, 55);
 
-          puzzle.show();
-          while (puzzle.playable ()) {
-            puzzle.show();
-            puzzle.validClick(xc, yc);
-          }
+          //          puzzle.show();
+          //          while (puzzle.playable ()) {
+          //            puzzle.show();
+          //            puzzle.validClick(xc, yc);
+          //          }
         }
       }
     } else {
