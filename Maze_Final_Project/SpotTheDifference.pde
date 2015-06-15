@@ -34,11 +34,12 @@ public class SpotTheDifference extends Puzzle {
 
   public boolean playable() {
     if (solutions.size()>0) {
-      clearRect();
-      solved = true;
+     
+      solved = false;
       return true;
     } else {
-      solved = false;
+      solved = true;
+clearRect();
       return false;
     }
   }
