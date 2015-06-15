@@ -44,6 +44,8 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
          Virtually finished with behind the scenes workings for Boss fight
          Figuring out sprites and animation for Boss fight
 6/14/15: Finally made PuzzleTile game displayable and solvable and playable (!)
+         Finished boss fight
+         Added end game screens
          
 
 What do we have as of 6/1?
