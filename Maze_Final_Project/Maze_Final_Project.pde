@@ -26,8 +26,8 @@ float temp, temp2;
 String out;
 Ganondorf monster;
 Link hero;
-//AudioPlayer player;
-//Minim minim;
+AudioPlayer through, beginning, battle, win, die;
+Minim thr, beg, ba, winn, diee;
 
 void setup() {
   w=1000;
@@ -41,12 +41,20 @@ void setup() {
   r = new Random();
   int filenumber = r.nextInt(3);
   startScreen = loadImage("Images/Start Menu.png");
-  //  minim = new Minim(this);
-  //  player = minim.loadFile("Images/Quiet Slumber.mp3",2043);
-  //  player.play();
+  thr = new Minim(this);
+  beg = new Minim(this);
+  ba = new Minim(this);
+  winn = new Minim(this);
+  diee = new Minim(this);
+  through = thr.loadFile("Images/Quiet Slumber.mp3", 2043);
+  beginning = beg.loadFile("Images/Start.mp3", 2043);
+  beginning.play();
+  battle = ba.loadFile("Images/Battle.mp3", 2043);
+  win = winn.loadFile("Images/Victory.mp3", 2043);
+  die = diee.loadFile("Images/Die.mp3", 2043);
   //use random to determine which game file to use
 
-    String[] lines = loadStrings("TestMaze.txt");
+  String[] lines = loadStrings("TestMaze.txt");
   map = new GameTile[Integer.parseInt(lines[0])][Integer.parseInt(lines[1])];
   startx = Integer.parseInt(lines[2]);
   starty = Integer.parseInt(lines[3]);
@@ -99,7 +107,7 @@ void setup() {
   size(w, h);
   monster = new Ganondorf();
   hero = new Link();
-  mode = 4;
+  //  mode = 4;
   dead = loadImage("Images/Dead.png");
   dead.resize(dead.width*3, dead.height*3);
   victory = loadImage("Images/Victory.png");
@@ -183,6 +191,7 @@ void keyPressed() {
   println(keyCode);
   if (mode == 0) {
     if (keyCode == 'P') {
+      beg.stop();
       mode = 1;
     } else {
       if (keyCode == 'S') {
@@ -218,9 +227,13 @@ void keyPressed() {
           }
         }
       }
-    }
-    if (currentRow == endx && currentCol == endy) {
+      if (currentRow == endx && currentCol == endy) {
+      thr.stop();
+      if(seeMap){
+        seeMap = !seeMap;
+      }
       mode = 4;
+    }
     }
   }
 }
@@ -229,6 +242,8 @@ void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
   if (mode==5) {
     if (mouseX>=0 && mouseX<=1000 && mouseY>=0 && mouseY<=700 ) {
+      die.pause();
+      die.rewind();
       hero.reset();
       monster.reset();
       mode = 10;
@@ -281,15 +296,19 @@ void mouseClicked() {
     }
     if (!hero.alive()) {
       //defeat screen
+      battle.pause();
+      battle.rewind();
       mode = 5;
     } else {
       if (!monster.alive()) {
         //victory screen
+        battle.pause();
+        battle.rewind();
         mode = 6;
       }
     }
   }
-  if(mode == 10){
+  if (mode == 10) {
     mode = 4;
   }
 }
@@ -430,7 +449,26 @@ void draw() {
     PImage here = loadImage("Images/CurrentDot.png");
     image(here, xx+(currentCol*54), yy+(currentRow*54));
   }
-
+  if (mode == 0 && !beginning.isPlaying()) {
+    beginning.rewind();
+    beginning.play();
+  }
+  if ((mode == 1 || mode == 2) && !through.isPlaying()) {
+    through.rewind();
+    through.play();
+  }
+  if ((mode == 4 || mode == 10) && !battle.isPlaying()) {
+    battle.rewind();
+    battle.play();
+  }
+  if (mode == 5 && !die.isPlaying()) {
+    die.rewind();
+    die.play();
+  }
+  if (mode == 6 && !win.isPlaying()) {
+    win.rewind();
+    win.play();
+  }
   //  displayMap();
   //image(West,200,200);
   //  PuzzleTileGame t = new PuzzleTileGame();
