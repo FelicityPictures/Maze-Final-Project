@@ -66,7 +66,7 @@ INSTRUCTIONS: Look at Maze_Final_Project.pde.
 As of now, running it and pressing 'P' will only allow for the user to navigate around the map, but we already of about two of the games implemented.
 
 *********************FINAL Version:********************
-INSTRUCTIONS: Look at Maze-Final-Project/Maze_Final_Project/Maze_Final_Project.pde
+INSTRUCTIONS: Look at Maze-Final-Project/Maze_Final_Project.pde
 Increase maximum available memory to something very high (We had 3000 MBs just to be safe)
 Import Minim Library
 NOTE: Not many images were made for the puzzles so there are bound to be repeats
