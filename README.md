@@ -1,9 +1,13 @@
+Team Name
+To Be Decided
+
 # Maze-Final-Project
 Helen Li and Felicity Ng's final project APCS2, Mr. K, period 6
 
 Brief Description
-A puzzle oriented game. The player traverses through a maze, solving puzzles in order to reach the center room, which contains the objective that would win the game. The puzzles could be spot-the-difference, bejeweled, repeat after me, sliding puzzle, memory game, etc.
+A puzzle oriented game. The player traverses through a maze, solving puzzles in order to reach the center room, which contains the objective that would win the game. The puzzles could be spot-the-difference or sliding puzzle.
 
+Development Log
 5/25/15: Started working on maze and how to implement GameTile
 5/26/15: Solidified how direction works in maze; North, East, South, West dependant + began/tried using keyPressed to                 navigate
          Fixed the bug of reading the file in with scanner
@@ -45,22 +49,42 @@ A puzzle oriented game. The player traverses through a maze, solving puzzles in 
          Figuring out sprites and animation for Boss fight
 6/14/15: Finally made PuzzleTile game displayable and solvable and playable (!)
          Finished boss fight
-         Added end game screens
-         
+         Added beginning and end game screens
+         Added music
 
 What do we have as of 6/1?
+https://github.com/FelicityPictures/Maze-Final-Project/tree/da799f245348205386565ccc8d86de92b8efd5c0
 INSTRUCTIONS: Look at Maze_Final_Project.pde (for bordered map) and PuzzleTileGame.pde (for Puzzle Tile game). Not much progress, but should be able to compile.
 Not much :/ much but we have loaded a nice map, and we are beginning the games. More progress will come this week.
 
 What do we have as of 6/8?
+https://github.com/FelicityPictures/Maze-Final-Project/tree/575049b52b35455f8da6b60d3131dcd30801aed6
 INSTRUCTIONS: Look at Maze_Final_Project.pde.
 As of now, running it and pressing 'P' will only allow for the user to navigate around the map, but we already of about two of the games implemented.
+
+Final Version:
+INSTRUCTIONS: Look at Maze_Final_Project.pde
+Increase maximum available memory to something very high (We had 3000 MBs just to be safe)
+Import Minim Library
+NOTE: Not many images were made for the puzzles so there are bound to be repeats
 
 Used a source for the algorithm for the puzzle tile game:
 https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
 
+Took images from:
+http://zelda.wikia.com/wiki/Ganondorf?file=Ganondorf_%2528Twilight_Princess%2529.png
+https://cdn2.scratch.mit.edu/get_image/gallery/713528_200x130.png?v=1417379068.0
+http://t3.gstatic.com/images?q=tbn:ANd9GcR9y4_idfqhbCNt7DuLlpfdtuuWlQaX1ioQcAYZMkbeTV8CxJs7
+http://newartcolorz.com/images/2014/6/zelda-wallpaper-5134-5256-hd-wallpapers.jpg
+http://p1.pichost.me/i/35/1579925.jpg
+http://img15.deviantart.net/0142/i/2012/346/b/7/underground_sea_cave_by_kpopermaper-d5nsv8x.jpg
+http://orig11.deviantart.net/3a74/f/2012/325/4/1/young_link_sprite_sheet_by_nintendoartist2-d5k7hvy.png
+
+Used Sprite decomposer at:
+http://www.alferdspritesheetunpacker.forkandbeard.co.uk/forkandBeard/apps/AlferdSpritesheetUnpacker/Download.aspx
+
 Things to do:
--Finish making the map appear and allow user to navigate (DONE)
--Finish all games except Bejeweled (finish for Demo versions -- Bejeweled for final version if possible)
--Fighting the boss game (hopefully by this weekend -- maybe not)
--more to come :)
+1) Finish making the map appear and allow user to navigate (DONE)
+2) Finish minigames, SpotTheDifference and PuzzleSlideTile (DONE)
+3) Creating the boss game (DONE)
+4) Difficulty levels
