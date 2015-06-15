@@ -11,7 +11,7 @@ int widthOfAttackShapes;
 int heightOfAttackShapes;
 float temp, temp2;
 String out;
-PImage back, border, dead, victory;
+PImage back, border1, dead, victory;
 Ganondorf monster;
 Link hero;
 int mode;
@@ -21,7 +21,7 @@ void setup() {
   h=700;
   back = loadImage("Images/Fight Background.jpg");
   back.resize(890, 595);
-  border = loadImage("Images/Border without map.png");
+  border1 = loadImage("Images/Border without map.png");
   size(w, h);
   monster = new Ganondorf();
   hero = new Link();
@@ -36,7 +36,7 @@ void setup() {
 void draw() {
   if (mode == 4) {
     image(back, (w/2)-(back.width/2), (h/2)-(back.height/2));
-    image(border,0,0);
+    image(border1,0,0);
     fill(255, 255, 255);
     textSize(20);
     out = "Link (you) must defeat Ganondorf in order to save the princess.";
