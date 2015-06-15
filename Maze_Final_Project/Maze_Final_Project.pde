@@ -227,6 +227,13 @@ void keyPressed() {
 
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
+  if (mode==5) {
+    if (mouseX>=0 && mouseX<=1000 && mouseY>=0 && mouseY<=700 ) {
+      hero.reset();
+      monster.reset();
+      mode = 10;
+    }
+  }
   if (mode == 2 && mouseX>0 && mouseX<1000 && mouseY>0 && mouseY<700) {
     mode = 1;
   }
@@ -282,12 +289,8 @@ void mouseClicked() {
       }
     }
   }
-  if (mode==5) {
-    if (mouseX>=0 && mouseX<=1000 && mouseY>=0 && mouseY<=700 ) {
-      hero.reset();
-      monster.reset();
-      mode = 4;
-    }
+  if(mode == 10){
+    mode = 4;
   }
 }
 
