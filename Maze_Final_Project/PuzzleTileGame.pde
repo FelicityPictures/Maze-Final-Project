@@ -187,6 +187,7 @@ public class PuzzleTileGame extends Puzzle {
     int counterW, counterH;
     int cW = 1;
     int cH = 1;
+    fill(255,255,255);
     rect(goWidth, goHeight, img.width, img.height);
 
     if (!start) {
