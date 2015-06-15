@@ -92,11 +92,6 @@ void draw() {
 }
 
 void mouseClicked() {
-  println ("" + mouseX + "," + mouseY);
-  println("Link HP: " + hero.getHP());
-  println("Ganondorf HP: " + monster.getHP());
-  println("Link Mana: " + hero.getMana());
-  println("Ganondorf Mana: " + monster.getMana());
   //special Attack
   if (mouseX>=380 && mouseX<=650 && mouseY>=350 && mouseY<=400) {
     hero.specialAttack(monster);
@@ -123,5 +118,10 @@ void mouseClicked() {
       }
     }
   }
+  println ("" + mouseX + "," + mouseY);
+  println("Link HP: " + hero.getHP());
+  println("Ganondorf HP: " + monster.getHP());
+  println("Link Mana: " + hero.getMana());
+  println("Ganondorf Mana: " + monster.getMana());
 }
 

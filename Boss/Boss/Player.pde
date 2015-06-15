@@ -23,26 +23,26 @@ public class Player {
     damage = dam;
     dexterity = dex;
     image = loadImage("Images/Link a.png");
-    image.resize(image.width*3,image.height*3);
+    image.resize(image.width*3, image.height*3);
   }
 
   public String getName() {
     return name;
   }
-  
-  public int getHP(){
+
+  public int getHP() {
     return HP;
   }
-  
-  public int getMaxHP(){
+
+  public int getMaxHP() {
     return maxHP;
   }
-  
-  public int getMana(){
+
+  public int getMana() {
     return mana;
   }
-  
-  public int getMaxMana(){
+
+  public int getMaxMana() {
     return maxMana;
   }
 
@@ -55,9 +55,12 @@ public class Player {
       if (r.nextInt(dexterity)>dexterity/4) {
         int d = r.nextInt(damage) + ((damage*3)/4);
         other.damaged(damage);
+        mana = mana-10;
         return true;
-      }
+      }else{
       mana = mana-10;
+      return false;
+      }
     }
     return false;
   }
@@ -92,9 +95,9 @@ public class Player {
     }
     return false;
   }
-  
-  public void display(int x,int y){
-    image(image,x,y);
+
+  public void display(int x, int y) {
+    image(image, x, y);
   }
 }
 
