@@ -64,7 +64,7 @@ public class Player {
 
   public boolean attack1(Player other) {
     if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage/3)+damage/6);
+      other.damaged(r.nextInt(damage)+damage/3);
       return true;
     }
     return false;
@@ -72,7 +72,7 @@ public class Player {
 
   public boolean attack2(Player other) {
     if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage/3)+damage/6);
+      other.damaged(r.nextInt(damage)+damage/3);
       return true;
     }
     return false;
@@ -80,7 +80,7 @@ public class Player {
 
   public boolean attack3(Player other) {
     if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage/3)+damage/6);
+      other.damaged(r.nextInt(damage)+damage/3);
       return true;
     }
     return false;

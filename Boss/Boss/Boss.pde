@@ -9,6 +9,7 @@ int t;
 int txtSize;
 int widthOfAttackShapes;
 int heightOfAttackShapes;
+float temp,temp2;
 String out;
 PImage back;
 PImage border;
@@ -43,15 +44,21 @@ void draw() {
   rect(732, 106, 208, 18);
   //Zelda
   fill(255, 0, 0);
-  rect(65, 65, 400*(hero.getHP()/hero.getMaxHP()), 40);
+  temp = 400*hero.getHP()/hero.getMaxHP();
+  rect(65, 65, int(temp), 40);
   fill(0, 0, 255);
-  rect(64, 110, 200*(hero.getMana()/hero.getMaxMana()), 10);
+  temp = 200*hero.getMana()/hero.getMaxMana();
+  rect(64, 110, int(temp), 10);
   hero.display(150, 368);
   //Ganondorf
   fill(255, 0, 0);
-  rect(535, 65, 400*(monster.getHP()/monster.getMaxHP()), 40);
+  temp = 400*(monster.getHP()/monster.getMaxHP());
+  temp2 = 535+400-temp;
+  rect(int(temp2), 65, int(temp), 40);
   fill(0, 0, 255);
-  rect(735 + (200 - (200*(hero.getMana()/hero.getMaxMana()))), 110, 200*(hero.getMana()/hero.getMaxMana()), 10);
+  temp = 735 + (200 - (200*(hero.getMana()/hero.getMaxMana())));
+  temp2 = 200*(hero.getMana()/hero.getMaxMana());
+  rect(int(temp), 110, int(temp2), 10);
   monster.display(750, 275);
   //display options boxes
   fill(111, 111, 111);
@@ -86,6 +93,10 @@ void draw() {
 
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
+  println("Link HP: " + hero.getHP());
+  println("Ganondorf HP: " + monster.getHP());
+  println("Link Mana: " + hero.getMana());
+  println("Ganondorf Mana: " + monster.getMana());
   //special Attack
   if (mouseX>=380 && mouseX<=650 && mouseY>=350 && mouseY<=400) {
     hero.specialAttack(monster);
