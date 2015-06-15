@@ -176,6 +176,10 @@ public class GameTile {
     }
     if (door) {
       if (isPuzzleTile) {
+        if (changeDir) {
+          puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+          isPuzzleTile = true;
+        }
         if (!puzzle.isSolved()) {
           gameMode = true;
         }
@@ -193,7 +197,7 @@ public class GameTile {
         //put the game stuff here
 
         if (puzzle.isSolved()) {
-          println(true);
+//          println(true);
           gameMode = false;
           door = false;
           isPuzzleTile = false;

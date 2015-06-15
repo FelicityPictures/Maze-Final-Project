@@ -27,12 +27,13 @@ public class PuzzleTileGame extends Puzzle {
 
   public PuzzleTileGame(String iName, int pieces) {
     img = loadImage(iName);
-    println("constructor");
+//    println("constructor");
     piece = pieces;
   }
 
   void sett() {
     if (setUp) {
+      numSteps = 0;
       solved = false;
       start = true;
       size(1000, 700);
@@ -40,9 +41,9 @@ public class PuzzleTileGame extends Puzzle {
       int place = 0;
       int place2 = 0;
       int index = 0;
-      println(cropped);
+//      println(cropped);
       while (index < cropped2.length) {
-        println(Arrays.toString(cropped2[index]));
+//        println(Arrays.toString(cropped2[index]));
         index++;
       }
       while (place < cropped2.length) {
@@ -52,7 +53,7 @@ public class PuzzleTileGame extends Puzzle {
             sub2 = place2;
             place = cropped2.length;
             place2 = cropped2[0].length;
-            println(sub1 + " , " + sub2);
+//            println(sub1 + " , " + sub2);
           }
           place2++;
         }
@@ -81,7 +82,7 @@ public class PuzzleTileGame extends Puzzle {
       sett();
     }
     mouse();
-    println(inversions());
+//    println(inversions());
   }
 
   void randomize() {
@@ -132,14 +133,14 @@ public class PuzzleTileGame extends Puzzle {
       startH += tileHeight;
       place++;
     }
-    println("a:      " + answerKey);
+//    println("a:      " + answerKey);
     int ind = 0;
     while (ind < cropped.size ()) {
       answerKey.add(ind, cropped.get(ind));
       ind++;
     }
 
-    println("b:      " + answerKey);
+//    println("b:      " + answerKey);
 
     randomize();
     if (piece % 2 == 1 && this.inversions() % 2 != 0) {
@@ -147,9 +148,9 @@ public class PuzzleTileGame extends Puzzle {
         randomize();
       }
     }
-    println("c:      " + answerKey);
+//    println("c:      " + answerKey);
     updateCropped();
-    println("d:      " + answerKey);
+//    println("d:      " + answerKey);
   }
 
   void updateCropped() {
@@ -227,8 +228,12 @@ public class PuzzleTileGame extends Puzzle {
         cH++;
       }
     }
+//    image(border, 0, 0);
+//    textSize(32);
+//    fill(255);
+//    text(("NUMBER OF STEPS TAKEN SO FAR:  " + numSteps), 50, 30);
     updateCropped();
-    println("ANSWERKEY" + answerKey);
+//    println("ANSWERKEY" + answerKey);
     if (identical()) {
       fill(255);
       rect(55, 55, width-110, height-110);
@@ -244,7 +249,7 @@ public class PuzzleTileGame extends Puzzle {
     //  println("R2C2 " + r2 + "," + c2);
     int counter = 0;
     String sub = cropped2[wantBlankR-1][wantBlankC-1];
-    println("wantBlankR: " + wantBlankR + "   wantBlankC:  " + wantBlankC);
+//    println("wantBlankR: " + wantBlankR + "   wantBlankC:  " + wantBlankC);
     //  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
     //  println("SUB" + sub);
     //  println(cropped);
@@ -254,7 +259,7 @@ public class PuzzleTileGame extends Puzzle {
     cropped.add(cropped.indexOf(sub), "NOTHING");
     cropped.remove(sub);
 
-    println(sub);
+//    println(sub);
     cropped.add(counter, sub);
     //  println("CR" + cropped);
   }
@@ -272,37 +277,37 @@ public class PuzzleTileGame extends Puzzle {
     if (onImage(pixX, pixY, x, y) && !onImage(emptySpaceX, emptySpaceY, x, y)) {
       if (onImage(emptySpaceX, emptySpaceY, x + tileWidth, y)) {
         start = false;
-        println(1);
-        println(whereDown + " , " + whereAcross);
+        //        println(1);
+        //        println(whereDown + " , " + whereAcross);
+        numSteps++;
         placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
         whereAcross--;
-        numSteps++;
       } else {
         if (onImage(emptySpaceX, emptySpaceY, x - tileWidth, y)) {
           start = false;
-          println(2);
-          println(whereDown + " , " + whereAcross);
+          //          println(2);
+          //          println(whereDown + " , " + whereAcross);
+          numSteps++;
           placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
           whereAcross++;
-          numSteps++;
           //move to the right
         } else {
           if (onImage(emptySpaceX, emptySpaceY, x, y + tileHeight)) {
             start = false;
-            println(3);
-            println(whereDown + " , " + whereAcross);
+            //            println(3);
+            //            println(whereDown + " , " + whereAcross);
+            numSteps++;
             placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
             whereDown--;
-            numSteps++;
             //move down
           } else {
             if (onImage(emptySpaceX, emptySpaceY, x, y - tileHeight)) {
               start = false;
-              println(4);
-              println(whereDown + " , " + whereAcross);
+              //              println(4);
+              //              println(whereDown + " , " + whereAcross);    
+              numSteps++;
               placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
               whereDown++;
-              numSteps++;
               //move up
             }
           }

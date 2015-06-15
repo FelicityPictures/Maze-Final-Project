@@ -29,11 +29,12 @@ public class SpotTheDifference extends Puzzle {
     //picture = loadImage("testImage.jpg");
     ScreenW = w;
     ScreenH = h;
-    //set up solutions
+    //set up ssolutions
   }
 
   public boolean playable() {
     if (solutions.size()>0) {
+      clearRect();
       solved = true;
       return true;
     } else {
@@ -48,9 +49,9 @@ public class SpotTheDifference extends Puzzle {
     ClickCoordinates a;
     for (int i=0; i<solutions.size (); i++) {
       if (solutions.get(i).clickable(x, y)) {
-        println("TRUE");
+//        println("TRUE");
         a = solutions.get(i);
-        println(a);
+//        println(a);
         correct.resize(a.rangeX(), a.rangeY());
         //        fill(255);
         //        rect(a.getX(), a.getY(), a.rangeX(), a.rangeY());

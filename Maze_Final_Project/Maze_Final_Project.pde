@@ -81,8 +81,8 @@ void setup() {
     if (map[puzzleX][puzzleY].getDirection()!='#' && (puzzleX!=startx || puzzleY!=starty) &&
       (puzzleX!=endx || puzzleY !=endy) && !map[puzzleX][puzzleY].puzzle()) {
       map[puzzleX][puzzleY]=new GameTile(map[puzzleX][puzzleY]);
-      println(puzzleX + " , " + puzzleY);
-      println(map[puzzleX][puzzleY]);
+//      println(puzzleX + " , " + puzzleY);
+//      println(map[puzzleX][puzzleY]);
     } else {
       i--;
     }
@@ -372,14 +372,14 @@ void draw() {
       }
 
       //   println(currentRow + "," + currentCol);
-      if (current.puzzle() && current.getIsPuzzleTile()) {
-        //        current.PlayerSees(mx, my, changeDir, false);
-        //        image(border, 0, 0);
-        textSize(32);
-        fill(255);
-        text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);
-        text("Slide the puzzle tiles to create the image you see on the left. The missing tile should be the lower right hand tile. \n Good Luck!", 500, 30);
-      }
+//      if (current.puzzle() && current.getIsPuzzleTile()) {
+//        //        current.PlayerSees(mx, my, changeDir, false);
+//        //        image(border, 0, 0);
+//        textSize(32);
+//        fill(255);
+//        text(("NUMBER OF STEPS TAKEN SO FAR: ______ "), 50, 30);
+//        text("Slide the puzzle tiles to create the image you see on the left. The missing tile should be the lower right hand tile. \n Good Luck!", 500, 30);
+//      }
     } else {
       if (mode == 4) {
         image(back, (w/2)-(back.width/2), (h/2)-(back.height/2));
