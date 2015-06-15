@@ -227,17 +227,25 @@ void keyPressed() {
 
 void mouseClicked() {
   println ("" + mouseX + "," + mouseY);
-  if (inArray(mapImage, mouseX, mouseY)) {
-    seeMap = !seeMap;
-  }
-  if (mode == 1 && current.getIsPuzzleTile()) {
-    current.setX(mouseX);
-    current.setY(mouseY);
-    mx = mouseX;
-    my = mouseY;
-  }
   if (mode == 2 && mouseX>0 && mouseX<1000 && mouseY>0 && mouseY<700) {
     mode = 1;
+  }
+  if (mode == 1) {
+    if (!current.puzzle()) {
+      if (mouseX>=849 && mouseX<=1000 && mouseY>=553 && mouseY<=700) {
+        seeMap = !seeMap;
+      }
+      if (mouseX>=821 && mouseX<=852 && mouseY>=637 && mouseY<=695) {
+        mode = 2;
+      }
+    } else {
+      if (current.getIsPuzzleTile()) {
+        current.setX(mouseX);
+        current.setY(mouseY);
+        mx = mouseX;
+        my = mouseY;
+      }
+    }
   }
   if (mode == 4 && hero.alive() && monster.alive()) {
     if (mouseX>=380 && mouseX<=650 && mouseY>=350 && mouseY<=400) {
