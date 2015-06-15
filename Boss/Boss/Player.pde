@@ -22,7 +22,7 @@ public class Player {
     maxMana = m;
     damage = dam;
     dexterity = dex;
-    image = loadImage("Images/Ganondorf/Special Effect (5).png");
+    image = loadImage("Images/Link a.png");
     image.resize(image.width*3,image.height*3);
   }
 
@@ -54,7 +54,7 @@ public class Player {
     if (mana >= 10) {
       if (r.nextInt(dexterity)>dexterity/4) {
         int d = r.nextInt(damage) + ((damage*3)/4);
-        other.damaged(damage*2);
+        other.damaged(damage);
         return true;
       }
       mana = mana-10;
@@ -64,7 +64,7 @@ public class Player {
 
   public boolean attack1(Player other) {
     if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage)+damage/3);
+      other.damaged(r.nextInt(damage/3)+damage/6);
       return true;
     }
     return false;
@@ -72,7 +72,7 @@ public class Player {
 
   public boolean attack2(Player other) {
     if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage)+damage/3);
+      other.damaged(r.nextInt(damage/3)+damage/6);
       return true;
     }
     return false;
@@ -80,7 +80,7 @@ public class Player {
 
   public boolean attack3(Player other) {
     if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage)+damage/3);
+      other.damaged(r.nextInt(damage/3)+damage/6);
       return true;
     }
     return false;

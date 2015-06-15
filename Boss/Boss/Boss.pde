@@ -5,6 +5,10 @@ import java.io.File;
 int w;
 int h;
 int l;
+int t;
+int txtSize;
+int widthOfAttackShapes;
+int heightOfAttackShapes;
 String out;
 PImage back;
 PImage border;
@@ -29,14 +33,14 @@ void draw() {
   textSize(20);
   out = "You must defeat Ganondorf in order to save the princess";
   l = int(textWidth(out));
-  text("You must defeat Ganondorf in order to save the princess", (w/2) - (l/2), 160);
+  text(out, (w/2) - (l/2), 160);
   fill(0, 0, 0);
   //for red
   rect(60, 60, 410, 50);
   rect(530, 60, 410, 50);
   //for blue
   rect(60, 106, 208, 18);
-  rect(732,106,208,18);
+  rect(732, 106, 208, 18);
   //Zelda
   fill(255, 0, 0);
   rect(65, 65, 400*(hero.getHP()/hero.getMaxHP()), 40);
@@ -48,11 +52,65 @@ void draw() {
   rect(535, 65, 400*(monster.getHP()/monster.getMaxHP()), 40);
   fill(0, 0, 255);
   rect(735 + (200 - (200*(hero.getMana()/hero.getMaxMana()))), 110, 200*(hero.getMana()/hero.getMaxMana()), 10);
-  monster.display(750, 250);
-  //display options
+  monster.display(750, 275);
+  //display options boxes
+  fill(111, 111, 111);
+  widthOfAttackShapes = 250;
+  heightOfAttackShapes = 50;
+  //Special attack
+  rect(380, 350, widthOfAttackShapes+20, heightOfAttackShapes);
   //attack 1
+  rect(390, 425, widthOfAttackShapes, heightOfAttackShapes);
   //attack 2
+  rect(390, 500, widthOfAttackShapes, heightOfAttackShapes);
   //attack 3
+  rect(390, 575, widthOfAttackShapes, heightOfAttackShapes);
+  //show the words
+  fill(0, 0, 102);
+  txtSize = 25;
+  textSize(txtSize);
+  out = "Special Attack";
+  l = int(textWidth(out));
+  text(out, 515-(l/2), 380+(txtSize/4));
+  fill(51, 0, 102);
+  out = "Attack 1";
+  l = int(textWidth(out));
+  text(out, 515-(l/2), 450+(txtSize/3));
+  out = "Attack 2";
+  l = int(textWidth(out));
+  text(out, 515-(l/2), 525+(txtSize/3));
+  out = "Attack 3";
+  l = int(textWidth(out));
+  text(out, 515-(l/2), 600+(txtSize/3));
+}
+
+void mouseClicked() {
+  println ("" + mouseX + "," + mouseY);
   //special Attack
+  if (mouseX>=380 && mouseX<=650 && mouseY>=350 && mouseY<=400) {
+    hero.specialAttack(monster);
+    monster.attack(hero);
+    println("SA");
+  } else {
+    if (mouseX>=390 && mouseX<=640) {
+      if (mouseY>=425 && mouseY<=475) {
+        hero.attack1(monster);
+        monster.attack(hero);
+        println("A1");
+      } else {
+        if (mouseY>=500 && mouseY<=550) {
+          hero.attack2(monster);
+          monster.attack(hero);
+          println("A2");
+        } else {
+          if (mouseY>=575 && mouseY<=625) {
+            hero.attack3(monster);
+            monster.attack(hero);
+            println("A3");
+          }
+        }
+      }
+    }
+  }
 }
 

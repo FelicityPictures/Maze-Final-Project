@@ -18,8 +18,8 @@ public class Ganondorf extends Player {
 
   public Ganondorf() {
     super("Ganondorf", 400, 100, 50, 100, 100);
-    image = loadImage("Images/Ganondorf/Idle.png");
-    image.resize(image.width*4, image.height*4);
+    image = loadImage("Images/Ganondorf.png");
+    image.resize(int(image.width*.6), int(image.height*.6));
   }
 
   public void attack(Player other) {
