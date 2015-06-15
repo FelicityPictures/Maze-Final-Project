@@ -11,6 +11,7 @@ public class Player {
   PImage image;
   int maxHP;
   int maxMana;
+  int temp;
   Random r = new Random();
 
   public Player(String n, int h, int d, int m, int dam, int dex) {
@@ -46,8 +47,17 @@ public class Player {
     return maxMana;
   }
 
+  public void reset() {
+    HP = maxHP;
+    mana = maxMana;
+  }
+
   public void damaged(int rawDamageFromOtherPlayer) {
-    HP = HP - (rawDamageFromOtherPlayer-(r.nextInt(defense/2)+(defense/3)));
+    temp = r.nextInt(defense/2)+(defense/3);
+    if (temp>=rawDamageFromOtherPlayer) {
+      temp = rawDamageFromOtherPlayer/4;
+    }
+    HP = HP - (rawDamageFromOtherPlayer-temp);
     if (HP<0) {
       HP = 0;
     }

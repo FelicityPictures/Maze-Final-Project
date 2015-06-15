@@ -107,10 +107,20 @@ void draw() {
     //defeat
     background(0, 0, 0);
     image(dead, (w/2)-(dead.width/2), (h/2)-(dead.height/2)+50);
+    textSize(30);
+    fill(255, 255, 255);
+    out = "You have been defeated by Ganondorf. Try again?";
+    temp = textWidth(out);
+    text(out, (w/2)-(temp/2), 250);
   }
   if (mode == 6) {
     background(0, 51, 0);
     image(victory, (w/2)-(victory.width/2), (h/2)-(victory.height/2)+50);
+    textSize(30);
+    fill(255, 255, 255);
+    out = "You have defeated Ganondorf. Congratulations!";
+    temp = textWidth(out);
+    text(out, (w/2)-(temp/2), 250);
     //victory
   }
 }
@@ -120,9 +130,9 @@ void mouseClicked() {
   if (mode == 4 && hero.alive() && monster.alive()) {
     if (mouseX>=380 && mouseX<=650 && mouseY>=350 && mouseY<=400) {
       hero.specialAttack(monster);
-      fill(0, 255, 0);
-      out = hero.getName() + " used a special attack on " + monster.getName();
-      text(out, 515-(textWidth(out)/2), 200);
+      //      fill(0, 255, 0);
+      //      out = hero.getName() + " used a special attack on " + monster.getName();
+      //      text(out, 515-(textWidth(out)/2), 200);
       monster.attack(hero);
     } else {
       if (mouseX>=390 && mouseX<=640) {
@@ -150,6 +160,13 @@ void mouseClicked() {
         //victory screen
         mode = 6;
       }
+    }
+  }
+  if (mode==5) {
+    if (mouseX>=0 && mouseX<=1000 && mouseY>=0 && mouseY<=700 ) {
+      hero.reset();
+      monster.reset();
+      mode = 4;
     }
   }
   //  println ("" + mouseX + "," + mouseY);
