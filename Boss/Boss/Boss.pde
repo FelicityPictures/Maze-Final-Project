@@ -11,7 +11,7 @@ int widthOfAttackShapes;
 int heightOfAttackShapes;
 float temp, temp2;
 String out;
-PImage back,border,dead,victory;
+PImage back, border, dead, victory;
 Ganondorf monster;
 Link hero;
 int mode;
@@ -27,9 +27,10 @@ void setup() {
   hero = new Link();
   mode = 4;
   dead = loadImage("Images/Dead.png");
-  dead.resize(dead.width*3,dead.height*3);
+  dead.resize(dead.width*3, dead.height*3);
   victory = loadImage("Images/Victory.png");
-  victory.resize(victory.width*3,victory.height*3);
+  victory.resize(victory.width*3, victory.height*3);
+  temp = -100;
 }
 
 void draw() {
@@ -38,9 +39,9 @@ void draw() {
     image(border, 0, 0);
     fill(255, 255, 255);
     textSize(20);
-    out = "You must defeat Ganondorf in order to save the princess";
+    out = "Link (you) must defeat Ganondorf in order to save the princess";
     l = int(textWidth(out));
-    text(out, (w/2) - (l/2), 160);
+    text(out, (w/2) - (l/2), 200);
     fill(0, 0, 0);
     //for red
     rect(60, 60, 410, 50);
@@ -56,6 +57,9 @@ void draw() {
     temp = 200*hero.getMana()/hero.getMaxMana();
     rect(64, 110, int(temp), 10);
     hero.display(150, 368);
+    textSize(20);
+    fill(255, 255, 255);
+    text(hero.getName(), 70, 150);
     //Ganondorf
     fill(255, 0, 0);
     temp = 400*monster.getHP()/monster.getMaxHP();
@@ -66,6 +70,8 @@ void draw() {
     temp2 = 736+200-temp;
     rect(int(temp2), 110, int(temp), 10);
     monster.display(750, 275);
+    fill(255, 255, 255);
+    text(monster.getName(), 930-textWidth(monster.getName()), 150);
     //display options boxes
     fill(111, 111, 111);
     widthOfAttackShapes = 250;
@@ -95,15 +101,16 @@ void draw() {
     out = "Attack 3";
     l = int(textWidth(out));
     text(out, 515-(l/2), 600+(txtSize/3));
+    temp = 1;
   }
   if (mode == 5) {
     //defeat
     background(0, 0, 0);
-    image(dead,(w/2)-(dead.width/2),(h/2)-(dead.height/2));
+    image(dead, (w/2)-(dead.width/2), (h/2)-(dead.height/2)+50);
   }
   if (mode == 6) {
     background(0, 51, 0);
-    image(victory,(w/2)-(victory.width/2),(h/2)-(victory.height/2));
+    image(victory, (w/2)-(victory.width/2), (h/2)-(victory.height/2)+50);
     //victory
   }
 }
@@ -113,24 +120,23 @@ void mouseClicked() {
   if (mode == 4 && hero.alive() && monster.alive()) {
     if (mouseX>=380 && mouseX<=650 && mouseY>=350 && mouseY<=400) {
       hero.specialAttack(monster);
+      fill(0, 255, 0);
+      out = hero.getName() + " used a special attack on " + monster.getName();
+      text(out, 515-(textWidth(out)/2), 200);
       monster.attack(hero);
-      println("SA");
     } else {
       if (mouseX>=390 && mouseX<=640) {
         if (mouseY>=425 && mouseY<=475) {
           hero.attack1(monster);
           monster.attack(hero);
-          println("A1");
         } else {
           if (mouseY>=500 && mouseY<=550) {
             hero.attack2(monster);
             monster.attack(hero);
-            println("A2");
           } else {
             if (mouseY>=575 && mouseY<=625) {
               hero.attack3(monster);
               monster.attack(hero);
-              println("A3");
             }
           }
         }
@@ -146,10 +152,10 @@ void mouseClicked() {
       }
     }
   }
-  println ("" + mouseX + "," + mouseY);
-  println("Link HP: " + hero.getHP());
-  println("Ganondorf HP: " + monster.getHP());
-  println("Link Mana: " + hero.getMana());
-  println("Ganondorf Mana: " + monster.getMana());
+  //  println ("" + mouseX + "," + mouseY);
+  //  println("Link HP: " + hero.getHP());
+  //  println("Ganondorf HP: " + monster.getHP());
+  //  println("Link Mana: " + hero.getMana());
+  //  println("Ganondorf Mana: " + monster.getMana());
 }
 
