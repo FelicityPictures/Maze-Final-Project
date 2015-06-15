@@ -52,13 +52,13 @@ void draw() {
   hero.display(150, 368);
   //Ganondorf
   fill(255, 0, 0);
-  temp = 400*(monster.getHP()/monster.getMaxHP());
-  temp2 = 535+400-temp;
+  temp = 400*monster.getHP()/monster.getMaxHP();
+  temp2 = 535+(400-temp);
   rect(int(temp2), 65, int(temp), 40);
   fill(0, 0, 255);
-  temp = 735 + (200 - (200*(hero.getMana()/hero.getMaxMana())));
-  temp2 = 200*(hero.getMana()/hero.getMaxMana());
-  rect(int(temp), 110, int(temp2), 10);
+  temp = 200*monster.getMana()/monster.getMaxMana();
+  temp2 = 736+200-temp;
+  rect(int(temp2), 110, int(temp), 10);
   monster.display(750, 275);
   //display options boxes
   fill(111, 111, 111);

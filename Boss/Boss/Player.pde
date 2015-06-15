@@ -48,6 +48,9 @@ public class Player {
 
   public void damaged(int rawDamageFromOtherPlayer) {
     HP = HP - (rawDamageFromOtherPlayer-(r.nextInt(defense/2)+(defense/4)));
+    if(HP<0){
+      HP = 0;
+    }
   }
 
   public boolean specialAttack(Player other) {
