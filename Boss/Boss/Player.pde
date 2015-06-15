@@ -47,47 +47,55 @@ public class Player {
   }
 
   public void damaged(int rawDamageFromOtherPlayer) {
-    HP = HP - (rawDamageFromOtherPlayer-(r.nextInt(defense/2)+(defense/4)));
-    if(HP<0){
+    HP = HP - (rawDamageFromOtherPlayer-(r.nextInt(defense/2)+(defense/3)));
+    if (HP<0) {
       HP = 0;
     }
   }
 
   public boolean specialAttack(Player other) {
-    if (mana >= 10) {
-      if (r.nextInt(dexterity)>dexterity/4) {
-        int d = r.nextInt(damage) + ((damage*3)/4);
-        other.damaged(damage);
-        mana = mana-10;
-        return true;
-      }else{
-      mana = mana-10;
-      return false;
+    if (alive()) {
+      if (mana >= 10) {
+        if (r.nextInt(dexterity)<dexterity/2) {
+          int d = r.nextInt(damage) + ((damage*3)/4);
+          other.damaged(damage);
+          mana = mana-10;
+          return true;
+        } else {
+          mana = mana-10;
+          return false;
+        }
       }
     }
     return false;
   }
 
   public boolean attack1(Player other) {
-    if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage)+damage/3);
-      return true;
+    if (alive()) {
+      if (r.nextInt(dexterity) < dexterity/3) {
+        other.damaged(r.nextInt(damage)+damage/3);
+        return true;
+      }
     }
     return false;
   }
 
   public boolean attack2(Player other) {
-    if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage)+damage/3);
-      return true;
+    if (alive()) {
+      if (r.nextInt(dexterity) < dexterity/3) {
+        other.damaged(r.nextInt(damage)+damage/3);
+        return true;
+      }
     }
     return false;
   }
 
   public boolean attack3(Player other) {
-    if (r.nextInt(dexterity) > dexterity/3) {
-      other.damaged(r.nextInt(damage)+damage/3);
-      return true;
+    if (alive()) {
+      if (r.nextInt(dexterity) < dexterity/3) {
+        other.damaged(r.nextInt(damage)+damage/3);
+        return true;
+      }
     }
     return false;
   }
