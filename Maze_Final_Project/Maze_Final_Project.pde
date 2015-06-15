@@ -15,7 +15,7 @@ import ddf.minim.*;
 Random r;
 GameTile[][] map;
 int w, h, currentRow, currentCol, numberOfDoors, mx, my, startx, starty, endx, endy;
-int l, t, txtSize, widthOfAttackShapes, heightOfAttackShapes;
+int l, t, txtSize, widthOfAttackShapes, heightOfAttackShapes, temp3, temp5, temp6;
 GameTile current;
 int mode = 0;
 boolean seeMap = false;
@@ -28,12 +28,14 @@ Ganondorf monster;
 Link hero;
 AudioPlayer through, beginning, battle, win, die;
 Minim thr, beg, ba, winn, diee;
+boolean musicas;
 
 void setup() {
   w=1000;
   h=700;
   numberOfDoors = 4;
   size(w, h);
+  musicas = true;
   int mode = 0;
   border = loadImage("Images/Border.png");
   settings = loadImage("Images/Settings.png");
@@ -181,6 +183,21 @@ void displaySettings() {
   txtSize = int(textWidth(out));
   text(out, (w/2)-(txtSize/2), 150+50*i);
   i++;
+  out = "For the minigames, use your mouse to solve them.";
+  txtSize = int(textWidth(out));
+  text(out, (w/2)-(txtSize/2), 150+50*i);
+  i=i+2;
+  temp = 20;
+  out = "Sound on/off";
+  txtSize = int(textWidth(out));
+  temp3 = int((w/2)-((txtSize+temp)/2));
+  temp5 = int(txtSize+temp);
+  temp6 = 115+50*i;
+  temp2 = (txtSize+temp)-temp3;
+  rect(temp3, 115+50*i, txtSize+temp, 30+temp);
+  fill(0);
+  text(out, (w/2)-abs(temp2/2), 150+50*i);
+  fill(232, 30, 30);
   out = "Click the screen to begin the game. Good luck!";
   txtSize = int(textWidth(out));
   text(out, (w/2)-(txtSize/2), 600);
@@ -257,8 +274,24 @@ void mouseClicked() {
       mode = 10;
     }
   }
-  if (mode == 2 && mouseX>0 && mouseX<1000 && mouseY>0 && mouseY<700) {
-    mode = 1;
+  if (mode == 2) {
+    if (mouseX>=temp3 && mouseX<=temp3+temp5 && mouseY>=temp6 && mouseY<=temp6+50) {
+      if (musicas) {
+        through.pause();
+        beginning.pause();
+        battle.pause();
+        win.pause();
+        die.pause();
+        musicas = !musicas;
+      } else {
+        through.play();
+        musicas = !musicas;
+      }
+    } else {
+      if ( mouseX>0 && mouseX<1000 && mouseY>0 && mouseY<700) {
+        mode = 1;
+      }
+    }
   }
   if (mode == 1) {
     if (!current.puzzle()) {
@@ -457,23 +490,23 @@ void draw() {
     image(here, xx+(currentCol*54), yy+(currentRow*54));
     noTint();
   }
-  if (mode == 0 && !beginning.isPlaying()) {
+  if (mode == 0 && !beginning.isPlaying() && musicas) {
     beginning.rewind();
     beginning.play();
   }
-  if ((mode == 1 || mode == 2) && !through.isPlaying()) {
+  if ((mode == 1 || mode == 2) && !through.isPlaying()&& musicas) {
     through.rewind();
     through.play();
   }
-  if ((mode == 4 || mode == 10) && !battle.isPlaying()) {
+  if ((mode == 4 || mode == 10) && !battle.isPlaying()&& musicas) {
     battle.rewind();
     battle.play();
   }
-  if (mode == 5 && !die.isPlaying()) {
+  if (mode == 5 && !die.isPlaying()&& musicas) {
     die.rewind();
     die.play();
   }
-  if (mode == 6 && !win.isPlaying()) {
+  if (mode == 6 && !win.isPlaying()&& musicas) {
     win.rewind();
     win.play();
   }
