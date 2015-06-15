@@ -51,6 +51,9 @@ Development Log
          Finished boss fight
          Added beginning and end game screens
          Added music
+         Made SpotTheDifference playable with rectables drawn around spots
+         Fixed bugs in games
+         Made nicer displays
 
 What do we have as of 6/1?
 https://github.com/FelicityPictures/Maze-Final-Project/tree/da799f245348205386565ccc8d86de92b8efd5c0
@@ -62,11 +65,13 @@ https://github.com/FelicityPictures/Maze-Final-Project/tree/575049b52b35455f8da6
 INSTRUCTIONS: Look at Maze_Final_Project.pde.
 As of now, running it and pressing 'P' will only allow for the user to navigate around the map, but we already of about two of the games implemented.
 
-Final Version:
+*********************FINAL Version:********************
 INSTRUCTIONS: Look at Maze_Final_Project.pde
 Increase maximum available memory to something very high (We had 3000 MBs just to be safe)
 Import Minim Library
 NOTE: Not many images were made for the puzzles so there are bound to be repeats
+Puzzle tile sliding game is played by clicking on certain tiles to be slided.
+For Spot The Difference, click the differences on the image on the RIGHT
 
 Used a source for the algorithm for the puzzle tile game:
 https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
