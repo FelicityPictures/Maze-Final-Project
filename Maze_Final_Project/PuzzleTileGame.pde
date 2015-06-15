@@ -172,193 +172,194 @@ public class PuzzleTileGame extends Puzzle {
   }
 
   void placeParts(int oldAcross, int oldDown, int across, int down) {
-    image(img, 60, 60);
-    emptySpaceX.clear();
-    emptySpaceY.clear();
-    PImage load;
-    int tileWidth = img.width/piece;
-    int tileHeight = img.height/piece;
-    int goWidth = width/piece;
-    int goHeight = height/piece;
-    int w, h;
-    int counterImage = 0;
-    int place = 1;
-    int place2 = 1;
-    int counterW, counterH;
-    int cW = 1;
-    int cH = 1;
-    rect(goWidth, goHeight, img.width, img.height);
+ 
 
-    if (!start) {
-      switchh(down, across, oldDown, oldAcross);
-    }
+  image(img, 60, 60);
+  emptySpaceX.clear();
+  emptySpaceY.clear();
+  PImage load;
+  int tileWidth = img.width/piece;
+  int tileHeight = img.height/piece;
+  int goWidth = width/piece;
+  int goHeight = height/piece;
+  int w, h;
+  int counterImage = 0;
+  int place = 1;
+  int place2 = 1;
+  int counterW, counterH;
+  int cW = 1;
+  int cH = 1;
+  rect(goWidth, goHeight, img.width, img.height);
 
-    while (counterImage < cropped.size ()) {
-      if (cropped.get(counterImage).equals("NOTHING")) {
-        w = goWidth;
-        h = goHeight;
-        counterW = 0;
+  if (!start) {
+    switchh(down, across, oldDown, oldAcross);
+  }
+
+  while (counterImage < cropped.size ()) {
+    if (cropped.get(counterImage).equals("NOTHING")) {
+      w = goWidth;
+      h = goHeight;
+      counterW = 0;
+      counterH = 0;
+      while (counterW <= tileWidth) {
+        //empty? add to emptySpace
+        while (counterH <= tileHeight) {
+          emptySpaceX.add(w + counterW);
+          emptySpaceY.add(h + counterH);
+          counterH++;
+        }
         counterH = 0;
-        while (counterW <= tileWidth) {
-          //empty? add to emptySpace
-          while (counterH <= tileHeight) {
-            emptySpaceX.add(w + counterW);
-            emptySpaceY.add(h + counterH);
-            counterH++;
-          }
-          counterH = 0;
-          counterW++;
-        }
-        goWidth+= tileWidth;
-        place2++;
-        cW++;
-      } else {
-        load = loadImage(cropped.get(counterImage));
-        image(load, goWidth, goHeight);
-        goWidth += tileWidth;
-        cW++;
+        counterW++;
       }
-      counterImage++;
-      if (cW > piece) {
-        cW = 1;
-        goWidth = width/piece;
-        goHeight += tileHeight;
-        cH++;
-      }
+      goWidth+= tileWidth;
+      place2++;
+      cW++;
+    } else {
+      load = loadImage(cropped.get(counterImage));
+      image(load, goWidth, goHeight);
+      goWidth += tileWidth;
+      cW++;
     }
-    updateCropped();
-    println("ANSWERKEY" + answerKey);
-    if (identical()) {
-      fill(255);
-      rect(55, 55, width-110, height-110);
-      fill(0, 102, 153);
-      textSize(50);
-      text("SOLVED!", 400, 400);
-      solved = true;
+    counterImage++;
+    if (cW > piece) {
+      cW = 1;
+      goWidth = width/piece;
+      goHeight += tileHeight;
+      cH++;
     }
   }
-
-
-  private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
-    //  println("R2C2 " + r2 + "," + c2);
-    int counter = 0;
-    String sub = cropped2[wantBlankR-1][wantBlankC-1];
-    println("wantBlankR: " + wantBlankR + "   wantBlankC:  " + wantBlankC);
-    //  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
-    //  println("SUB" + sub);
-    //  println(cropped);
-    counter = cropped.indexOf("NOTHING");
-    cropped.remove("NOTHING");
-
-    cropped.add(cropped.indexOf(sub), "NOTHING");
-    cropped.remove(sub);
-
-    println(sub);
-    cropped.add(counter, sub);
-    //  println("CR" + cropped);
-  }
-
-
-  void mouse() {
-    //    println("HELEN" + x);
-    //    println("HELENY" + y);
-    int tileWidth = img.width/piece;
-    int tileHeight = img.height/piece;
-    int goWidth = width/piece;
-    int goHeight = height/piece;
-
-    //did the user click on a valid tile?
-    if (onImage(pixX, pixY, x, y) && !onImage(emptySpaceX, emptySpaceY, x, y)) {
-      if (onImage(emptySpaceX, emptySpaceY, x + tileWidth, y)) {
-        start = false;
-        println(1);
-        println(whereDown + " , " + whereAcross);
-        placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
-        whereAcross--;
-        numSteps++;
-      } else {
-        if (onImage(emptySpaceX, emptySpaceY, x - tileWidth, y)) {
-          start = false;
-          println(2);
-          println(whereDown + " , " + whereAcross);
-          placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
-          whereAcross++;
-          numSteps++;
-          //move to the right
-        } else {
-          if (onImage(emptySpaceX, emptySpaceY, x, y + tileHeight)) {
-            start = false;
-            println(3);
-            println(whereDown + " , " + whereAcross);
-            placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
-            whereDown--;
-            numSteps++;
-            //move down
-          } else {
-            if (onImage(emptySpaceX, emptySpaceY, x, y - tileHeight)) {
-              start = false;
-              println(4);
-              println(whereDown + " , " + whereAcross);
-              placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
-              whereDown++;
-              numSteps++;
-              //move up
-            }
-          }
-        }
-      }
-    }
-    //    println(cropped);
-    //    println("EMPTY:       " + emptySpaceX.get(100) + " , " + emptySpaceY.get(100));
-  }
-
-  private int getPicPlace(int ind) {
-    int place = 0;
-    String sub = cropped.get(ind);
-    while (place < cropped3.size ()) {
-      if (cropped3.get(place).getPhoto().equals(sub)) {
-        return place;
-      }
-      place++;
-    }
-    return place;
-  }
-
-  private int inversions() {
-    int place = 0;
-    int numInversions = 0;
-    int sub = 1;
-    int help1 = getPicPlace(place);
-    int help2 = getPicPlace(place+sub);
-
-    while (place < cropped.size ()) {
-      while (place+sub < cropped.size ()) {    
-        help1 = getPicPlace(place);
-        help2 = getPicPlace(place+sub);
-        if (cropped3.get(help1).getPhoto().equals("NOTHING") || cropped3.get(help2).getPhoto().equals("NOTHING")) {
-        } else {
-          if (cropped3.get(help1).getPosition() >
-            cropped3.get(help2).getPosition()) {
-            numInversions++;
-          }
-        }
-        sub++;
-      }
-      sub = 1;
-      place++;
-    }
-    return numInversions;
-  }
-
-  private boolean identical() {
-    int place = 0;
-    while (place < cropped.size ()) {
-      if (!cropped.get(place).equals(answerKey.get(place))) {
-        return false;
-      }
-      place++;
-    }
-    return true;
+  updateCropped();
+  println("ANSWERKEY" + answerKey);
+  if (identical()) {
+    fill(255);
+    rect(55, 55, width-110, height-110);
+    fill(0, 102, 153);
+    textSize(50);
+    text("SOLVED!", 400, 400);
+    solved = true;
   }
 }
 
+
+private void switchh(int wantBlankR, int wantBlankC, int r2, int c2) {
+  //  println("R2C2 " + r2 + "," + c2);
+  int counter = 0;
+  String sub = cropped2[wantBlankR-1][wantBlankC-1];
+  println("wantBlankR: " + wantBlankR + "   wantBlankC:  " + wantBlankC);
+  //  String sub = "" + wantBlankR + "x" + wantBlankC + ".jpg";
+  //  println("SUB" + sub);
+  //  println(cropped);
+  counter = cropped.indexOf("NOTHING");
+  cropped.remove("NOTHING");
+
+  cropped.add(cropped.indexOf(sub), "NOTHING");
+  cropped.remove(sub);
+
+  println(sub);
+  cropped.add(counter, sub);
+  //  println("CR" + cropped);
+}
+
+
+void mouse() {
+  //    println("HELEN" + x);
+  //    println("HELENY" + y);
+  int tileWidth = img.width/piece;
+  int tileHeight = img.height/piece;
+  int goWidth = width/piece;
+  int goHeight = height/piece;
+
+  //did the user click on a valid tile?
+  if (onImage(pixX, pixY, x, y) && !onImage(emptySpaceX, emptySpaceY, x, y)) {
+    if (onImage(emptySpaceX, emptySpaceY, x + tileWidth, y)) {
+      start = false;
+      println(1);
+      println(whereDown + " , " + whereAcross);
+      placeParts(whereAcross, whereDown, whereAcross-1, whereDown);
+      whereAcross--;
+      numSteps++;
+    } else {
+      if (onImage(emptySpaceX, emptySpaceY, x - tileWidth, y)) {
+        start = false;
+        println(2);
+        println(whereDown + " , " + whereAcross);
+        placeParts(whereAcross, whereDown, whereAcross+1, whereDown);
+        whereAcross++;
+        numSteps++;
+        //move to the right
+      } else {
+        if (onImage(emptySpaceX, emptySpaceY, x, y + tileHeight)) {
+          start = false;
+          println(3);
+          println(whereDown + " , " + whereAcross);
+          placeParts(whereAcross, whereDown, whereAcross, whereDown-1);
+          whereDown--;
+          numSteps++;
+          //move down
+        } else {
+          if (onImage(emptySpaceX, emptySpaceY, x, y - tileHeight)) {
+            start = false;
+            println(4);
+            println(whereDown + " , " + whereAcross);
+            placeParts(whereAcross, whereDown, whereAcross, whereDown+1);
+            whereDown++;
+            numSteps++;
+            //move up
+          }
+        }
+      }
+    }
+  }
+  //    println(cropped);
+  //    println("EMPTY:       " + emptySpaceX.get(100) + " , " + emptySpaceY.get(100));
+}
+
+private int getPicPlace(int ind) {
+  int place = 0;
+  String sub = cropped.get(ind);
+  while (place < cropped3.size ()) {
+    if (cropped3.get(place).getPhoto().equals(sub)) {
+      return place;
+    }
+    place++;
+  }
+  return place;
+}
+
+private int inversions() {
+  int place = 0;
+  int numInversions = 0;
+  int sub = 1;
+  int help1 = getPicPlace(place);
+  int help2 = getPicPlace(place+sub);
+
+  while (place < cropped.size ()) {
+    while (place+sub < cropped.size ()) {    
+      help1 = getPicPlace(place);
+      help2 = getPicPlace(place+sub);
+      if (cropped3.get(help1).getPhoto().equals("NOTHING") || cropped3.get(help2).getPhoto().equals("NOTHING")) {
+      } else {
+        if (cropped3.get(help1).getPosition() >
+          cropped3.get(help2).getPosition()) {
+          numInversions++;
+        }
+      }
+      sub++;
+    }
+    sub = 1;
+    place++;
+  }
+  return numInversions;
+}
+
+private boolean identical() {
+  int place = 0;
+  while (place < cropped.size ()) {
+    if (!cropped.get(place).equals(answerKey.get(place))) {
+      return false;
+    }
+    place++;
+  }
+  return true;
+}
+}

@@ -33,8 +33,10 @@ public class SpotTheDifference extends Puzzle {
 
   public boolean playable() {
     if (solutions.size()>0) {
+      solved = true;
       return true;
     } else {
+      solved = false;
       return false;
     }
   }

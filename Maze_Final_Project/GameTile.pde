@@ -23,6 +23,7 @@ public class GameTile {
   PImage big, small, end;
   PImage border = loadImage("Images/Blank.png");
   boolean isPuzzleTile = false;
+  boolean gameMode = false;
   int x, y;
   //  PuzzleTileGame tile = new PuzzleTileGame();
   Puzzle puzzle;
@@ -99,13 +100,15 @@ public class GameTile {
       Random r = new Random();
       int randomP = r.nextInt(2);
       if (randomP==0) {
-        //        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
-        //        isPuzzleTile = true;
-        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-        isPuzzleTile = false;
+        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+        isPuzzleTile = true;
+        //        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        //        isPuzzleTile = false;
       } else {
-        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
-        isPuzzleTile = false;
+        //        puzzle = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
+        //        isPuzzleTile = false;
+        puzzle = new PuzzleTileGame("tilegame.jpg", 3);
+        isPuzzleTile = true;
       }
     }
   }
@@ -177,6 +180,9 @@ public class GameTile {
     }
     if (door) {
       if (isPuzzleTile) {
+        if (!puzzle.isSolved()) {
+          gameMode = true;
+        }
         //        image(big, 55, 55);
         //        image(border, 0, 0);
         //        fill(255, 200, 200);
@@ -191,11 +197,15 @@ public class GameTile {
         //put the game stuff here
 
         if (puzzle.isSolved()) {
+          println(true);
+          gameMode = false;
           door = false;
           isPuzzleTile = false;
-          image(big, 55, 55);
         }
       } else {
+        if (!puzzle.isSolved()) {
+          gameMode = true;
+        }
         image(big, 55, 55);
         //play the Spot the Difference Game
 
@@ -203,17 +213,13 @@ public class GameTile {
         rect(55, 55, width - 110, height - 110);
         //     SpotTheDifference game = new SpotTheDifference(r.nextInt(2)+1, 1000, 700);
         puzzle.show();
+        gameMode = true;
         puzzle.validClick(xc, yc);
         puzzle.drawRect();
         if (!puzzle.playable()) {
+          gameMode = false;
           door = false;
           image(big, 55, 55);
-
-          //          puzzle.show();
-          //          while (puzzle.playable ()) {
-          //            puzzle.show();
-          //            puzzle.validClick(xc, yc);
-          //          }
         }
       }
     } else {
@@ -242,6 +248,10 @@ public class GameTile {
 
   int getX() {
     return x;
+  }
+
+  boolean getGameMode() {
+    return gameMode;
   }
 
   int getY() {

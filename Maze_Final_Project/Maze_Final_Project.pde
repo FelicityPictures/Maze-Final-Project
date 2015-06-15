@@ -17,6 +17,7 @@ int numberOfDoors;
 int mx, my;
 boolean changeDir = false;
 int startx, starty, endx, endy;
+boolean game;
 
 void setup() {
   w=1000;
@@ -159,11 +160,18 @@ void mouseClicked() {
     mx = mouseX;
     my = mouseY;
   }
+
+  //  if (game && !current.getGameMode()) {
+  //    current.PlayerSees(mx, my, changeDir, false);
+  //  }
 }
 
 
 void draw() {
   //  println("mode" + mode);
+  if (current.puzzle()) {
+    game = true;
+  }
   if (mode == 0) {
     displayDefault();
   } else {
@@ -171,18 +179,18 @@ void draw() {
       if (currentCol == endy && currentRow == endx) {
         current.PlayerSees(mx, my, changeDir, true);
       } else {
+
         current.PlayerSees(mx, my, changeDir, false);
       }
       if (changeDir) {
         changeDir = !changeDir;
       }
-//      if (!current.puzzle()) {
+      if (!current.puzzle()) {
         image(border, 0, 0);
-//      }
-
+      }
       //   println(currentRow + "," + currentCol);
       if (current.puzzle() && current.getIsPuzzleTile()) {
-        //        current.PlayerSees(mx, my, changeDir, false);
+        //       p current.PlayerSees(mx, my, changeDir, false);
         //        image(border, 0, 0);
         textSize(32);
         fill(255);

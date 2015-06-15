@@ -34,5 +34,10 @@ public class Puzzle {
 
   public void drawRect() {
   }
+
+
+  boolean getGameMode() {
+    return false;
+  }
 }
 
